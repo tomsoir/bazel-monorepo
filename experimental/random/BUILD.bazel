@@ -1,0 +1,14 @@
+# Rule that creates text file with HELLO WORLD text and using BASH command
+genrule(
+    name = "test_file",
+    srcs = [],
+    outs = ["output.txt"],
+    cmd = "echo 'HELLO WORLD1' > $@",
+)
+
+genrule(
+    name = "test_file2",
+    srcs = [],
+    outs = ["output2.txt"],
+    cmd = "echo 'HELLO WORLD2' > $@",
+)
