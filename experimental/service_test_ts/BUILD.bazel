@@ -1,0 +1,13 @@
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+
+ts_project(
+    name="tsc",
+    srcs = ["src/index.ts"],
+    tsconfig= "//experimental/service_test_ts:tsconfig.json",
+    allow_js=True,
+    resolve_json_module=True,
+)
+
+# load("@aspect_rules_js//ts:defs.bzl", "ts_config")
+
+# ts_config(name="tscc", deps=[], src="//:tsconfig.json")
