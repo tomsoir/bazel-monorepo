@@ -1,12 +1,28 @@
 {
     "compilerOptions": {
+      "strict": true,
       "target": "ES2020",
-      "module": "commonjs",
-      "strict": false,
+      "module": "ES2020",
+      "incremental": true,
+      "sourceMap": true,
+      "noUnusedLocals": true,
+      "moduleResolution": "node",
       "esModuleInterop": true,
+      "importHelpers": true,
+      "inlineSources": true,
+      "allowSyntheticDefaultImports": true,
       "forceConsistentCasingInFileNames": true,
+      "declaration": true,
+      "declarationMap": true,
+      "useUnknownInCatchVariables": false,
+      "isolatedModules": true,
+      "noImplicitOverride": true,
+      "preserveConstEnums": true,
+      "skipLibCheck": true,
       "allowJs": true,
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
+      "strictNullChecks": true
     },
-    "include": ["src/**/*.ts"]
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
 }

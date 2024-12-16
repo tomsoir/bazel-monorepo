@@ -6,6 +6,10 @@ ts_project(
     tsconfig= "//experimental/service_test_ts:tsconfig.json",
     allow_js=True,
     resolve_json_module=True,
+    declaration_map=True,
+    source_map=True,
+    declaration=True,
+    incremental=True,
 )
 
 # load("@aspect_rules_js//ts:defs.bzl", "ts_config")
