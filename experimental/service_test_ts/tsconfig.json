@@ -21,8 +21,11 @@
       "skipLibCheck": true,
       "allowJs": true,
       "resolveJsonModule": true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+
+      "rootDir": "src",
+      "outDir": "dist"
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"]
 }

@@ -8,10 +8,12 @@
     "https://bcr.bazel.build/modules/apple_support/1.5.0/MODULE.bazel": "50341a62efbc483e8a2a6aec30994a58749bd7b885e18dd96aa8c33031e558ef",
     "https://bcr.bazel.build/modules/apple_support/1.5.0/source.json": "eb98a7627c0bc486b57f598ad8da50f6625d974c8f723e9ea71bd39f709c9862",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.7.7/MODULE.bazel": "491f8681205e31bb57892d67442ce448cda4f472a8e6b3dc062865e29a64f89c",
+    "https://bcr.bazel.build/modules/aspect_bazel_lib/2.8.1/MODULE.bazel": "812d2dd42f65dca362152101fbec418029cc8fd34cbad1a2fde905383d705838",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.9.3/MODULE.bazel": "66baf724dbae7aff4787bf2245cc188d50cb08e07789769730151c0943587c14",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.9.3/source.json": "b290debdc0ab191a2a866b5a4e26f042c983026ff58b2e003ea634d838e3b6ae",
     "https://bcr.bazel.build/modules/aspect_rules_js/2.0.0/MODULE.bazel": "b45b507574aa60a92796e3e13c195cd5744b3b8aff516a9c0cb5ae6a048161c5",
-    "https://bcr.bazel.build/modules/aspect_rules_js/2.0.0/source.json": "a6b09288ab135225982a58ac0b5e2c032c331d88f80553d86596000e894e86b3",
+    "https://bcr.bazel.build/modules/aspect_rules_js/2.1.2/MODULE.bazel": "05bbb900d2de0ac08c260af149ee6f1394c37b0ca388571305e33be00d7c3b97",
+    "https://bcr.bazel.build/modules/aspect_rules_js/2.1.2/source.json": "6eadb3c46d212fe4af0669f527d005331ad0acfdc3b0999b770a057e5d4177e2",
     "https://bcr.bazel.build/modules/aspect_rules_ts/3.3.2/MODULE.bazel": "8f1fead2790489dc989ae67d64def91c0ffe9c95e166b3742e0337555e5fd0f6",
     "https://bcr.bazel.build/modules/aspect_rules_ts/3.3.2/source.json": "5c40b1b359c71989d2315333c698b40980f77bc0da3807c32071a2899d3829ed",
     "https://bcr.bazel.build/modules/bazel_features/1.11.0/MODULE.bazel": "f9382337dd5a474c3b7d334c2f83e50b6eaedc284253334cf823044a26de03e8",
@@ -60,7 +62,8 @@
     "https://bcr.bazel.build/modules/rules_license/0.0.7/MODULE.bazel": "088fbeb0b6a419005b89cf93fe62d9517c0a2b8bb56af3244af65ecfe37e7d5d",
     "https://bcr.bazel.build/modules/rules_license/0.0.7/source.json": "355cc5737a0f294e560d52b1b7a6492d4fff2caf0bef1a315df5a298fca2d34a",
     "https://bcr.bazel.build/modules/rules_nodejs/6.2.0/MODULE.bazel": "ec27907f55eb34705adb4e8257952162a2d4c3ed0f0b3b4c3c1aad1fac7be35e",
-    "https://bcr.bazel.build/modules/rules_nodejs/6.2.0/source.json": "a77c307175a82982f0847fd6a8660db5b21440d8a9d073642cb4afa7a18612ff",
+    "https://bcr.bazel.build/modules/rules_nodejs/6.3.0/MODULE.bazel": "45345e4aba35dd6e4701c1eebf5a4e67af4ed708def9ebcdc6027585b34ee52d",
+    "https://bcr.bazel.build/modules/rules_nodejs/6.3.0/source.json": "1254ffd8d0d908a19c67add7fb5e2a1f604df133bc5d206425264293e2e537fc",
     "https://bcr.bazel.build/modules/rules_pkg/0.7.0/MODULE.bazel": "df99f03fc7934a4737122518bb87e667e62d780b610910f0447665a7e2be62dc",
     "https://bcr.bazel.build/modules/rules_pkg/0.7.0/source.json": "c2557066e0c0342223ba592510ad3d812d4963b9024831f7f66fd0584dd8c66c",
     "https://bcr.bazel.build/modules/rules_proto/4.0.0/MODULE.bazel": "a7a7b6ce9bee418c1a760b3d84f83a299ad6952f9903c67f19e4edd964894e06",
@@ -116,7 +119,7 @@
     "@@aspect_bazel_lib~//lib:extensions.bzl%toolchains": {
       "general": {
         "bzlTransitiveDigest": "xOlbzeGJtMviNBabrKSUOG0zVTR0pKeFuNQdR48NeVY=",
-        "usagesDigest": "yqF8KgiEPDGZDHsCvv+lDqKKT+Y8827rtOBanDzq69I=",
+        "usagesDigest": "jXDaFD5TN8zy5GoBCRk8Qzy5VVL8LfBdtOT/oY93BUc=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -583,7 +586,7 @@
     "@@aspect_rules_ts~//ts:extensions.bzl%ext": {
       "general": {
         "bzlTransitiveDigest": "RqHZocRc7jsds9NAPS8k3oUCS3SqqA3cFqpd0Lt7mkU=",
-        "usagesDigest": "KyE1PjMmUFV2vz+KypOWqvLaqNeaUkhu6063j+tqODk=",
+        "usagesDigest": "/z4ca+1z/VCydEk0MwLyKPL107p9F5XvIgbvZZhwt3Y=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -594,7 +597,7 @@
             "attributes": {
               "bzlmod": true,
               "version": "",
-              "version_from": "@@//experimental/service_test_ts:package.json",
+              "version_from": "@@//:package.json",
               "integrity": "",
               "build_file": "@@aspect_rules_ts~//ts:BUILD.typescript",
               "build_file_substitutions": {
@@ -635,8 +638,8 @@
     },
     "@@rules_nodejs~//nodejs:extensions.bzl%node": {
       "general": {
-        "bzlTransitiveDigest": "0IJr1Jg3Dns9QKY65MtauFLtHjjP3n1DgN0+ZAjFYXo=",
-        "usagesDigest": "vbhJfKyDgtROyEu7I7EZbXSSPMKjfkjlQxC/RtdJWL8=",
+        "bzlTransitiveDigest": "SqbzUarOVzAfK28Ca5+NIU3LUwnW/b3h0xXBUS97oyI=",
+        "usagesDigest": "GdEsv7OLl1xAnD9wvplvZZMdg79D0r2lepY0EZ36UD0=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -650,7 +653,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "linux_amd64"
             }
@@ -664,7 +667,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "linux_arm64"
             }
@@ -678,7 +681,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "linux_s390x"
             }
@@ -692,7 +695,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "linux_ppc64le"
             }
@@ -706,7 +709,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "darwin_amd64"
             }
@@ -720,7 +723,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "darwin_arm64"
             }
@@ -734,7 +737,7 @@
               "node_urls": [
                 "https://nodejs.org/dist/v{version}/{filename}"
               ],
-              "node_version": "18.20.3",
+              "node_version": "18.20.4",
               "include_headers": false,
               "platform": "windows_amd64"
             }
