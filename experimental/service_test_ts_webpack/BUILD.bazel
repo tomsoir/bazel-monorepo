@@ -1,15 +1,12 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle")
 
 npm_link_all_packages(name="node_modules")
 
 ts_project(
     name="tsc",
-    # srcs = [
-    #     "src/index.ts",
-    #     "src/index2.ts",
-    # ],
     srcs = glob([
         "src/**/*.ts",
     ]),
@@ -22,10 +19,6 @@ ts_project(
     incremental=True,
     out_dir = "dist",
     root_dir = "src",
-    deps = [
-        ":node_modules/express",
-        ":node_modules/@types/express",
-    ]
 )
 
 js_binary(
@@ -37,3 +30,27 @@ js_binary(
     chdir= package_name(),
     entry_point = "dist/index.js",
 )
+
+webpack_bundle(
+    name="webpack_build",
+    srcs=[":tsc"],
+    node_modules=":node_modules",
+    entry_point="dist/index.js",
+    output_dir=True,
+    # output_dir=False,
+    chdir= package_name(),
+    tags=["webpack"],
+    webpack_config="webpack.config.cjs",
+    deps=[
+        ":node_modules/webpack",
+    ]
+)
+
+# js_binary(
+#     name="web",
+#     data=[
+#         ":webpack_build",
+#     ],
+#     chdir= package_name(),
+#     entry_point = "webpack_build/bundle1112.js",
+# )

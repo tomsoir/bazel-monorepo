@@ -33,3 +33,13 @@ pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm")
 # Allows developers to use the matching pnpm version, for example:
 # bazel run -- @pnpm --dir /home/runner/work/rules_js/rules_js install
 use_repo(pnpm, "pnpm")
+
+# ---
+
+# aspect_rules_webpack
+# https://github.com/aspect-build/rules_webpack/releases/tag/v0.16.0
+# load("@aspect_rules_webpack//webpack:dependencies.bzl", "rules_webpack_dependencies")
+# rules_webpack_dependencies()
+bazel_dep(name = "aspect_rules_webpack", version = "0.16.0")
+webpack = use_extension("@aspect_rules_webpack//webpack:dependencies.bzl", "webpack", dev_dependency = True)
+use_repo(webpack, "webpack")
