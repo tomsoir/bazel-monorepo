@@ -39,6 +39,8 @@
 * Add root BAZEL.build file and well as create BUILD files
 
 ## Add PNPM
+* Info:
+    * https://dev.to/vinomanick/create-a-monorepo-using-pnpm-workspace-1ebn
 * Install PNPM `$ npm i -g pnpm`
 * Init monorepo: `$ pnpm init`
 * Add node_modules to `.gitignore`

@@ -1,6 +1,8 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
-# load("@aspect_rules_js//npm:repositories.bzl", "npm_translate_lock")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name="node_modules")
 
 ts_project(
     name="tsc",
@@ -20,6 +22,9 @@ ts_project(
     incremental=True,
     out_dir = "dist",
     root_dir = "src",
+    # deps = [
+    #     ":node_modules/express"
+    # ]
 )
 
 js_binary(
@@ -27,6 +32,7 @@ js_binary(
     data=[
         ":tsc",
         "package.json",
+        # ":node_modules/express",
     ],
     chdir= package_name(),
     entry_point = "dist/index.js",
