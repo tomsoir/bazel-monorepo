@@ -1,5 +1,5 @@
 {
-  "name": "service_test_ts",
+  "name": "service_test_ts_webpack_react",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",

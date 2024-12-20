@@ -563,7 +563,7 @@
     "@@aspect_rules_ts+//ts:extensions.bzl%ext": {
       "general": {
         "bzlTransitiveDigest": "KGhgk1bHleBGI80aMWunBVSiWFlrkXg/D7auEDQXJoM=",
-        "usagesDigest": "1VWw34ayVUsVs3wg04zJ5UoVUkuRqrr0fmOXjAQxQiE=",
+        "usagesDigest": "lo08ysCIqOVkEKXQ2LrCGRdj0ak5GNGGaExsQp4fCWI=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -573,7 +573,7 @@
             "attributes": {
               "bzlmod": true,
               "version": "",
-              "version_from": "@@//experimental/service_test_ts:package.json",
+              "version_from": "@@//:package.json",
               "integrity": "",
               "build_file": "@@aspect_rules_ts+//ts:BUILD.typescript",
               "build_file_substitutions": {

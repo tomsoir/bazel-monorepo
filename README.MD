@@ -41,9 +41,6 @@
 - Add minimum node version: `$ npm pkg set engines.node=">=23.5.0"`
 - Add modules types: `$ npm pkg set type="module"`
 - Initialize a pnpm Workspace: `$ touch pnpm-workspace.yaml`
-- Convert existing project to PNPN project
-  - Go to each project and run `$ pnpm init`
-  - Note: make sure to update `pnpm-workspace.yaml` if new folder with projects is create on the root level
 - Main commands:
   - `$ pnpm update` - update all projects in monorepo
   - `$ pnpm install` - install all npm deps for all projects in monorepo
@@ -58,3 +55,18 @@
 - Add a script for running prettier `$ npm pkg set scripts.format="prettier --write ."`
 - Main commands:
   - `$ pnpm run format`
+
+## Add new / Convert existing package into PNPM + BAZEL
+
+- Create a new project:
+
+  - Go to a project and run `$ pnpm init`
+  - Go to root and run `$ pnpm install`
+
+- Convert existing project to PNPN project
+
+  - Go to each project and run `$ pnpm init`
+  - Go to root and run `$ pnpm install`
+
+- IMPORTANT! Go to `.bazelignore` and add `<new project>/node_modules`
+- IMPORTANT! Update `pnpm-workspace.yaml` if new folder with projects is created on the root level (aka ./experimental)

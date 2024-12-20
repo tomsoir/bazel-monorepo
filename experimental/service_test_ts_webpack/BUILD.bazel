@@ -1,0 +1,39 @@
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name="node_modules")
+
+ts_project(
+    name="tsc",
+    # srcs = [
+    #     "src/index.ts",
+    #     "src/index2.ts",
+    # ],
+    srcs = glob([
+        "src/**/*.ts",
+    ]),
+    tsconfig= "tsconfig.json",
+    allow_js=True,
+    resolve_json_module=True,
+    declaration_map=True,
+    source_map=True,
+    declaration=True,
+    incremental=True,
+    out_dir = "dist",
+    root_dir = "src",
+    deps = [
+        ":node_modules/express",
+        ":node_modules/@types/express",
+    ]
+)
+
+js_binary(
+    name="app",
+    data=[
+        ":tsc",
+        "package.json",
+    ],
+    chdir= package_name(),
+    entry_point = "dist/index.js",
+)
