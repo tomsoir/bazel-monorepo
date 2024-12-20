@@ -1,5 +1,6 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
+# load("@aspect_rules_js//npm:repositories.bzl", "npm_translate_lock")
 
 ts_project(
     name="tsc",
@@ -22,8 +23,11 @@ ts_project(
 )
 
 js_binary(
-    name="svc",
-    data=[":tsc", "package.json"],
+    name="app",
+    data=[
+        ":tsc",
+        "package.json",
+    ],
     chdir= package_name(),
     entry_point = "dist/index.js",
 )

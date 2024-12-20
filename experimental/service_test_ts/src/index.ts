@@ -18,6 +18,7 @@ function func1() {
     func2();
 }
 
+// console.log(`Start!`, express);
 console.log(`Start!`);
 
 func1();
