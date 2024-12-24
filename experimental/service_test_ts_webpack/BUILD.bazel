@@ -21,16 +21,6 @@ ts_project(
     root_dir = "src",
 )
 
-js_binary(
-    name="tsc_app",
-    data=[
-        ":tsc",
-        "package.json",
-    ],
-    chdir= package_name(),
-    entry_point = "dist/index.js",
-)
-
 webpack_bundle(
     name="webpack_build",
     srcs=[":tsc"],

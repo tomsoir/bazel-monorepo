@@ -19,16 +19,10 @@ ts_project(
     incremental=True,
     out_dir = "dist",
     root_dir = "src",
-)
-
-js_binary(
-    name="tsc_app",
-    data=[
-        ":tsc",
-        "package.json",
-    ],
-    chdir= package_name(),
-    entry_point = "dist/index.js",
+    # deps = [
+    #     ":node_modules/express",
+    #     ":node_modules/@types/express",
+    # ]
 )
 
 webpack_bundle(

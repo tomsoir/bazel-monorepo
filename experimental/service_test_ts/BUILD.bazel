@@ -29,7 +29,7 @@ ts_project(
 )
 
 js_binary(
-    name="app",
+    name="tsc_app",
     data=[
         ":tsc",
         "package.json",

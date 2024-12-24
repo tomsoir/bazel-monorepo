@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.js'],  // Resolve JavaScript files only
+    extensions: ['.js'],
   },
   mode: 'production',  // Set Webpack mode to production for optimization
 };
