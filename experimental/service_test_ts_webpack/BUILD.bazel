@@ -22,7 +22,7 @@ ts_project(
 )
 
 js_binary(
-    name="app",
+    name="tsc_app",
     data=[
         ":tsc",
         "package.json",
@@ -36,8 +36,7 @@ webpack_bundle(
     srcs=[":tsc"],
     node_modules=":node_modules",
     entry_point="dist/index.js",
-    output_dir=True,
-    # output_dir=False,
+    output_dir=False,
     chdir= package_name(),
     tags=["webpack"],
     webpack_config="webpack.config.cjs",
@@ -46,11 +45,11 @@ webpack_bundle(
     ]
 )
 
-# js_binary(
-#     name="web",
-#     data=[
-#         ":webpack_build",
-#     ],
-#     chdir= package_name(),
-#     entry_point = "webpack_build/bundle1112.js",
-# )
+js_binary(
+    name="webpack_app",
+    data=[
+        ":webpack_build",
+    ],
+    chdir= package_name(),
+    entry_point = "webpack_build.js",
+)
