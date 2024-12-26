@@ -5,7 +5,7 @@
 //   #     ":node_modules/@types/express",
 //   # ]
 
-import func2 from './index2.js';
+import func2 from './util2.js';
 
 function func1() {
   console.log(1);
@@ -14,4 +14,4 @@ function func1() {
 
 console.log(`Start!`);
 
-func1();
+export default func1;
