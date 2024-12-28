@@ -28,6 +28,19 @@ ts_project(
     ]
 )
 
+# # React-js need document DOM API context to be executing which is available
+# # when running the js app in a browser, so js_binary can NOT be used now since
+# # it executes js app in NodeJS that doesn't have it.
+# js_binary(
+#     name="tsc_app",
+#     data=[
+#         ":tsc",
+#         "package.json",
+#     ],
+#     chdir= package_name(),
+#     entry_point = "dist/index.js",
+# )
+
 webpack_bundle(
     name="webpack_build",
     srcs=[":tsc"],
@@ -42,9 +55,9 @@ webpack_bundle(
     ]
 )
 
-# React js app is bundled to be executing in the browser on the first place
-# and the js_binary can not be used now since it represents NodeJS that will
-# going to execute this code.
+# # React-js need document DOM API context to be executing which is available
+# # when running the js app in a browser, so js_binary can NOT be used now since
+# # it executes js app in NodeJS that doesn't have it.
 # js_binary(
 #     name="webpack_app",
 #     data=[
