@@ -13,15 +13,30 @@
 
 ## Create monorepo structure
 
-- Create monorepo folders strucuture
+- Create monorepo folders structure
 - Add projects
 
 ## Install Bazel
 
-- Install bazelisk (Bazel version manager): `$ brew install bazelisk`
-- Check version (version is declared in `.bazelversion` file):
-  - `$ bazelisk version`
-  - `$ bazel --version`
+- [Not recommended] Pure Bazel installation
+  - Note: NOT Recommended because it is better use Aspect CLI instead, which will provide an extended version of Bazel
+  - Install bazelisk (Bazel version manager): `$ brew install bazelisk`
+  - Check version (version is declared in `.bazelversion` file):
+    - `$ bazelisk version`
+    - `$ bazel --version`
+- [Recommended] Aspect Bazel installation
+  - Note: Aspect-cli has build in Bazelisk and Gazelle and more recommended since provides more features like formatters, plugins for Gazelle, etc...
+  - Global aspect-cli installation: https://docs.aspect.build/cli/#installation
+    - Install Aspect-cli, global package: `$ brew install aspect-build/aspect/aspect`
+    - Check version (version is declared in `.bazelversion` file):
+        - `$ bazel --version` (it should look like: `aspect 2024.51.0-9234a1390`)
+  - Install latest release to monorepo: https://docs.aspect.build/cli/releases/
+    - Create `.bazeliskrc` and add next lines:
+      ```bash
+      BAZELISK_BASE_URL=https://static.aspect.build/aspect
+      USE_BAZEL_VERSION=aspect/2024.51.11
+      ```
+    - Run: `$ aspect` for the first time to download and install all required deps for aspect-cli.
 - Add `MODULES.bazel` file to treat monorepo as a single Bazel workspace
 - Add root `BAZEL.build` file and create BUILD files in each project
 - Main commands:

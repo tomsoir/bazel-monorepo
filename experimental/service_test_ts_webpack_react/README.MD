@@ -4,10 +4,16 @@
 $ bazel clean
 $ bazel build :tsc
 $ bazel build :webpack_build
-$ bazel run :webpack_app
+$ bazel build :styles
+$ bazel build :index_html
+$ bazel run :serve
 
-$ pnpm run tsc
-$ pnpm run webpack
+$ pnpm run clean
+$ pnpm run build:tsc
+$ pnpm run build:webpack_bundle
+$ pnpm run build:styles
+$ pnpm run build:index_html
+$ pnpm run build
 $ pnpm run serve
 ```
 
@@ -32,4 +38,5 @@ $ pnpm run serve
 
 ### service_test_ts_webpack_react (current)
 
-- Support React + JSX
+- Support React + JSX + SCSS
+- Support Webpack-Dev-Server
