@@ -8,6 +8,7 @@
 # aspect_rules_ts
 # https://github.com/aspect-build/rules_ts/releases/tag/v3.3.2
 bazel_dep(name = "aspect_rules_ts", version = "3.3.2")
+
 rules_ts_ext = use_extension("@aspect_rules_ts//ts:extensions.bzl", "ext", dev_dependency = True)
 rules_ts_ext.deps(
     ts_version_from = "//:package.json",
@@ -19,6 +20,7 @@ use_repo(rules_ts_ext, "npm_typescript")
 # aspect_rules_js
 # https://github.com/aspect-build/rules_js/releases/tag/v2.1.2
 bazel_dep(name = "aspect_rules_js", version = "2.1.2")
+
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm", dev_dependency = True)
 npm.npm_translate_lock(
     name = "npm",
@@ -26,7 +28,9 @@ npm.npm_translate_lock(
     verify_node_modules_ignored = "//:.bazelignore",
 )
 use_repo(npm, "npm")
+
 pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm")
+
 # Allows developers to use the matching pnpm version, for example:
 # bazel run -- @pnpm --dir /home/runner/work/rules_js/rules_js install
 use_repo(pnpm, "pnpm")
@@ -36,6 +40,7 @@ use_repo(pnpm, "pnpm")
 # aspect_rules_webpack
 # https://github.com/aspect-build/rules_webpack/releases/tag/v0.16.0
 bazel_dep(name = "aspect_rules_webpack", version = "0.16.0")
+
 webpack = use_extension("@aspect_rules_webpack//webpack:dependencies.bzl", "webpack", dev_dependency = True)
 use_repo(webpack, "webpack")
 
@@ -45,9 +50,11 @@ use_repo(webpack, "webpack")
 # # https://github.com/bazelbuild/rules_sass
 # # https://github.com/GZGavinZhao/gzgz_rules_sass
 bazel_dep(name = "gzgz_rules_sass", version = "1.0.0")
+
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
 use_repo(sass, "sass_toolchains")
 sass.toolchain(sass_version = "1.63.6")
+
 register_toolchains("@sass_toolchains//:all")
 
 # ---
@@ -55,6 +62,7 @@ register_toolchains("@sass_toolchains//:all")
 # # copy_to_bin
 # # https://github.com/bazel-contrib/bazel-lib/releases/tag/v2.10.0
 bazel_dep(name = "aspect_bazel_lib", version = "2.10.0")
+
 bazel_lib = use_extension("@aspect_bazel_lib//lib:extensions.bzl", "aspect_bazel_lib_dependencies", dev_dependency = True)
 use_repo(bazel_lib, "bazel_lib")
 
@@ -64,3 +72,6 @@ use_repo(bazel_lib, "bazel_lib")
 # # https://github.com/aspect-build/rules_lint/releases/tag/v1.0.8
 bazel_dep(name = "aspect_rules_lint", version = "1.0.8")
 
+# ---
+
+bazel_dep(name = "buildifier_prebuilt", version = "7.3.1")

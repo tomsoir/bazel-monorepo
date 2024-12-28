@@ -1,55 +1,55 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
-load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle")
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
-npm_link_all_packages(name="node_modules")
+npm_link_all_packages(name = "node_modules")
 
 ts_project(
-    name="tsc",
+    name = "tsc",
     srcs = glob([
         "src/**/*.ts",
     ]),
-    tsconfig= "tsconfig.json",
-    allow_js=True,
-    resolve_json_module=True,
-    declaration_map=True,
-    source_map=True,
-    declaration=True,
-    incremental=True,
+    allow_js = True,
+    declaration = True,
+    declaration_map = True,
+    incremental = True,
     out_dir = "dist",
+    resolve_json_module = True,
     root_dir = "src",
+    source_map = True,
+    tsconfig = "tsconfig.json",
 )
 
 js_binary(
-    name="tsc_app",
-    data=[
-        ":tsc",
+    name = "tsc_app",
+    chdir = package_name(),
+    data = [
         "package.json",
+        ":tsc",
     ],
-    chdir= package_name(),
     entry_point = "dist/index.js",
 )
 
 webpack_bundle(
-    name="webpack_build",
-    srcs=[":tsc"],
-    node_modules=":node_modules",
-    entry_point="dist/index.js",
-    output_dir=False,
-    chdir= package_name(),
-    tags=["webpack"],
-    webpack_config="webpack.config.cjs",
-    deps=[
+    name = "webpack_build",
+    srcs = [":tsc"],
+    chdir = package_name(),
+    entry_point = "dist/index.js",
+    node_modules = ":node_modules",
+    output_dir = False,
+    tags = ["webpack"],
+    webpack_config = "webpack.config.cjs",
+    deps = [
         ":node_modules/webpack",
-    ]
+    ],
 )
 
 js_binary(
-    name="webpack_app",
-    data=[
+    name = "webpack_app",
+    chdir = package_name(),
+    data = [
         ":webpack_build",
     ],
-    chdir= package_name(),
     entry_point = "webpack_build.js",
 )
