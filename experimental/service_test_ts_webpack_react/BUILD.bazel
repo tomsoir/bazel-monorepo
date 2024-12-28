@@ -2,6 +2,9 @@ load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle")
+load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
+load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_devserver")
 
 npm_link_all_packages(name="node_modules")
 
@@ -66,3 +69,38 @@ webpack_bundle(
 #     chdir= package_name(),
 #     entry_point = "webpack_build.js",
 # )
+
+# Rule works!
+# @TODO: find a better way!
+# Note: We need to figure out first how to inject css into React app:
+# Dynamically (inject during bundling) or statically (by linking statically generated file)
+sass_binary(
+    name = "styles",
+    output_dir = "dist",
+    output_name = "styles.css",
+    src = "src/styles.scss",
+)
+
+# Rule works!
+# @TODO: find a better way!
+copy_file(
+    name = "index_html",
+    src = "src/index.html",
+    out = "dist/index.html",
+)
+
+webpack_devserver(
+    name = "serve",
+    chdir = package_name(),
+    data = [
+        ":tsc",
+        ":webpack_build",
+        ":styles",
+        ":index_html",
+    ],
+    entry_points = {
+        "dist/webpack_build.js": ":webpack_build",
+    },
+    node_modules = "//experimental/service_test_ts_webpack_react:node_modules",
+    webpack_config="webpack.config.cjs",
+)

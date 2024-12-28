@@ -5,9 +5,6 @@
 # For more details, please check https://github.com/bazelbuild/bazel/issues/18958
 ###############################################################################
 
-################################################################################
-# TS/JS projects
-################################################################################
 # aspect_rules_ts
 # https://github.com/aspect-build/rules_ts/releases/tag/v3.3.2
 bazel_dep(name = "aspect_rules_ts", version = "3.3.2")
@@ -38,8 +35,25 @@ use_repo(pnpm, "pnpm")
 
 # aspect_rules_webpack
 # https://github.com/aspect-build/rules_webpack/releases/tag/v0.16.0
-# load("@aspect_rules_webpack//webpack:dependencies.bzl", "rules_webpack_dependencies")
-# rules_webpack_dependencies()
 bazel_dep(name = "aspect_rules_webpack", version = "0.16.0")
 webpack = use_extension("@aspect_rules_webpack//webpack:dependencies.bzl", "webpack", dev_dependency = True)
 use_repo(webpack, "webpack")
+
+# ---
+
+# # rules_sass
+# # https://github.com/bazelbuild/rules_sass
+# # https://github.com/GZGavinZhao/gzgz_rules_sass
+bazel_dep(name = "gzgz_rules_sass", version = "1.0.0")
+sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
+use_repo(sass, "sass_toolchains")
+sass.toolchain(sass_version = "1.63.6")
+register_toolchains("@sass_toolchains//:all")
+
+# ---
+
+# # copy_to_bin
+# # https://github.com/bazel-contrib/bazel-lib/releases/tag/v2.10.0
+bazel_dep(name = "aspect_bazel_lib", version = "2.10.0")
+bazel_lib = use_extension("@aspect_bazel_lib//lib:extensions.bzl", "aspect_bazel_lib_dependencies", dev_dependency = True)
+use_repo(bazel_lib, "bazel_lib")

@@ -3,7 +3,7 @@
 ```sh
 $ bazel clean
 $ bazel build :tsc
-$ bazel bunld :webpack_build
+$ bazel build :webpack_build
 $ bazel run :webpack_app
 
 $ pnpm run tsc
