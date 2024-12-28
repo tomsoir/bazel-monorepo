@@ -57,3 +57,10 @@ register_toolchains("@sass_toolchains//:all")
 bazel_dep(name = "aspect_bazel_lib", version = "2.10.0")
 bazel_lib = use_extension("@aspect_bazel_lib//lib:extensions.bzl", "aspect_bazel_lib_dependencies", dev_dependency = True)
 use_repo(bazel_lib, "bazel_lib")
+
+# ---
+
+# # rules_lint
+# # https://github.com/aspect-build/rules_lint/releases/tag/v1.0.8
+bazel_dep(name = "aspect_rules_lint", version = "1.0.8")
+

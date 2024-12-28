@@ -1,4 +1,17 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
 
 npm_link_all_packages(name="node_modules")
+
 package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "format",
+    actual = "//tools/format",
+)
+
+js_library(
+    name = "prettierrc",
+    srcs = ["prettier.config.cjs"],
+    deps = [":node_modules/prettier-plugin-sql"],
+)
