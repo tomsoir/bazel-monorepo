@@ -1,15 +1,39 @@
 # Monorepo features:
 
-1. Package manager: PNPM
-1. Build system: Bazel
-   - Gazelle for BUILD files auto updates (coming soon)
-   - Remote Cache Execution (coming soon)
-1. Programming languages: TypeScript, Python (coming soon), GoLang (coming soon)
-1. Basic formatting: Prettier for TypeScript
-1. Basic linting: ESLint (coming soon)
-1. Deployment to K8s: Bazel + GitOps rules (coming soon)
+1. [x] Repo package manager: PNPM
+1. [x] Build system: Aspect-CLI / Bazel
+    - [ ] Gazelle for BUILD files auto updates;
+    - [ ] Remote Cache Execution;
+1. [x] Programming languages and techs support:
+    - [x] TypeScript —> JavaScript;
+      - [x] Webpack, Webpack dev server
+      - [x] SCSS
+    - [ ] Python;
+    - [ ] GoLang;
+1. [ ] Local development:
+    - [x] Build and run projects with Bazel;
+    - [x] Build and run projects with NPM scripts;
+    - [ ] Create new Bazel projects (monorepo bazel rule);
+    - [ ] Run tests locally with Bazel
+1. [x] Formatting:
+    - [x] Ruff —> Python;
+    - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
+    - [x] Yaml
+    - [x] Buildifier —> Starlark
+1. [ ] Linting
+1. [ ] Infra
+    - [ ] Docker: image creation
+    - [ ] Docker: image push to registry
+    - [ ] K8s: generate manifests
+    - [ ] K8s: deploy manifests
+    - [ ] Terraform
+1. [ ] CI/CD integration
+    - [ ] Build run
+    - [ ] Test run
+    - [ ] Artifacts build
+    - [ ] Artifacts push to registry
 
-# Monorepo how-to creation steps:
+# Monorepo creation steps:
 
 ## Create monorepo structure
 
@@ -62,15 +86,6 @@
   - `$ pnpm install` - install all npm deps for all projects in monorepo
   - `$ pnpm add` — install package in some project (required `$cd` into it, example: `$ pnpm add typescript --save-dev`)
   - `$ pnpm run` — run scripts in package.json (example `$ pnpm run build`)
-
-## Install Prettier
-
-- Install Prettier: `$ pnpm add -D prettier`
-  - `$ echo '{\n  "singleQuote": true\n}' > .prettierrc.json`
-  - `$ echo -e "coverage\npublic\ndist\npnpm-lock.yaml\npnpm-workspace.yaml" > .prettierignore`
-- Add a script for running prettier `$ npm pkg set scripts.format="prettier --write ."`
-- Main commands:
-  - `$ pnpm run format`
 
 ## Add new / Convert existing package into PNPM + BAZEL
 
