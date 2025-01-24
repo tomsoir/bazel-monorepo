@@ -23,11 +23,11 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "sass": "^1.83.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "sass": "^1.83.4",
     "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.0",
+    "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
   }
 }

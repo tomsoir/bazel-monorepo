@@ -5,13 +5,20 @@ npm_link_all_packages(name = "node_modules")
 
 package(default_visibility = ["//visibility:public"])
 
+js_library(
+    name = "prettierrc",
+    srcs = ["prettier.config.cjs"],
+    deps = [":node_modules/prettier-plugin-sql"],
+)
+
+# $ bazel run //:format
 alias(
     name = "format",
     actual = "//tools/format",
 )
 
-js_library(
-    name = "prettierrc",
-    srcs = ["prettier.config.cjs"],
-    deps = [":node_modules/prettier-plugin-sql"],
+# $ bazel run //:format.check
+alias(
+    name = "format.check",
+    actual = "//tools/format:format.check",
 )

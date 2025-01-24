@@ -19,3 +19,5 @@ common --@aspect_rules_ts//ts:skipLibCheck=always
 # Use "tsc" as the transpiler when ts_project has no `transpiler` set.
 # Bazel 6.4 or greater: 'common' means 'any command that supports this flag'
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
+
+common --noenable_workspace

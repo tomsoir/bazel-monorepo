@@ -7,6 +7,10 @@
 
 import func2 from './util2.js';
 
+// This should not be a linting violation since the .eslintrc
+// in this folder disables this check.
+// debugger;
+
 function func1() {
   console.log(1);
   func2();
