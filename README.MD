@@ -4,19 +4,21 @@
 1. [ ] Build system: Aspect-CLI / Bazel
     - [ ] Gazelle for BUILD files auto updates;
     - [ ] Remote Cache Execution;
-1. [x] Programming languages and techs support:
+1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (aspect's `rules_ts`);
       - [x] PNPM package manager
       - [x] Webpack, Webpack dev server
       - [x] SCSS
+      - [ ] Tests support
     - [x] Python (aspect's `rules_py`);
       - [x] PIP-package manager support
+      - [x] Tests support
     - [ ] GoLang;
 1. [ ] Local development:
     - [x] Build and run projects with Bazel;
     - [x] Build and run projects with NPM scripts;
     - [ ] Create new Bazel projects (monorepo bazel rule);
-    - [ ] Run tests locally with Bazel
+    - [x] Run tests locally with Bazel
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;

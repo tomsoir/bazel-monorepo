@@ -1,2 +1,4 @@
 cowsay
 flask
+pytest
+coverage
