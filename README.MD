@@ -22,7 +22,7 @@
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
-    - [x] Yaml
+    - [x] Yamlfmt —> Yaml
     - [x] Buildifier —> Starlark
 1. [ ] Linting
 1. [ ] Infra
@@ -52,3 +52,6 @@
   ### Manual dependencies update in monorepo (including transitive dependencies)
   - Use `requirements.in` file to manage (install new, update or remove old) python dependencies in the entire monorepo
   - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically
+
+# Other documents:
+- [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);

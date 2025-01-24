@@ -72,3 +72,14 @@
   - run `$ bazel query ...`
   - add back the line in .bazelignore
   - re-run `$ bazel query ...` again
+
+## Add Python support
+
+  - Info:
+    - https://github.com/aspect-build/rules_py/tree/23f0f019df7921927b2677a1d40b40af27e09458/examples/uv_pip_compile
+  - Add `requirements.in` and `requirements.txt` if the root of the repo.
+    - `requirements.in` - for manual dependencies update
+    - `requirements.txt` - this is actually requirements LOCK file and it updates automatically. It contains all meta info related to deps and transitive deps for python.
+      - Use: `$ bazel run //:generate_requirements_txt` to update it
+  - [Add Python language support — commit](https://github.com/tomsoir/tomsoir-monorepo/commit/1c0efc049f7ae6babb20d16b616b7061b46e5c95)
+  - [Add Python tests support - commit](https://github.com/tomsoir/tomsoir-monorepo/commit/aaf9d7b5d0cb7b8212d418710bfff54c5b854209)
