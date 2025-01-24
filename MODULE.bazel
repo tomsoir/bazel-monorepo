@@ -75,3 +75,28 @@ bazel_dep(name = "aspect_rules_lint", version = "1.0.8")
 # ---
 
 bazel_dep(name = "buildifier_prebuilt", version = "7.3.1")
+
+# ---
+
+# # rules_python
+# # https://github.com/aspect-build/rules_py/releases/tag/v1.1.0
+# # Example how to setup Python projects in monorepo
+# # https://github.com/aspect-build/rules_py/blob/23f0f019df7921927b2677a1d40b40af27e09458/examples/uv_pip_compile/MODULE.bazel
+
+bazel_dep(name = "rules_uv", version = "0.14.0", dev_dependency = True)
+
+bazel_dep(name = "rules_python", version = "0.34.0")
+
+bazel_dep(name = "aspect_rules_py", version = "0.7.4", dev_dependency = True)
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(python_version = "3.9.13")
+use_repo(python, "python_3_9_13")
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pypi",
+    python_version = "3.9.13",
+    requirements_lock = "//:requirements.txt",
+)
+use_repo(pip, "pypi")

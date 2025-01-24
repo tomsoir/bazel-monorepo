@@ -5,10 +5,12 @@
     - [ ] Gazelle for BUILD files auto updates;
     - [ ] Remote Cache Execution;
 1. [x] Programming languages and techs support:
-    - [x] TypeScript —> JavaScript;
+    - [x] TypeScript / JavaScript (aspect's `rules_ts`);
+      - [x] PNPM package manager
       - [x] Webpack, Webpack dev server
       - [x] SCSS
-    - [ ] Python;
+    - [x] Python (aspect's `rules_py`);
+      - [x] PIP-package manager support
     - [ ] GoLang;
 1. [ ] Local development:
     - [x] Build and run projects with Bazel;
@@ -34,12 +36,17 @@
     - [ ] Artifacts push to registry
 
 # Monorepo Commands:
-## Bazel:
+## Code styling:
   - `$ bazel run //:format` — formats everything in the repo
   - `$ bazel run //:format.check` — check if formatting need to be applied
 
-## PNPM:
+## PNPM (for TS/JS):
   - `$ pnpm update` - update all projects in monorepo
   - `$ pnpm install` - install all npm deps for all projects in monorepo
   - `$ pnpm add` — install package in some project (required `$cd` into it, example: `$ pnpm add typescript --save-dev`)
   - `$ pnpm run` — run scripts in package.json (example `$ pnpm run build`)
+
+## PIP (for Python):
+  ### Manual dependencies update in monorepo (including transitive dependencies)
+  - Use `requirements.in` file to manage (install new, update or remove old) python dependencies in the entire monorepo
+  - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically

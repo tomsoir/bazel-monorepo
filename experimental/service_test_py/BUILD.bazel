@@ -1,0 +1,25 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary")
+
+# $ bazel run test_app
+py_binary(
+    name = "test_app",
+    srcs = ["src/test_app.py"],
+)
+
+# $ bazel run test_app_with_deps
+py_binary(
+    name = "test_app_with_deps",
+    srcs = ["src/test_app_with_deps.py"],
+    deps = [
+        "@pypi//cowsay",
+    ],
+)
+
+# $ bazel run test_app_with_deps_server
+py_binary(
+    name = "test_app_with_deps_server",
+    srcs = ["src/test_app_with_deps_server.py"],
+    deps = [
+        "@pypi//flask",
+    ],
+)
