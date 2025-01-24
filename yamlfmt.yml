@@ -1,0 +1,9 @@
+---
+formatter:
+  include_document_start: true
+  retain_line_breaks: true
+  line_length: 80
+
+exclude:
+  - "pnpm-lock.yaml"
+  - "pnpm-workspace.yaml"
