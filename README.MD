@@ -1,17 +1,19 @@
 # Monorepo features:
 
-1. [x] Repo package manager: PNPM
-1. [ ] Build system: Aspect-CLI / Bazel
-    - [ ] Gazelle for BUILD files auto updates;
+1. [x] Repo package managers:
+    - [x] PNPM
+    - [x] PYPI
+1. [ ] Build system: Bazel (Aspect-CLL)
+    - [ ] Gazelle to auto update BUILD files;
     - [ ] Remote Cache Execution;
 1. [x] Programming languages support:
-    - [x] TypeScript / JavaScript (aspect's `rules_ts`);
+    - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] PNPM package manager
       - [x] Webpack, Webpack dev server
       - [x] SCSS
       - [ ] Tests support
-    - [x] Python (aspect's `rules_py`);
-      - [x] PIP-package manager support
+    - [x] Python (Aspect's `rules_py`);
+      - [x] PYPI-package manager
       - [x] Tests support
     - [ ] GoLang;
 1. [ ] Local development:

@@ -1,7 +1,11 @@
 ## Commands
 
 ```sh
+# Run tests
 $ bazel test //experimental/service_test_py_tests:pytest_test --verbose_failures
+
+# Run test app
+$ bazel run test_app
 ```
 
 ### service_test_py_tests (current)
