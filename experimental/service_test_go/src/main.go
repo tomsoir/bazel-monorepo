@@ -8,8 +8,8 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello, Bazel + Go!")
-	fmt.Fprintf(w, Message())
-	fmt.Fprintf(w, mypkg.Message())
+	fmt.Fprintf(w, "%s\n", Message())
+	fmt.Fprintf(w, "%s\n", mypkg.Message())
 }
 
 func main() {

@@ -1,50 +1,47 @@
 # Monorepo features:
 
 1. [x] Repo package managers:
-    - [x] PNPM
-    - [x] PYPI
-1. [ ] Build system: Bazel (Aspect-CLL)
-    - [ ] Gazelle to auto update BUILD files;
-    - [ ] Remote Cache Execution;
+    - [x] PNPM;
+    - [x] PYPI;
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
-      - [x] TypeScript support
-      - [x] Build internal packages
-      - [x] Build external packages (PNPM package manager)
-      - [x] Create bundle (Webpack)
-      - [x] Run local server (Webpack dev server)
-      - [x] SCSS-styles support
-      - [ ] Tests support
+      - [x] TypeScript support;
+      - [x] Build internal packages;
+      - [x] Build external packages (PNPM package manager);
+      - [x] Create bundle (Webpack);
+      - [x] Run local server (Webpack dev server);
+      - [x] SCSS-styles support;
+      - [ ] Tests support;
     - [x] Python (Aspect's `rules_py`);
-      - [x] Build internal packages
-      - [x] Build external packages (PYPI-package manager support)
-      - [x] Tests support
+      - [x] Build internal packages;
+      - [x] Build external packages (PYPI-package manager support);
+      - [x] Tests support;
     - [x] GoLang;
-      - [x] Build internal packages
-      - [ ] Build external packages (go_dependency support)
-      - [ ] Tests support
+      - [x] Build internal packages;
+      - [ ] Build external packages (go_dependency support);
+      - [ ] Tests support;
 1. [ ] Local development:
-    - [x] Build and run projects with Bazel;
-    - [x] Build and run projects with NPM scripts;
-    - [x] Run tests locally with Bazel;
+    - [ ] Gazelle to auto update BUILD files;
+    - [ ] Use IBazel to watch files;
+    - [ ] Remote Cache Execution;
     - [ ] Create new Bazel projects (monorepo bazel rule);
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
-    - [x] Yamlfmt —> Yaml
-    - [x] Buildifier —> Starlark
-1. [ ] Linting
+    - [x] Yamlfmt —> Yaml;
+    - [x] Buildifier —> Starlark;
 1. [ ] Infra
-    - [ ] Docker: image creation
-    - [ ] Docker: image push to registry
-    - [ ] K8s: generate manifests
-    - [ ] K8s: deploy manifests
-    - [ ] Terraform
+    - [ ] Docker: create image;
+    - [ ] Docker: push image to registry;
+    - [ ] K8s: generate manifests;
+    - [ ] K8s: deploy manifests;
+    - [ ] Terraform: run plan;
+    - [ ] Terraform: update cloud manifest;
 1. [ ] CI/CD integration
-    - [ ] Build run
-    - [ ] Test run
-    - [ ] Artifacts build
-    - [ ] Artifacts push to registry
+    - [ ] Run format check;
+    - [ ] Run builds;
+    - [ ] Run tests;
+    - [ ] Push artifacts to push to registry;
 
 # Monorepo Commands:
 ## Code styling:
