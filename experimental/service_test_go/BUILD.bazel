@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_binary")
+
+go_binary(
+    name = "server",
+    srcs = [
+        "src/greet.go",
+        "src/main.go",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//experimental/service_test_go/mypkg",  # Reference the package correctly
+    ],
+)

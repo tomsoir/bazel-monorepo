@@ -8,19 +8,26 @@
     - [ ] Remote Cache Execution;
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
-      - [x] PNPM package manager
-      - [x] Webpack, Webpack dev server
-      - [x] SCSS
+      - [x] TypeScript support
+      - [x] Build internal packages
+      - [x] Build external packages (PNPM package manager)
+      - [x] Create bundle (Webpack)
+      - [x] Run local server (Webpack dev server)
+      - [x] SCSS-styles support
       - [ ] Tests support
     - [x] Python (Aspect's `rules_py`);
-      - [x] PYPI-package manager
+      - [x] Build internal packages
+      - [x] Build external packages (PYPI-package manager support)
       - [x] Tests support
-    - [ ] GoLang;
+    - [x] GoLang;
+      - [x] Build internal packages
+      - [ ] Build external packages (go_dependency support)
+      - [ ] Tests support
 1. [ ] Local development:
     - [x] Build and run projects with Bazel;
     - [x] Build and run projects with NPM scripts;
+    - [x] Run tests locally with Bazel;
     - [ ] Create new Bazel projects (monorepo bazel rule);
-    - [x] Run tests locally with Bazel
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
@@ -50,7 +57,7 @@
   - `$ pnpm add` — install package in some project (required `$cd` into it, example: `$ pnpm add typescript --save-dev`)
   - `$ pnpm run` — run scripts in package.json (example `$ pnpm run build`)
 
-## PIP (for Python):
+## PYPI (for Python):
   ### Manual dependencies update in monorepo (including transitive dependencies)
   - Use `requirements.in` file to manage (install new, update or remove old) python dependencies in the entire monorepo
   - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically

@@ -1,15 +1,20 @@
 package main
 
 import (
+	"experimental/service_test_go/mypkg"
 	"fmt"
 	"net/http"
 )
 
-func health(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "helloworld")
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello, Bazel + Go!")
+	fmt.Fprintf(w, Message())
+	fmt.Fprintf(w, mypkg.Message())
 }
 
 func main() {
-	http.HandleFunc("/health", health)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/", handler)
+	port := ":8080"
+	fmt.Println("Server running on http://localhost" + port)
+	http.ListenAndServe(port, nil)
 }
