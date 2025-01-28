@@ -1,9 +1,10 @@
 package main
 
 import (
-	"experimental/service_test_go/mypkg"
 	"fmt"
 	"net/http"
+
+	"experimental/service_test_go/mypkg"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
