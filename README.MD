@@ -1,6 +1,6 @@
 # Bazel Monorepo Example
 
-## Monorepo Features:
+### Main Features:
 1. [x] Repo package managers:
     - [x] PNPM;
     - [x] PYPI;
@@ -44,21 +44,21 @@
     - [ ] Run tests;
     - [ ] Push artifacts to push to registry;
 
-## Monorepo Commands:
-### Code styling:
+### Main Commands:
+#### Code styling:
   - `$ bazel run //:format` — formats everything in the repo
   - `$ bazel run //:format.check` — check if formatting need to be applied
 
-### PNPM (for TS/JS):
+#### PNPM (for TS/JS):
   - `$ pnpm update` - update all projects in monorepo
   - `$ pnpm install` - install all npm deps for all projects in monorepo
   - `$ pnpm add` — install package in some project (required `$cd` into it, example: `$ pnpm add typescript --save-dev`)
   - `$ pnpm run` — run scripts in package.json (example `$ pnpm run build`)
 
-### PYPI (for Python):
-  ### Manual dependencies update in monorepo (including transitive dependencies)
+#### PYPI (for Python):
+  ##### Manual dependencies update in monorepo (including transitive dependencies)
   - Use `requirements.in` file to manage (install new, update or remove old) python dependencies in the entire monorepo
   - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically
 
-## Other documents:
+### Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
