@@ -3,3 +3,5 @@ node_modules/
 dist/
 **/tsconfig.tsbuildinfo
 .ruff_cache
+
+!.github/workflows/bazel-ci.yml

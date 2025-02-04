@@ -1,0 +1,50 @@
+---
+name: Bazel CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bazel-test:
+    name: Run Bazel Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Run Bazel tests
+        run: bazel test //...
+
+  bazel-build:
+    name: Build all targets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Build all targets
+        run: bazel build //...
+
+  format-check:
+    name: Run Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Run Format Check
+        run: bazel run //:format.check

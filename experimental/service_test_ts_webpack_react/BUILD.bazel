@@ -91,21 +91,25 @@ copy_file(
     out = "dist/index.html",
 )
 
-# @TODO: find a way to fix the `entry_points` to reuse compiled `webpack_build.js` but not
-# the local one. TL,DR: To run this command `$ bazel run :serve` you need to build locally
-# this project `$ pnpm run build` to be able to get access to "dist/webpack_build.js" file. :(
-webpack_devserver(
-    name = "serve",
-    chdir = package_name(),
-    data = [
-        ":index_html",
-        ":styles",
-        ":tsc",
-        ":webpack_build",
-    ],
-    entry_points = {
-        "dist/webpack_build.js": ":webpack_build",
-    },
-    node_modules = "//experimental/service_test_ts_webpack_react:node_modules",
-    webpack_config = "webpack.config.cjs",
-)
+# !DISABLED to fix bazel build
+#
+# # @TODO: find a way to fix the `entry_points` to reuse compiled `webpack_build.js` but not
+# # the local one. TL,DR: To run this command `$ bazel run :serve` you need to build locally
+# # this project `$ pnpm run build` to be able to get access to "dist/webpack_build.js" file. :(
+# webpack_devserver(
+#     name = "serve",
+#     chdir = package_name(),
+#     data = [
+#         ":index_html",
+#         ":styles",
+#         ":tsc",
+#         ":webpack_build",
+#     ],
+#     # mode = "development",
+#     entry_points = {
+#         "dist/webpack_build.js": ":webpack_build",
+#         # "webpack_build.js": "multi",
+#     },
+#     node_modules = "//experimental/service_test_ts_webpack_react:node_modules",
+#     webpack_config = "webpack.config.cjs",
+# )
