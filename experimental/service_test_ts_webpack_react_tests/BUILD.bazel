@@ -1,5 +1,6 @@
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
-load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_test")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
@@ -30,6 +31,12 @@ ts_project(
         ":node_modules/@types/react-dom",
         ":node_modules/react",
         ":node_modules/react-dom",
+
+        # @TODO: move tests deps into :tsc_tests rule
+        ":node_modules/@types/mocha",
+        ":node_modules/@types/chai",
+        ":node_modules/mocha",
+        ":node_modules/chai",
     ],
 )
 
@@ -106,6 +113,56 @@ webpack_devserver(
     entry_points = {
         "dist/webpack_build.js": ":webpack_build",
     },
-    node_modules = "//experimental/service_test_ts_webpack_react:node_modules",
+    node_modules = "//experimental/service_test_ts_webpack_react_tests:node_modules",
     webpack_config = "webpack.config.cjs",
+)
+
+# Tests infrastructure
+# Note! Please make sure to add exclude = ["src/**/*.spec.ts"] to :tsc target
+# @TODO find a way to split tests from the source code (`:tsc` and `:tsc_tests`)
+# ts_project(
+#     name = "tsc_tests",
+#     testonly = True,
+#     srcs = glob([
+#         "src/**/*.spec.ts",
+#     ]),
+#     allow_js = True,
+#     declaration = True,
+#     declaration_map = True,
+#     incremental = True,
+#     out_dir = "dist",
+#     resolve_json_module = True,
+#     root_dir = "src",
+#     source_map = True,
+#     tsconfig = "tsconfig.json",
+#     deps = [
+#         ":node_modules/@types/mocha",
+#         ":node_modules/@types/chai",
+#         ":node_modules/mocha",
+#         ":node_modules/chai",
+#         ":tsc",
+#     ],
+# )
+
+copy_to_bin(
+    name = "package_json",
+    srcs = ["package.json"],
+)
+
+js_test(
+    name = "test",
+    size = "small",
+    timeout = "short",
+    args = ["--no-build"],
+    data = [
+        # ":tsc_tests",
+        ":tsc",
+        ":package_json",
+        ".mocharc.json",
+        "//tools/test-mocha:mocha_test_lib",
+    ],
+    entry_point = "//tools/test-mocha:mocha_test_lib",
+    env = {},
+    log_level = "error",
+    tags = ["mocha-test"],
 )

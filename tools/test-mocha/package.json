@@ -1,0 +1,19 @@
+{
+  "name": "@hz/test-mocha",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {},
+  "bin": {
+    "mocha-test": "./scripts/mocha-test.mjs"
+  },
+  "dependencies": {
+    "dotenv": "8.2.0",
+    "source-map-support": "0.5.19",
+    "mocha": "10.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "8.2.0",
+    "source-map-support": "0.5.19",
+    "mocha": "10.0.0"
+  }
+}

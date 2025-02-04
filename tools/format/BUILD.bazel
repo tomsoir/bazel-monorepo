@@ -35,7 +35,6 @@ format_multirun(
     sql = ":prettier",
     starlark = "@buildifier_prebuilt//:buildifier",
     terraform = "@aspect_rules_lint//format:terraform",
-    yaml = "@aspect_rules_lint//format:yamlfmt",
-
     visibility = ["//:__subpackages__"],
+    yaml = "@aspect_rules_lint//format:yamlfmt",
 )

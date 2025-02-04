@@ -36,7 +36,11 @@ $ pnpm run serve
 - Support Webpack bundling
   - webpack works with JS-files transpiled by `:tsc` rule from TS-files —> this is important to know because webpack also can be used to transpile TS files to JS which I don't want intentionally.
 
-### service_test_ts_webpack_react (current)
+### service_test_ts_webpack_react
 
 - Support React + JSX + SCSS
 - Support Webpack-Dev-Server
+
+### service_test_ts_webpack_react_tests (current)
+
+- Support Mocha tests

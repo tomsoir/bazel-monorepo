@@ -67,11 +67,7 @@
 
 - IMPORTANT! Go to `.bazelignore` and add `<new project>/node_modules`
 - IMPORTANT! Update `pnpm-workspace.yaml` if new folder with projects is created on the root level (aka ./experimental)
-- IMPORTANT! To refresh npm dependencies this trick works:
-  - remove any line from .bazelignore
-  - run `$ bazel query ...`
-  - add back the line in .bazelignore
-  - re-run `$ bazel query ...` again
+- IMPORTANT!!! Refresh npm dependencies in bazel. [Read details here](./TROUBLESHOOTING.MD);
 
 ## Add Python support
 

@@ -12,7 +12,7 @@
       - [x] Create bundle (Webpack);
       - [x] Run local server (Webpack dev server);
       - [x] SCSS-styles support;
-      - [ ] Tests support;
+      - [x] Tests support;
     - [x] Python (Aspect's `rules_py`);
       - [x] Build internal packages;
       - [x] Build external packages (PYPI-package manager support);
