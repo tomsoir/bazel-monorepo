@@ -30,6 +30,7 @@ ts_project(
         ":node_modules/@types/react-dom",
         ":node_modules/react",
         ":node_modules/react-dom",
+        ":node_modules/webpack-dev-server",
     ],
 )
 
@@ -57,6 +58,7 @@ webpack_bundle(
     webpack_config = "webpack.config.cjs",
     deps = [
         ":node_modules/webpack",
+        ":node_modules/webpack-dev-server",
     ],
 )
 
@@ -104,6 +106,7 @@ copy_file(
 #         ":styles",
 #         ":tsc",
 #         ":webpack_build",
+#         ":node_modules/webpack-dev-server",
 #     ],
 #     # mode = "development",
 #     entry_points = {

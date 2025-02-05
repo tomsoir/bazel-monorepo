@@ -41,9 +41,6 @@ use_repo(pnpm, "pnpm")
 # https://github.com/aspect-build/rules_webpack/releases/tag/v0.16.0
 bazel_dep(name = "aspect_rules_webpack", version = "0.16.0")
 
-webpack = use_extension("@aspect_rules_webpack//webpack:dependencies.bzl", "webpack", dev_dependency = True)
-use_repo(webpack, "webpack")
-
 # ---
 
 # # rules_sass
@@ -62,9 +59,6 @@ register_toolchains("@sass_toolchains//:all")
 # # copy_to_bin
 # # https://github.com/bazel-contrib/bazel-lib/releases/tag/v2.10.0
 bazel_dep(name = "aspect_bazel_lib", version = "2.10.0")
-
-bazel_lib = use_extension("@aspect_bazel_lib//lib:extensions.bzl", "aspect_bazel_lib_dependencies", dev_dependency = True)
-use_repo(bazel_lib, "bazel_lib")
 
 # ---
 
@@ -85,7 +79,7 @@ bazel_dep(name = "buildifier_prebuilt", version = "7.3.1")
 
 bazel_dep(name = "rules_uv", version = "0.14.0", dev_dependency = True)
 
-bazel_dep(name = "rules_python", version = "0.34.0")
+bazel_dep(name = "rules_python", version = "0.40.0")
 
 bazel_dep(name = "aspect_rules_py", version = "0.7.4", dev_dependency = True)
 
