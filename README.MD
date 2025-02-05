@@ -61,7 +61,7 @@
   - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically
 
 ### Repo maintenance
-- `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE)
+- `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES
 
 ## Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
