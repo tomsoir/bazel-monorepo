@@ -6,30 +6,33 @@
     - [x] PYPI;
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
-      - [x] TSC TypeScript compilation support;
-      - [x] Build internal packages;
-      - [x] Build external packages (PNPM package manager);
-      - [x] Create bundle (Webpack);
-      - [x] Run local server (Webpack dev server);
-      - [x] SCSS-styles support;
-      - [ ] SWC TypeScript compilation support;
+      - [x] Building:
+        - [x] TSC TypeScript compilation support;
+        - [x] Build internal packages;
+        - [x] Build external packages (PNPM package manager);
+        - [x] Create bundle (Webpack);
+        - [x] SCSS-styles support;
+        - [ ] SWC TypeScript compilation support;
+      - [x] Developing:
+        - [x] Run local server (Webpack dev server);
+      - [x] Testing:
+        - [x] Tests support (Mocha/Chai);
+        - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
+        - [ ] Tests coverage;
     - [x] Python (Aspect's `rules_py`);
-      - [x] Build internal packages;
-      - [x] Build external packages (PYPI-package manager support);
+      - [x] Building:
+        - [x] Build internal packages;
+        - [x] Build external packages (PYPI-package manager support);
+      - [x] Testing:
+        - [x] Tests support;
+        - [ ] Tests coverage;
     - [x] GoLang;
-      - [x] Build internal packages;
-      - [ ] Build external packages (go_dependency support);
-1. [ ] Testing:
-    - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
-      - [x] Tests support (Mocha/Chai);
-      - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
-      - [ ] Tests coverage;
-    - [x] Python (Aspect's `rules_py`);
-      - [x] Tests support;
-      - [ ] Tests coverage;
-    - [ ] GoLang;
-      - [ ] Tests support;
-      - [ ] Tests coverage;
+      - [ ] Building:
+        - [x] Build internal packages;
+        - [ ] Build external packages (go_dependency support);
+      - [ ] Testing:
+        - [ ] Tests support;
+        - [ ] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
