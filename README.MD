@@ -47,10 +47,11 @@
     - [ ] K8s: deploy manifests;
     - [ ] Terraform: run plan;
     - [ ] Terraform: update cloud manifest;
-1. [ ] CI/CD integration
-    - [ ] Run format check;
-    - [ ] Run builds;
-    - [ ] Run tests;
+1. [x] CI/CD integration
+    - [x] Renovate bot support (to update dependencies);
+    - [x] Run format check;
+    - [x] Run builds;
+    - [x] Run tests;
     - [ ] Push artifacts to push to registry;
 
 ## Main Commands:
