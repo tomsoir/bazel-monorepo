@@ -18,3 +18,77 @@
   - run `$ bazel query ...`
   - add back the line in `.bazelignore`
   - re-run `$ bazel query ...` again
+
+## Deep debug with action query (aquery)
+
+In order to see how the entire action graph looks like and what will happen (e.g.):
+```sh
+$ cd /experimental/service_test_ts_webpack_react_tests`
+$ bazel aquery :tsc_tests`
+```
+
+This will tell exactly what target will do (which files will be copied and where)
+
+## Property dict
+
+Sometimes it is handy to use dict as a property. Here is the example
+
+```py
+ts_project(
+    name = "tsc_tests",
+    testonly = True,
+    srcs = glob([
+        "src/**/*.spec.ts",
+    ]),
+    validate = False,
+    allow_js = True,
+    declaration = True,
+    declaration_map = True,
+    incremental = True,
+    out_dir = "dist",
+    root_dir = "src",
+    resolve_json_module = True,
+    source_map = True,
+    # tsconfig = "tsconfig.json",
+    tsconfig = {
+      "compilerOptions": {
+        "strict": True,
+        "target": "ESNext",
+        "module": "ESNext",
+        "incremental": True,
+        "sourceMap": True,
+        "noUnusedLocals": True,
+        "moduleResolution": "node",
+        "esModuleInterop": True,
+        "importHelpers": True,
+        "inlineSources": True,
+        "allowSyntheticDefaultImports": True,
+        "forceConsistentCasingInFileNames": True,
+        "declaration": True,
+        "declarationMap": True,
+        "useUnknownInCatchVariables": False,
+        "isolatedModules": True,
+        "noImplicitOverride": True,
+        "preserveConstEnums": True,
+        "skipLibCheck": True,
+        "allowJs": True,
+        "emitDeclarationOnly": True,
+        "resolveJsonModule": True,
+        "strictNullChecks": True,
+        "jsx": "react-jsx",
+        "outDir": "dist",
+        "rootDir": "src",
+        # "rootDir": ".",
+      },
+      "exclude": ["node_modules", "dist"]
+    },
+    deps = [
+        ":node_modules/@types/mocha",
+        ":node_modules/@types/chai",
+        ":node_modules/mocha",
+        ":node_modules/chai",
+        ":package_json",
+        ":tsc",
+    ],
+)
+```

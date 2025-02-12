@@ -2,11 +2,16 @@
 
 ```sh
 $ bazel clean
+
 $ bazel build :tsc
 $ bazel build :webpack_build
 $ bazel build :styles
 $ bazel build :index_html
+
 $ bazel run :serve
+
+$ bazel test :test
+$ bazel test ... --sandbox_debug
 
 $ pnpm run clean
 $ pnpm run build:tsc
