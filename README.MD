@@ -6,31 +6,40 @@
     - [x] PYPI;
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
-      - [x] TypeScript support;
+      - [x] TSC TypeScript compilation support;
       - [x] Build internal packages;
       - [x] Build external packages (PNPM package manager);
       - [x] Create bundle (Webpack);
       - [x] Run local server (Webpack dev server);
       - [x] SCSS-styles support;
-      - [x] Tests support;
+      - [ ] SWC TypeScript compilation support;
     - [x] Python (Aspect's `rules_py`);
       - [x] Build internal packages;
       - [x] Build external packages (PYPI-package manager support);
-      - [x] Tests support;
     - [x] GoLang;
       - [x] Build internal packages;
       - [ ] Build external packages (go_dependency support);
-      - [ ] Tests support;
-1. [ ] Local development:
-    - [ ] Gazelle to auto update BUILD files;
-    - [ ] Use IBazel to watch files;
-    - [ ] Remote Cache Execution;
-    - [ ] Create new Bazel projects (monorepo bazel rule);
+1. [] Testing:
+  - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
+    - [x] Tests support (Mocha/Chai);
+    - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
+    - [ ] Tests coverage;
+  - [x] Python (Aspect's `rules_py`);
+    - [x] Tests support;
+    - [ ] Tests coverage;
+  - [ ] GoLang;
+    - [ ] Tests support;
+    - [ ] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
     - [x] Yamlfmt —> Yaml;
     - [x] Buildifier —> Starlark;
+1. [ ] Local development:
+    - [ ] Gazelle to auto update BUILD files;
+    - [ ] Use IBazel to watch files;
+    - [ ] Remote Cache Execution;
+    - [ ] Create new Bazel projects (monorepo bazel rule);
 1. [ ] Infra
     - [ ] Docker: create image;
     - [ ] Docker: push image to registry;
@@ -45,7 +54,9 @@
     - [ ] Push artifacts to push to registry;
 
 ## Main Commands:
-### Code styling:
+### Bazel:
+  - `$ bazel build //...` — build all targets in the repo
+  - `$ bazel test //...` — test all (testable) targets in the repo
   - `$ bazel run //:format` — formats everything in the repo
   - `$ bazel run //:format.check` — check if formatting need to be applied
 

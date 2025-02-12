@@ -12,11 +12,15 @@ package(default_visibility = ["//:__subpackages__"])
 
 ts_project(
     name = "tsc",
-    srcs = glob([
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        # ], exclude = ["src/**/*.spec.ts"]),
-    ]),
+    srcs = glob(
+        [
+            "src/**/*.ts",
+            "src/**/*.tsx",
+        ],
+        exclude = [
+            "src/**/*.spec.ts",
+        ],
+    ),
     allow_js = True,
     declaration = True,
     declaration_map = True,
@@ -31,12 +35,6 @@ ts_project(
         ":node_modules/@types/react-dom",
         ":node_modules/react",
         ":node_modules/react-dom",
-
-        # @TODO: move tests deps into :tsc_tests rule
-        ":node_modules/@types/mocha",
-        ":node_modules/@types/chai",
-        ":node_modules/mocha",
-        ":node_modules/chai",
     ],
 )
 
@@ -122,29 +120,81 @@ copy_file(
 # Tests infrastructure
 # Note! Please make sure to add exclude = ["src/**/*.spec.ts"] to :tsc target
 # @TODO find a way to split tests from the source code (`:tsc` and `:tsc_tests`)
-# ts_project(
-#     name = "tsc_tests",
-#     testonly = True,
-#     srcs = glob([
-#         "src/**/*.spec.ts",
-#     ]),
-#     allow_js = True,
-#     declaration = True,
-#     declaration_map = True,
-#     incremental = True,
-#     out_dir = "dist",
-#     resolve_json_module = True,
-#     root_dir = "src",
-#     source_map = True,
-#     tsconfig = "tsconfig.json",
-#     deps = [
-#         ":node_modules/@types/mocha",
-#         ":node_modules/@types/chai",
-#         ":node_modules/mocha",
-#         ":node_modules/chai",
-#         ":tsc",
-#     ],
-# )
+ts_project(
+    name = "tsc_tests",
+    testonly = True,
+    srcs = glob([
+        "src/**/*.spec.ts",
+    ]),
+    allow_js = True,
+    declaration = True,
+    declaration_map = True,
+    incremental = True,
+    out_dir = "dist",
+    resolve_json_module = True,
+    root_dir = [
+        "src",
+        "dist",
+    ],
+    source_map = True,
+    tsconfig = {
+        "compilerOptions": {
+            "strict": True,
+            "target": "ESNext",
+            "module": "ESNext",
+            "incremental": True,
+            "sourceMap": True,
+            "inlineSources": True,
+            "noUnusedLocals": True,
+            "moduleResolution": "node",
+            "esModuleInterop": True,
+            "importHelpers": True,
+            "allowSyntheticDefaultImports": True,
+            "forceConsistentCasingInFileNames": True,
+            "declaration": True,
+            "declarationMap": True,
+            "useUnknownInCatchVariables": False,
+            "isolatedModules": True,
+            "noImplicitOverride": True,
+            "preserveConstEnums": True,
+            "skipLibCheck": True,
+            "allowJs": True,
+            "emitDeclarationOnly": False,
+            "resolveJsonModule": True,
+            "strictNullChecks": True,
+            "jsx": "react-jsx",
+            "outDir": "dist",
+            "rootDir": "src",
+            # This is super to 1. use "rootDirs" and have two source paths there:
+            # - the "src" path for spec files (`*.spec.ts`) only declared in srcs of the `tsc_tests` rule
+            # - the "dist" path for all compiled TS files into the /dist folder.
+            # Background. When building the tsc_tests rule it has only "src/**/*.spec.ts" specified in the srcs arg
+            # but no actual ts files. Most likely every `spec.ts` file will have an import like `./util1.js` so that
+            # `spec.ts` will also need a source file (which we can't provide in the tsc_test because it will raise the
+            # conflict between :tsc and :tsc_tests when both rules uses the same source files which is forbidden).
+            # These missing *.ts source files are exist after building the `:tsc` rule which will store the output in
+            # the /dist folder (as declared in :tsc). So all we need for :tsc_tests and `spec.ts` files to properly reference
+            # to that /dist folder. For this we need this:
+            # - add the `":tsc",` as a dependency for `:tsc_tests`
+            # - tell the Typescript where to find compiled ts sources (they are in /dist). Typescript allows to use "rootDirs"
+            # property in tsconfig.json (do not mix and much with another "rootDir" prop), so we can tell the typescript where
+            # to look for .ts source files for building the target
+            "rootDirs": [
+                "src",
+                "dist",
+            ],
+        },
+        "exclude": ["node_modules"],
+    },
+    validate = False,
+    deps = [
+        ":node_modules/@types/chai",
+        ":node_modules/@types/mocha",
+        ":node_modules/chai",
+        ":node_modules/mocha",
+        ":tsc",
+    ],
+)
 
 copy_to_bin(
     name = "package_json",
@@ -157,10 +207,9 @@ js_test(
     timeout = "short",
     args = ["--no-build"],
     data = [
-        # ":tsc_tests",
-        ":tsc",
-        ":package_json",
         ".mocharc.json",
+        ":package_json",
+        ":tsc_tests",
         "//tools/test-mocha:mocha_test_lib",
     ],
     entry_point = "//tools/test-mocha:mocha_test_lib",
