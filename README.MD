@@ -19,7 +19,7 @@
     - [x] GoLang;
       - [x] Build internal packages;
       - [ ] Build external packages (go_dependency support);
-1. [] Testing:
+1. [ ] Testing:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Tests support (Mocha/Chai);
       - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
