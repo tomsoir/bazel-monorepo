@@ -20,16 +20,16 @@
       - [x] Build internal packages;
       - [ ] Build external packages (go_dependency support);
 1. [] Testing:
-  - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
-    - [x] Tests support (Mocha/Chai);
-    - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
-    - [ ] Tests coverage;
-  - [x] Python (Aspect's `rules_py`);
-    - [x] Tests support;
-    - [ ] Tests coverage;
-  - [ ] GoLang;
-    - [ ] Tests support;
-    - [ ] Tests coverage;
+    - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
+      - [x] Tests support (Mocha/Chai);
+      - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
+      - [ ] Tests coverage;
+    - [x] Python (Aspect's `rules_py`);
+      - [x] Tests support;
+      - [ ] Tests coverage;
+    - [ ] GoLang;
+      - [ ] Tests support;
+      - [ ] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
