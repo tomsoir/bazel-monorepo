@@ -5,3 +5,4 @@ dist/
 .ruff_cache
 
 !.github/workflows/bazel-ci.yml
+.cache
