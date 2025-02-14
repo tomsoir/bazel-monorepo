@@ -22,9 +22,6 @@ common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 
 common --noenable_workspace
 
+# Enabled local disk cache
 # Use `$ bazel build //... --explain=.cache/bazel/cache.log --verbose_explanations`
-# Enable disk cache
-build --disk_cache=~/.cache/bazel
-
-# In CI, prefer remote disk cache path if specified
-common --experimental_remote_downloader_cache=~/.cache/bazel
+build --disk_cache=.cache/bazel
