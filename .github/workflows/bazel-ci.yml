@@ -10,31 +10,9 @@ on:
       - main
 
 jobs:
-  setup-cache:
-    name: Setup Bazel Cache
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Provision Bazel Cache Directory
-        run: |
-          sudo mkdir -p /mnt/cache/bazel
-          sudo chmod -R 777 /mnt/cache/bazel
-          sudo chown -R $USER:$USER /mnt/cache/bazel
-
-      - name: Cache Bazel Build Artifacts
-        uses: actions/cache@v4
-        with:
-          path: /mnt/cache/bazel
-          key: bazel-cache-${{ runner.os }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ runner.os }}-
-
   bazel-test:
     name: Run Bazel Tests
     runs-on: ubuntu-latest
-    needs: setup-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,13 +20,12 @@ jobs:
       - name: Set up Bazel
         uses: bazelbuild/setup-bazelisk@v2
 
-      - name: Run Bazel tests (Using Cached Results & CI Config)
-        run: bazel --bazelrc=.bazelrc.ci --disk_cache=/mnt/cache/bazel test //...
+      - name: Run Bazel tests
+        run: bazel test //...
 
   bazel-build:
     name: Build all targets
     runs-on: ubuntu-latest
-    needs: setup-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -56,13 +33,12 @@ jobs:
       - name: Set up Bazel
         uses: bazelbuild/setup-bazelisk@v2
 
-      - name: Build all targets (Using Cached Results & CI Config)
-        run: bazel --bazelrc=.bazelrc.ci --disk_cache=/mnt/cache/bazel build //...
+      - name: Build all targets
+        run: bazel build //...
 
   format-check:
     name: Run Format Check
     runs-on: ubuntu-latest
-    needs: setup-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -70,5 +46,5 @@ jobs:
       - name: Set up Bazel
         uses: bazelbuild/setup-bazelisk@v2
 
-      - name: Run Format Check (Using Cached Results & CI Config)
-        run: bazel --bazelrc=.bazelrc.ci --disk_cache=/mnt/cache/bazel run //:format.check
+      - name: Run Format Check
+        run: bazel run //:format.check
