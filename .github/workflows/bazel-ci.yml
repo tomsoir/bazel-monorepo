@@ -1,3 +1,56 @@
+---
+name: Bazel CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bazel-test:
+    name: Run Bazel Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Run Bazel tests
+        run: bazel test //...
+
+  bazel-build:
+    name: Build all targets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Build all targets
+        run: bazel build //...
+
+  format-check:
+    name: Run Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Run Format Check
+        run: bazel run //:format.check
+
+
+
 
 # steps:
 #       # Caches and restores the bazelisk download directory, the bazel build directory.
@@ -12,6 +65,7 @@
 #           key: ${{ runner.os }}-${{ env.cache-name }}
 
 
+
 # ---
 # name: Bazel CI
 
@@ -24,132 +78,79 @@
 #       - main
 
 # jobs:
-#   bazel-test:
-#     name: Run Bazel Tests
+#   setup:
+#     name: Setup Workspace & Cache
 #     runs-on: ubuntu-latest
 #     steps:
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 
+#       - name: Cache Bazel Build Artifacts
+#         uses: actions/cache@v4
+#         env:
+#           cache-name: bazel-cache
+#         with:
+#           path: |
+#             ~/.cache/bazelisk
+#             ~/.cache/bazel
+#           key: bazel-cache-${{ runner.os }}-${{ env.cache-name }}
+#           restore-keys: |
+#             bazel-cache-${{ runner.os }}-${{ env.cache-name }}-
+
+#       - name: Save workspace
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: repo-workspace
+#           path: .
+#           retention-days: 1
+
+#   bazel-test:
+#     name: Run Bazel Tests
+#     runs-on: ubuntu-latest
+#     needs: setup
+#     steps:
+#       - name: Restore workspace
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: repo-workspace
+#           path: .
+
 #       - name: Set up Bazel
 #         uses: bazelbuild/setup-bazelisk@v2
 
-#       - name: Run Bazel tests
+#       - name: Run Bazel tests (Using Cached Results)
 #         run: bazel test //...
 
 #   bazel-build:
 #     name: Build all targets
 #     runs-on: ubuntu-latest
+#     needs: setup
 #     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+#       - name: Restore workspace
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: repo-workspace
+#           path: .
 
 #       - name: Set up Bazel
 #         uses: bazelbuild/setup-bazelisk@v2
 
-#       - name: Build all targets
+#       - name: Build all targets (Using Cached Results)
 #         run: bazel build //...
 
 #   format-check:
 #     name: Run Format Check
 #     runs-on: ubuntu-latest
+#     needs: setup
 #     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+#       - name: Restore workspace
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: repo-workspace
+#           path: .
 
 #       - name: Set up Bazel
 #         uses: bazelbuild/setup-bazelisk@v2
 
-#       - name: Run Format Check
+#       - name: Run Format Check (Using Cached Results)
 #         run: bazel run //:format.check
-
-
-
----
-name: Bazel CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  setup:
-    name: Setup Workspace & Cache
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Cache Bazel Build Artifacts
-        uses: actions/cache@v4
-        env:
-          cache-name: bazel-cache
-        with:
-          path: |
-            ~/.cache/bazelisk
-            ~/.cache/bazel
-          key: bazel-cache-${{ runner.os }}-${{ env.cache-name }}
-          restore-keys: |
-            bazel-cache-${{ runner.os }}-${{ env.cache-name }}-
-
-      - name: Save workspace
-        uses: actions/upload-artifact@v4
-        with:
-          name: repo-workspace
-          path: .
-          retention-days: 1
-
-  bazel-test:
-    name: Run Bazel Tests
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Restore workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: repo-workspace
-          path: .
-
-      - name: Set up Bazel
-        uses: bazelbuild/setup-bazelisk@v2
-
-      - name: Run Bazel tests (Using Cached Results)
-        run: bazel test //...
-
-  bazel-build:
-    name: Build all targets
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Restore workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: repo-workspace
-          path: .
-
-      - name: Set up Bazel
-        uses: bazelbuild/setup-bazelisk@v2
-
-      - name: Build all targets (Using Cached Results)
-        run: bazel build //...
-
-  format-check:
-    name: Run Format Check
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Restore workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: repo-workspace
-          path: .
-
-      - name: Set up Bazel
-        uses: bazelbuild/setup-bazelisk@v2
-
-      - name: Run Format Check (Using Cached Results)
-        run: bazel run //:format.check
