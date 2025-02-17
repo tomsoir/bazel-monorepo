@@ -8,12 +8,12 @@
   },
   "dependencies": {
     "dotenv": "8.2.0",
-    "source-map-support": "0.5.19",
+    "source-map-support": "0.5.21",
     "mocha": "10.0.0"
   },
   "devDependencies": {
     "dotenv": "8.2.0",
-    "source-map-support": "0.5.19",
+    "source-map-support": "0.5.21",
     "mocha": "10.0.0"
   }
 }
