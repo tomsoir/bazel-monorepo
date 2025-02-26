@@ -85,5 +85,3 @@
 ## Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
 - [Bazel troubleshooting ](./docs/TROUBLESHOOTING.MD);
-
-# test changes 2
