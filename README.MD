@@ -8,11 +8,11 @@
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
         - [x] TSC TypeScript compilation support;
+          - [ ] Switch to SWC TypeScript compilation support (Faster);
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager);
         - [x] Create bundle (Webpack);
         - [x] SCSS-styles support;
-        - [ ] SWC TypeScript compilation support;
       - [x] Developing:
         - [x] Run local server (Webpack dev server);
       - [x] Testing:
