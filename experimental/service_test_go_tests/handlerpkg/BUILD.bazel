@@ -1,0 +1,11 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "handlerpkg",
+    srcs = ["handlerpkg.go"],
+    importpath = "experimental/service_test_go_tests/handlerpkg",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//experimental/service_test_go_tests/mypkg",
+    ],
+)

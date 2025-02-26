@@ -8,6 +8,6 @@ go_binary(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//experimental/service_test_go/mypkg",  # Reference the package correctly
+        "//experimental/service_test_go/mypkg",
     ],
 )

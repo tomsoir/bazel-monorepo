@@ -1,0 +1,30 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test", "go_binary")
+
+go_library(
+    name = "server_lib",
+    srcs = [
+        "src/main.go",
+    ],
+    importpath = "experimental/service_test_go_tests",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//experimental/service_test_go_tests/mypkg",
+        "//experimental/service_test_go_tests/handlerpkg",
+    ],
+)
+
+go_binary(
+    name = "server",
+    embed = [":server_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "server_test",
+    srcs = ["src/main_test.go"],
+    deps = [
+        ":server_lib",
+        "//experimental/service_test_go_tests/mypkg",
+        "//experimental/service_test_go_tests/handlerpkg",
+    ],
+)

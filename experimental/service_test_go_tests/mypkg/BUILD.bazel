@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "mypkg",
+    srcs = ["mypkg.go"],
+    importpath = "experimental/service_test_go_tests/mypkg",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "mypkg_test",
+    srcs = ["mypkg_test.go"],
+    deps = [":mypkg"],
+)
