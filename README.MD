@@ -42,6 +42,8 @@
     - [x] SHFMT -> shell/bash scripts
     - [x] terraform -> terraform
 1. [ ] Development:
+    - [ ] Auto generate documentation:
+      - [ ] Stardoc for Bazel
     - [ ] Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
     - [ ] Remote Cache Execution;
