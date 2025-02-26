@@ -3,6 +3,10 @@
 - Go to `.bazelignore` and add `<new project>/node_modules`
 - Update `pnpm-workspace.yaml` if new folder with projects is created on the root level (aka ./experimental)
 
+- Fix-0 (NOT USED YET. PLEASE TRY!): To refresh npm dependencies this trick works:
+  - `$ bazel shutdown`
+  - `$ bazel fetch //...`
+
 - Fix-1: To refresh npm dependencies this trick works:
   - remove any line from `.bazelignore`
   - run `$ bazel query ...`
@@ -29,7 +33,7 @@ $ bazel aquery :tsc_tests`
 
 This will tell exactly what target will do (which files will be copied and where)
 
-## Property dict
+## Property as a dict in Bazel target argument
 
 Sometimes it is handy to use dict as a property. Here is the example
 
