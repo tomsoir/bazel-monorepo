@@ -1,4 +1,4 @@
-load("@rules_go//go:def.bzl", "go_library", "go_test", "go_binary")
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
 
 go_library(
     name = "server_lib",
@@ -8,8 +8,8 @@ go_library(
     importpath = "experimental/service_test_go_tests",
     visibility = ["//visibility:public"],
     deps = [
-        "//experimental/service_test_go_tests/mypkg",
         "//experimental/service_test_go_tests/handlerpkg",
+        "//experimental/service_test_go_tests/mypkg",
     ],
 )
 
@@ -24,7 +24,7 @@ go_test(
     srcs = ["src/main_test.go"],
     deps = [
         ":server_lib",
-        "//experimental/service_test_go_tests/mypkg",
         "//experimental/service_test_go_tests/handlerpkg",
+        "//experimental/service_test_go_tests/mypkg",
     ],
 )

@@ -1,8 +1,9 @@
 package mypkg_test
 
 import (
-	"experimental/service_test_go_tests/mypkg"
 	"testing"
+
+	"experimental/service_test_go_tests/mypkg"
 )
 
 func TestMessage(t *testing.T) {

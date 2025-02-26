@@ -38,6 +38,10 @@
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
     - [x] Yamlfmt —> Yaml;
     - [x] Buildifier —> Starlark;
+    - [x] Gofumpt —> Go
+    - [x] SHFMT -> shell/bash scripts
+    - [x] terraform -> terraform
+
 1. [ ] Local development:
     - [ ] Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
