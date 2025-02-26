@@ -41,18 +41,19 @@
     - [x] Gofumpt —> Go
     - [x] SHFMT -> shell/bash scripts
     - [x] terraform -> terraform
-1. [ ] Local development:
+1. [ ] Development:
     - [ ] Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
     - [ ] Remote Cache Execution;
-    - [ ] Create new Bazel projects (monorepo bazel rule);
+    - [ ] Custom scripts:
+      - [ ] New bazel command to create a new project using template;
 1. [x] CI/CD integration
-    - [x] Renovate bot support (to update dependencies);
+    - [x] Renovate bot support to update monorepo dependencies;
     - [x] Use local CI cache to store Bazel artifacts
     - [x] Build all targets;
     - [x] Run all tests;
     - [x] Run format check;
-    - [ ] Push artifacts to push to registry;
+    - [ ] Push artifacts to registry;
 1. [ ] Infra
     - [ ] Docker: create image;
     - [ ] Docker: push image to registry;
