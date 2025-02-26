@@ -37,19 +37,36 @@ async function runCommand(commandStr, env) {
 
 async function runMochaTests() {
   let exitCode = DEFAULT_EXIT_CODE;
-  const params = `
-        --require ${__dirname}/../node_modules/dotenv/config \
-        --require ${__dirname}/../node_modules/source-map-support/register \
-        --grep "." \
-        --timeout "${DEFAULT_TIMEOUT}" \
-        --exit \
-        --no-warnings \
-        --fail-zero \
-        "${_package_dir}/${DEFAULT_FILES}" \
-    `;
+  const params = `--require ${__dirname}/../node_modules/dotenv/config \
+    --require ${__dirname}/../node_modules/source-map-support/register \
+    --grep . \
+    --timeout "${DEFAULT_TIMEOUT}" \
+    --exit \
+    --check-leaks \
+    --no-warnings \
+    --fail-zero \
+    ${_package_dir}${DEFAULT_FILES}`;
+
   try {
+    // The command will look like this:
+    // 'node /private/var/tmp/_bazel_tomsoir/828ce2621fc2cfba90cf9c567be84b76/sandbox/darwin-sandbox/811
+    // /execroot/_main/bazel-out/darwin_x86_64-fastbuild/bin/experimental/service_test_ts_webpack_react_tests
+    // /test_/test.runfiles/_main/tools/test-mocha/scripts/../node_modules/mocha/bin/mocha.js
+    // --require /private/var/tmp/_bazel_tomsoir/828ce2621fc2cfba90cf9c567be84b76/sandbox/darwin-sandbox/811/execroot/_main/bazel-out/darwin_x86_64-fastbuild/bin/experimental/service_test_ts_webpack_react_tests/test_/test.runfiles/_main/tools/test-mocha/scripts/../node_modules/dotenv/config
+    // --require /private/var/tmp/_bazel_tomsoir/828ce2621fc2cfba90cf9c567be84b76/sandbox/darwin-sandbox/811/execroot/_main/bazel-out/darwin_x86_64-fastbuild/bin/experimental/service_test_ts_webpack_react_tests/test_/test.runfiles/_main/tools/test-mocha/scripts/../node_modules/source-map-support/register
+    // --grep .
+    // --timeout "50000"
+    // --exit
+    // --check-leaks
+    // --no-warnings
+    // --fail-zero
+    // /private/var/tmp/_bazel_tomsoir/828ce2621fc2cfba90cf9c567be84b76/sandbox/darwin-sandbox/811/execroot/_main/bazel-out/darwin_x86_64-fastbuild/bin/experimental/service_test_ts_webpack_react_tests/test_/test.runfiles/_main/experimental/service_test_ts_webpack_react_tests/./dist/**/*.spec.js'
     const commandStr = `${_mocha_bin} ${params}`;
     exitCode = await runCommand(commandStr, process.env);
+
+    // // To see the command debug message —> open `test.log` files. Example:
+    // // $ cat /private/var/tmp/_bazel_tomsoir/828ce2621fc2cfba90cf9c567be84b76/execroot/_main/bazel-out/darwin_x86_64-fastbuild/testlogs/experimental/service_test_ts_webpack_react_tests/test/test.log
+    // console.log('>>>>', {commandStr});
   } catch (e) {
     console.error(`Tests failed! \n\n\n`, e);
   }

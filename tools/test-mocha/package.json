@@ -10,10 +10,5 @@
     "dotenv": "16.4.7",
     "source-map-support": "0.5.21",
     "mocha": "11.1.0"
-  },
-  "devDependencies": {
-    "dotenv": "16.4.7",
-    "source-map-support": "0.5.21",
-    "mocha": "11.1.0"
   }
 }
