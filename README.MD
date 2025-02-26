@@ -44,9 +44,9 @@
 1. [ ] Development:
     - [ ] Auto generate documentation:
       - [ ] Stardoc for Bazel
-    - [ ] Gazelle to auto update BUILD files;
+    - [ ] Use Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
-    - [ ] Remote Cache Execution;
+    - [ ] Add Remote Cache Execution;
     - [ ] Custom scripts:
       - [ ] New bazel command to create a new project using template;
 1. [x] CI/CD integration
@@ -83,8 +83,10 @@
   - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically
 
 ### Repo maintenance
+- `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
 - `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES
 
 ## Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
 - [Bazel troubleshooting ](./docs/TROUBLESHOOTING.MD);
+- [Bazel training ](./docs/BAZEL_TRAINING.MD);
