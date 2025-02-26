@@ -1,4 +1,3 @@
----
 name: Bazel CI
 
 on:
@@ -11,30 +10,21 @@ on:
 
 jobs:
   setup:
-    name: Setup and Cache Bazel
+    name: Setup Bazel
     runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.cache-key }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Determine Cache Key
+        id: cache-key
+        run: |
+          echo "cache-key=$(echo ${{ runner.os }}-bazel-$(git ls-files -o -m | sha256sum | cut -d' ' -f1))" >> $GITHUB_ENV
+
       - name: Set up Bazel
         uses: bazelbuild/setup-bazelisk@v3
-
-      - name: Restore Bazel Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
-
-      - name: Warm up Bazel Cache
-        run: bazel build //... || true
-
-      - name: Save Bazel Cache
-        if: always()
-        run: bazel shutdown
 
   bazel-build:
     name: Build all targets
@@ -48,17 +38,19 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
+          key: ${{ needs.setup.outputs.cache-key }}
           restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
+            ${{ runner.os }}-bazel-
 
       - name: Build all targets
         run: bazel build //...
 
       - name: Save Bazel Cache
         if: always()
-        run: bazel shutdown
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/bazel
+          key: ${{ needs.setup.outputs.cache-key }}
 
   bazel-test:
     name: Run Bazel Tests
@@ -72,17 +64,19 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
+          key: ${{ needs.setup.outputs.cache-key }}
           restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
+            ${{ runner.os }}-bazel-
 
       - name: Run Bazel tests
         run: bazel test //...
 
       - name: Save Bazel Cache
         if: always()
-        run: bazel shutdown
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/bazel
+          key: ${{ needs.setup.outputs.cache-key }}
 
   format-check:
     name: Run Format Check
@@ -96,17 +90,20 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
+          key: ${{ needs.setup.outputs.cache-key }}
           restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
+            ${{ runner.os }}-bazel-
 
       - name: Run Format Check
         run: bazel run //:format.check
 
       - name: Save Bazel Cache
         if: always()
-        run: bazel shutdown
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/bazel
+          key: ${{ needs.setup.outputs.cache-key }}
+
 
 # ---
 # name: Bazel CI
