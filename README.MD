@@ -41,7 +41,6 @@
     - [x] Gofumpt —> Go
     - [x] SHFMT -> shell/bash scripts
     - [x] terraform -> terraform
-
 1. [ ] Local development:
     - [ ] Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
