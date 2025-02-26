@@ -32,26 +32,6 @@ jobs:
       - name: Warm up Bazel Cache
         run: bazel build //... || true
 
-  bazel-test:
-    name: Run Bazel Tests
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Restore Bazel Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
-
-      - name: Run Bazel tests
-        run: bazel test //...
-
       - name: Save Bazel Cache
         if: always()
         run: bazel shutdown
@@ -75,6 +55,30 @@ jobs:
 
       - name: Build all targets
         run: bazel build //...
+
+      - name: Save Bazel Cache
+        if: always()
+        run: bazel shutdown
+
+  bazel-test:
+    name: Run Bazel Tests
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore Bazel Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/bazel
+          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            bazel-cache-${{ github.ref }}-
+            bazel-cache-
+
+      - name: Run Bazel tests
+        run: bazel test //...
 
       - name: Save Bazel Cache
         if: always()
