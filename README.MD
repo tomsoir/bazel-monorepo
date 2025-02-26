@@ -30,8 +30,8 @@
       - [ ] Building:
         - [x] Build internal packages;
         - [ ] Build external packages (go_dependency support);
-      - [ ] Testing:
-        - [ ] Tests support;
+      - [x] Testing:
+        - [x] Tests support;
         - [ ] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
@@ -48,9 +48,10 @@
     - [ ] Create new Bazel projects (monorepo bazel rule);
 1. [x] CI/CD integration
     - [x] Renovate bot support (to update dependencies);
+    - [x] Use local CI cache to store Bazel artifacts
+    - [x] Build all targets;
+    - [x] Run all tests;
     - [x] Run format check;
-    - [x] Run builds;
-    - [x] Run tests;
     - [ ] Push artifacts to push to registry;
 1. [ ] Infra
     - [ ] Docker: create image;
