@@ -50,7 +50,7 @@
       - [ ] New bazel command to create a new project using template;
 1. [x] CI/CD integration
     - [x] Renovate bot support to update monorepo dependencies;
-    - [x] Add dependencies license review
+    - [x] Add dependencies review for PRs (license, Vulnerabilities, Denied, etc...)
     - [x] Use local CI cache to store Bazel artifacts
     - [x] Build all targets;
     - [x] Run all tests;
