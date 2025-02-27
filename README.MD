@@ -8,12 +8,12 @@
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
         - [x] TSC TypeScript compilation support;
-          - [ ] Switch to SWC TypeScript compilation support (Faster);
+          - [ ] Switch to SWC TypeScript compilation support (faster than TypeScript);
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager);
         - [x] Bundling support
           - [x] Webpack support;
-            - [ ] Switch to RSPack
+          - [ ] RSPack support (faster than Webpack);
         - [x] SCSS-styles support;
         - [ ] Static assets (images) support;
       - [x] Developing:
