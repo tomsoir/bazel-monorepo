@@ -6,3 +6,5 @@ dist/
 
 !.github/workflows/bazel-ci.yml
 .cache
+*.d.cts
+*.d.cts.map
