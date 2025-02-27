@@ -11,8 +11,11 @@
           - [ ] Switch to SWC TypeScript compilation support (Faster);
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager);
-        - [x] Create bundle (Webpack);
+        - [x] Bundling support
+          - [x] Webpack support;
+            - [ ] Switch to RSPack
         - [x] SCSS-styles support;
+        - [ ] Static assets (images) support;
       - [x] Developing:
         - [x] Run local server (Webpack dev server);
       - [x] Testing:
