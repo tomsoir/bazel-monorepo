@@ -42,8 +42,8 @@
     - [x] Yamlfmt —> Yaml;
     - [x] Buildifier —> Starlark;
     - [x] Gofumpt —> Go
-    - [x] SHFMT -> shell/bash scripts
-    - [x] terraform -> terraform
+    - [x] SHFMT —> shell/bash scripts
+    - [x] terraform —> terraform
 1. [ ] Development:
     - [ ] Auto generate documentation
     - [ ] Use Gazelle to auto update BUILD files;
