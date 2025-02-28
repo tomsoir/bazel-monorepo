@@ -1,5 +1,6 @@
 ## Commands
 
+Bazel commands for local dev
 ```sh
 $ bazel clean
 
@@ -12,6 +13,11 @@ $ bazel run :serve
 
 $ bazel test :test
 $ bazel test ... --sandbox_debug
+```
+
+Local development commands for testing purposes only
+```sh
+$ pnpm install
 
 $ pnpm run clean
 $ pnpm run build:tsc
