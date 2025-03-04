@@ -9,4 +9,5 @@ experimental/service_test_ts/node_modules
 experimental/service_test_ts_webpack/node_modules
 experimental/service_test_ts_webpack_react/node_modules
 experimental/service_test_ts_webpack_react_tests/node_modules
+experimental/service_test_ts_webpack_react_tests_assets/node_modules
 tools/test-mocha/node_modules

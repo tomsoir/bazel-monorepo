@@ -1,0 +1,244 @@
+load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
+load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+package(default_visibility = ["//:__subpackages__"])
+
+ts_project(
+    name = "tsc",
+    srcs = glob(
+        [
+            "src/**/*.ts",
+            "src/**/*.tsx",
+        ],
+        exclude = [
+            "src/**/*.spec.ts",
+        ],
+    ),
+    allow_js = True,
+    declaration = True,
+    declaration_map = True,
+    incremental = True,
+    out_dir = "dist",
+    resolve_json_module = True,
+    root_dir = "src",
+    source_map = True,
+    tsconfig = "tsconfig.json",
+    deps = [
+        ":node_modules/@types/react",
+        ":node_modules/@types/react-dom",
+        ":node_modules/react",
+        ":node_modules/react-dom",
+    ],
+)
+
+webpack_bundle(
+    name = "webpack_build",
+    srcs = [":tsc"],
+    chdir = package_name(),
+    entry_point = "dist/index.js",
+    node_modules = ":node_modules",
+    output_dir = False,
+    tags = ["webpack"],
+    webpack_config = "webpack.config.cjs",
+    deps = [
+        ":node_modules/webpack",
+    ],
+)
+
+# Rule works!
+# @TODO: find a better way!
+# Note: We need to figure out first how to inject css into React app:
+# Dynamically (inject during bundling) or statically (by linking statically generated file)
+sass_binary(
+    name = "styles",
+    # src = "src/styles.scss",
+    srcs = [
+        "src/styles.scss",
+        "src/styles/_fonts.scss",
+        "src/styles/_reset.scss",
+        "src/styles/_variables.scss",
+    ],
+    output_dir = "dist",
+    output_name = "styles.css",
+)
+
+# Rule works!
+# @TODO: find a better way to generate index.html in bundle operation!
+copy_file(
+    name = "index_html",
+    src = "src/index.html",
+    out = "dist/index.html",
+)
+
+# !DISABLED to fix bazel build
+#
+# # @TODO: find a way to fix the `entry_points` to reuse compiled `webpack_build.js` but not
+# # the local one. TL,DR: To run this command `$ bazel run :serve` you need to build locally
+# # this project `$ pnpm run build` to be able to get access to "dist/webpack_build.js" file. :(
+# webpack_devserver(
+#     name = "serve",
+#     chdir = package_name(),
+#     data = [
+#         ":index_html",
+#         ":styles",
+#         ":tsc",
+#         ":webpack_build",
+#     ],
+#     entry_points = {
+#         "dist/webpack_build.js": ":webpack_build",
+#     },
+#     node_modules = "//experimental/service_test_ts_webpack_react_tests_assets:node_modules",
+#     webpack_config = "webpack.config.cjs",
+# )
+
+webpack_devserver(
+    name = "serve",
+    chdir = package_name(),
+    data = [
+        ":index_html",
+        ":styles",
+        ":tsc",
+        ":webpack_build",
+    ],
+    entry_points = {
+        "dist/webpack_build.js": ":webpack_build",
+    },
+    grant_sandbox_write_permissions = True,
+    log_level = "debug",
+    node_modules = ":node_modules",
+    tags = ["webpack_serve"],
+    webpack_config = "webpack.config.cjs",
+)
+
+ts_project(
+    name = "tsc_tests",
+    testonly = True,
+    srcs = glob([
+        "src/**/*.spec.ts",
+    ]),
+    allow_js = True,
+    declaration = True,
+    declaration_map = True,
+    incremental = True,
+    out_dir = "dist",
+    resolve_json_module = True,
+    root_dir = [
+        "src",
+        "dist",
+    ],
+    source_map = True,
+    tsconfig = {
+        "compilerOptions": {
+            "strict": True,
+            "target": "ESNext",
+            "module": "ESNext",
+            "incremental": True,
+            "sourceMap": True,
+            "inlineSources": True,
+            "noUnusedLocals": True,
+            "moduleResolution": "node",
+            "esModuleInterop": True,
+            "importHelpers": True,
+            "allowSyntheticDefaultImports": True,
+            "forceConsistentCasingInFileNames": True,
+            "declaration": True,
+            "declarationMap": True,
+            "useUnknownInCatchVariables": False,
+            "isolatedModules": True,
+            "noImplicitOverride": True,
+            "preserveConstEnums": True,
+            "skipLibCheck": True,
+            "allowJs": True,
+            "emitDeclarationOnly": False,
+            "resolveJsonModule": True,
+            "strictNullChecks": True,
+            "jsx": "react-jsx",
+            "outDir": "dist",
+            "rootDir": "src",
+            # This is super to 1. use "rootDirs" and have two source paths there:
+            # - the "src" path for spec files (`*.spec.ts`) only declared in srcs of the `tsc_tests` rule
+            # - the "dist" path for all compiled TS files into the /dist folder.
+            # Background. When building the tsc_tests rule it has only "src/**/*.spec.ts" specified in the srcs arg
+            # but no actual ts files. Most likely every `spec.ts` file will have an import like `./util1.js` so that
+            # `spec.ts` will also need a source file (which we can't provide in the tsc_test because it will raise the
+            # conflict between :tsc and :tsc_tests when both rules uses the same source files which is forbidden).
+            # These missing *.ts source files are exist after building the `:tsc` rule which will store the output in
+            # the /dist folder (as declared in :tsc). So all we need for :tsc_tests and `spec.ts` files to properly reference
+            # to that /dist folder. For this we need this:
+            # - add the `":tsc",` as a dependency for `:tsc_tests`
+            # - tell the Typescript where to find compiled ts sources (they are in /dist). Typescript allows to use "rootDirs"
+            # property in tsconfig.json (do not mix and much with another "rootDir" prop), so we can tell the typescript where
+            # to look for .ts source files for building the target
+            "rootDirs": [
+                "src",
+                "dist",
+            ],
+        },
+        "exclude": ["node_modules"],
+    },
+    validate = False,
+    deps = [
+        ":node_modules/@types/chai",
+        ":node_modules/@types/mocha",
+        ":node_modules/chai",
+        ":node_modules/mocha",
+        ":tsc",
+    ],
+)
+
+# copy_to_bin(
+#     name = "package_json",
+#     srcs = ["package.json"],
+# )
+
+js_test(
+    name = "test",
+    size = "small",
+    timeout = "short",
+    args = ["--no-build"],
+    data = [
+        ".mocharc.json",
+        # ":package_json",
+        ":pkg",
+        ":tsc_tests",
+        "//tools/test-mocha:mocha_test_lib",
+    ],
+    entry_point = "//tools/test-mocha:mocha_test_lib",
+    env = {},
+    log_level = "error",
+    tags = ["mocha-test"],
+)
+
+copy_to_bin(
+    name = "assets",
+    srcs = [
+        "assets/icons/icon1.svg",
+        "assets/icons/icon2.svg",
+        "assets/images/image1.png",
+        "package.json",
+    ],
+)
+
+# my understanding is how package resolution works in js_libary case.
+# js_library(name = "pkg") somehow could be imported as @hz/bla-bla/...
+# It’s essentially hidden in the npm_translate_lock(npm_package_target_name = "pkg") in the MODULE.bazel
+# Then when translating the pnpm-lock to bazel targets it assumes any pnpm project contains a pkg target
+# alongside the package.json. That package target gets symlinked to in the virtual-store, then :node_modules/@hz/bla-blah
+# links into that virtual store.
+# If a project does not contain a pkg then it will create an invalid bazel target somewhere,
+# but if you never reference it you’ll never see an error.
+js_library(
+    name = "pkg",
+    srcs = [
+        "assets",
+        "package.json",
+    ],
+    deps = [":tsc"],
+)

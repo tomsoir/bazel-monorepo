@@ -8,8 +8,6 @@ $ bazel run :tsc_app
 
 ## Features
 
-### service_test_ts (current)
-
 - Support TS-files
 - Support imports form other TS-files
   - [important!] .js prefix is required

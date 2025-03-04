@@ -15,7 +15,7 @@
           - [x] Webpack support;
           - [ ] RSPack support (faster than Webpack);
         - [x] SCSS-styles support;
-        - [ ] Static assets (images) support;
+        - [x] Static assets (images) support;
       - [x] Developing:
         - [x] Run local server (Webpack dev server);
       - [x] Testing:

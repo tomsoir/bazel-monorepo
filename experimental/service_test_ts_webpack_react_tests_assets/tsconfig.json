@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "incremental": true,
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "inlineSources": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "useUnknownInCatchVariables": false,
+    "isolatedModules": true,
+    "noImplicitOverride": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+
+    "rootDir": "src",
+    "outDir": "dist",
+
+    "jsx": "react-jsx"
+  },
+  // "exclude": ["node_modules"]
+  "exclude": ["node_modules", "webpack.config.cjs"]
+}
