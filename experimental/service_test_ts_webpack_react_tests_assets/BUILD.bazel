@@ -59,7 +59,6 @@ webpack_bundle(
 sass_library(
     name = "styles_lib",
     srcs = [
-        "src/styles/_fonts.scss",
         "src/styles/_reset.scss",
         "src/styles/_variables.scss",
     ]
