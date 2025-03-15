@@ -22,6 +22,9 @@ ts_project(
         ],
     ),
     allow_js = True,
+    assets = [
+        ":assets",
+    ],
     declaration = True,
     declaration_map = True,
     incremental = True,
@@ -40,7 +43,10 @@ ts_project(
 
 webpack_bundle(
     name = "webpack_build",
-    srcs = [":tsc"],
+    srcs = [
+        ":assets",
+        ":tsc",
+    ],
     chdir = package_name(),
     entry_point = "dist/index.js",
     node_modules = ":node_modules",
@@ -106,6 +112,7 @@ webpack_devserver(
     name = "serve",
     chdir = package_name(),
     data = [
+        ":assets",
         ":index_html",
         ":styles",
         ":tsc",
@@ -128,6 +135,9 @@ ts_project(
         "src/**/*.spec.ts",
     ]),
     allow_js = True,
+    assets = [
+        ":assets",
+    ],
     declaration = True,
     declaration_map = True,
     incremental = True,
@@ -197,10 +207,10 @@ ts_project(
     ],
 )
 
-# copy_to_bin(
-#     name = "package_json",
-#     srcs = ["package.json"],
-# )
+copy_to_bin(
+    name = "package_json",
+    srcs = ["package.json"],
+)
 
 js_test(
     name = "test",
@@ -209,7 +219,7 @@ js_test(
     args = ["--no-build"],
     data = [
         ".mocharc.json",
-        # ":package_json",
+        ":package_json",
         ":pkg",
         ":tsc_tests",
         "//tools/test-mocha:mocha_test_lib",
@@ -226,7 +236,6 @@ copy_to_bin(
         "assets/icons/icon1.svg",
         "assets/icons/icon2.svg",
         "assets/images/image1.png",
-        "package.json",
     ],
 )
 
@@ -241,7 +250,7 @@ copy_to_bin(
 js_library(
     name = "pkg",
     srcs = [
-        # "assets",
+        "assets",
         "package.json",
     ],
     deps = [":tsc"],
