@@ -74,6 +74,7 @@
   - `$ bazel test ...` — test all (testable) targets in the repo
     - `$ bazel test --test_output=all ...` - to see tests output in cli
   - `$ bazel coverage ...` - generate tests coverage
+    - `$ bazel coverage --combined_report=lcov --test_output=all ...` - to see tests output + tests coverage files (in `coverage.dat`)
   - `$ bazel run //:format` — formats everything in the repo
   - `$ bazel run //:format.check` — check if formatting need to be applied
 
