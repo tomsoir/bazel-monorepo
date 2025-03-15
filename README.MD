@@ -15,27 +15,28 @@
           - [x] Webpack support;
           - [ ] RSPack support (faster than Webpack);
         - [x] SCSS-styles support;
+          - [x] "use" imports support;
         - [x] Static assets (images) support;
       - [x] Developing:
         - [x] Run local server (Webpack dev server);
       - [x] Testing:
         - [x] Tests support (Mocha/Chai);
         - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
-        - [ ] Tests coverage;
+        - [x] Tests coverage;
     - [x] Python (Aspect's `rules_py`);
       - [x] Building:
         - [x] Build internal packages;
         - [x] Build external packages (PYPI-package manager support);
       - [x] Testing:
         - [x] Tests support;
-        - [ ] Tests coverage;
+        - [x] Tests coverage;
     - [x] GoLang;
       - [ ] Building:
         - [x] Build internal packages;
         - [ ] Build external packages (go_dependency support);
       - [x] Testing:
         - [x] Tests support;
-        - [ ] Tests coverage;
+        - [x] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
@@ -69,8 +70,10 @@
 
 ## Main Commands:
 ### Bazel:
-  - `$ bazel build //...` — build all targets in the repo
-  - `$ bazel test //...` — test all (testable) targets in the repo
+  - `$ bazel build ...` — build all targets in the repo
+  - `$ bazel test ...` — test all (testable) targets in the repo
+    - `$ bazel test --test_output=all ...` - to see tests output in cli
+  - `$ bazel coverage ...` - generate tests coverage
   - `$ bazel run //:format` — formats everything in the repo
   - `$ bazel run //:format.check` — check if formatting need to be applied
 

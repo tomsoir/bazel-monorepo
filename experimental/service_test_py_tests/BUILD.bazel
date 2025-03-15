@@ -12,7 +12,6 @@ py_pytest_main(
     name = "__test__",
     chdir = package_name(),  # So that test fixtures are available at the correct path
     deps = [
-        "@pypi//coverage",
         "@pypi//pytest",
     ],
 )
@@ -20,7 +19,7 @@ py_pytest_main(
 py_test(
     name = "pytest_test",
     srcs = [
-        "tests/foo_test.py",
+        "tests/test_foo.py",
         ":__test__",
     ],
     data = glob([
