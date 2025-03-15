@@ -813,7 +813,7 @@
     "@@rules_multitool+//multitool:extension.bzl%multitool": {
       "general": {
         "bzlTransitiveDigest": "3oboZoLHhLmg8U9CjjVdu2NxgtEU/AqvsLxgGAIZrOw=",
-        "usagesDigest": "/XUddGQmInvcHZZWA3uLQwh5M8ueVeJsXy1mXTyur6I=",
+        "usagesDigest": "Ba1i49/jVYSuJgNgYMzfRQc6tOBysDQm1MaJL6NZg/w=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1043,10 +1043,10 @@
     },
     "@@rules_python+//python/extensions:pip.bzl%pip": {
       "general": {
-        "bzlTransitiveDigest": "0ffaRcgTwP8c66IBTzBoRFe1RNtKp/+RuNjNyexxPWs=",
-        "usagesDigest": "UzzQmydeKi6ABpA3L01Bml7yu9siAoJtQZ9jwDZcOL4=",
+        "bzlTransitiveDigest": "IxLYwGz3FgKTAIAkHjpmENUvLUeIYZJATrZLdNMb/vM=",
+        "usagesDigest": "s3w+KmAbhiTGMRW71M16F3Lh9RluXLMQ2INgyjkskkU=",
         "recordedFileInputs": {
-          "@@//requirements.txt": "1f10ee87384b19c223368364b63b4dc74e2d8b616d818ccb2a832c26339b5586",
+          "@@//requirements.txt": "f6adf0f1774e1a83e70ba72a2fd7139098ea788de51824e69eecb490794df9c4",
           "@@protobuf+//python/requirements.txt": "983be60d3cec4b319dcab6d48aeb3f5b2f7c3350f26b3a9e97486c37967c73c5",
           "@@rules_fuzzing+//fuzzing/requirements.txt": "ab04664be026b632a0d2a2446c4f65982b7654f5b6851d2f9d399a19b7242a5b",
           "@@rules_python+//tools/publish/requirements_darwin.txt": "095d4a4f3d639dce831cd493367631cd51b53665292ab20194bac2c0c6458fa8",
@@ -1328,7 +1328,7 @@
               ],
               "python_interpreter_target": "@@rules_python++python+python_3_9_13_host//:python",
               "repo": "pypi_39",
-              "requirement": "pytest==8.3.4 --hash=sha256:50e16d954148559c9a74109af1eaf0c945ba2d8f30f0a3d3335edde19788b6f6 --hash=sha256:965370d062bce11e73868e0335abac31b4d3de0e82f4007408d242b4f8610761"
+              "requirement": "pytest==8.3.5 --hash=sha256:c69214aa47deac29fad6c2a4f590b9c4a9fdb16a403176fe154b79c0b4d4d820 --hash=sha256:f4efe70cc14e511565ac476b57c279e12a855b11f48f212af1080ef2263d3845"
             }
           },
           "pypi_39_tomli": {
