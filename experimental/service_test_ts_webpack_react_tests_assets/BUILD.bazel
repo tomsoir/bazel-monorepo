@@ -96,6 +96,7 @@ copy_file(
 #     name = "serve",
 #     chdir = package_name(),
 #     data = [
+#         ":assets",
 #         ":index_html",
 #         ":styles",
 #         ":tsc",
@@ -108,25 +109,25 @@ copy_file(
 #     webpack_config = "webpack.config.cjs",
 # )
 
-webpack_devserver(
-    name = "serve",
-    chdir = package_name(),
-    data = [
-        ":assets",
-        ":index_html",
-        ":styles",
-        ":tsc",
-        ":webpack_build",
-    ],
-    entry_points = {
-        "dist/webpack_build.js": ":webpack_build",
-    },
-    grant_sandbox_write_permissions = True,
-    log_level = "debug",
-    node_modules = ":node_modules",
-    tags = ["webpack_serve"],
-    webpack_config = "webpack.config.cjs",
-)
+# webpack_devserver(
+#     name = "serve",
+#     chdir = package_name(),
+#     data = [
+#         ":assets",
+#         ":index_html",
+#         ":styles",
+#         ":tsc",
+#         ":webpack_build",
+#     ],
+#     entry_points = {
+#         "dist/webpack_build.js": ":webpack_build",
+#     },
+#     grant_sandbox_write_permissions = True,
+#     log_level = "debug",
+#     node_modules = ":node_modules",
+#     tags = ["webpack_serve"],
+#     webpack_config = "webpack.config.cjs",
+# )
 
 ts_project(
     name = "tsc_tests",
