@@ -1,3 +1,5 @@
+[![Dependencies](https://img.shields.io/librariesio/release/npm/package-name)](https://libraries.io/npm/package-name)
+
 # Bazel Monorepo Example
 
 ## Main Features:
