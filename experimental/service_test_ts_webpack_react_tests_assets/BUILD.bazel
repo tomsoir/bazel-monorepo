@@ -1,10 +1,10 @@
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary", "sass_library")
 load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//:tools/skylib/ts.bzl", "ts_project")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -21,18 +21,11 @@ ts_project(
             "src/**/*.spec.ts",
         ],
     ),
-    allow_js = True,
     assets = [
         ":assets",
     ],
-    declaration = True,
-    declaration_map = True,
-    incremental = True,
     out_dir = "dist",
-    resolve_json_module = True,
     root_dir = "src",
-    source_map = True,
-    tsconfig = "tsconfig.json",
     deps = [
         ":node_modules/@types/react",
         ":node_modules/@types/react-dom",
