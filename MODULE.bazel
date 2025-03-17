@@ -58,7 +58,7 @@ register_toolchains("@sass_toolchains//:all")
 
 # # copy_to_bin
 # # https://github.com/bazel-contrib/bazel-lib/releases/tag/v2.10.0
-bazel_dep(name = "aspect_bazel_lib", version = "2.13.0")
+bazel_dep(name = "aspect_bazel_lib", version = "2.14.0")
 
 # ---
 
