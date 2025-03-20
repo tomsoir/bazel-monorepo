@@ -4,7 +4,8 @@
 const config = {
   tabWidth: 2,
   singleQuote: true,
-  plugins: [require('prettier-plugin-sql')],
+  // @TODO disabled to fix prettier
+  // plugins: [require('prettier-plugin-sql')],
 };
 
 module.exports = config;

@@ -40,6 +40,7 @@ def ts_project(
         tsconfig = "%s_hz_tsconfig" % name if type(tsconfig) == "dict" else tsconfig,
         tags = ["manual"],
     )
+
     # When tsconfig is a dict, the ts_project macro will define a tsconfig target :_gen_tsconfig_{name}.
     # We define the copy of this file in case webpack_bundle needs to depend on it.
     # IMPORTANT: Do not change `out` file name. The webpack_bundle depends on the actual file name, not the target name.
