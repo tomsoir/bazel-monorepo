@@ -1,0 +1,40 @@
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_bazel_lib//lib:testing.bzl", "assert_json_matches")
+load("@aspect_rules_swc//swc:defs.bzl", "swc")
+load("//:tools/skylib/tsconfig_to_swcrc.bzl", "tsconfig_to_swcrc")
+
+package(
+    default_visibility = ["//visibility:private"],
+)
+
+tsconfig_to_swcrc(
+    name = "write_swcrc",
+    swcrc_out = ".swcrc",
+    tsconfig = "tsconfig.json",
+)
+
+# Demonstrate that it works
+swc(
+    name = "compile",
+    srcs = ["src/test.ts"],
+    swcrc = ".swcrc",
+)
+
+# Verify that our options got passed through
+[assert_json_matches(
+    name = "%s_test" % TEST_NAME,
+    file1 = ".swcrc",
+    file2 = "tsconfig.json",
+    filter1 = FILTER1,
+    filter2 = FILTER2,
+) for TEST_NAME, FILTER1, FILTER2 in [
+    ("module", ".module.type", ".compilerOptions.module"),
+    ("target", ".jsc.target", ".compilerOptions.target"),
+    ("decorators", ".jsc.parser.decorators", ".compilerOptions.experimentalDecorators"),
+]]
+
+copy_to_bin(
+    name = "package_json",
+    srcs = ["package.json"],
+    visibility = ["//:__subpackages__"],
+)

@@ -1,10 +1,10 @@
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary", "sass_library")
 load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//:tools/skylib/ts.bzl", "ts_project")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -21,18 +21,11 @@ ts_project(
             "src/**/*.spec.ts",
         ],
     ),
-    allow_js = True,
     assets = [
         ":assets",
     ],
-    declaration = True,
-    declaration_map = True,
-    incremental = True,
     out_dir = "dist",
-    resolve_json_module = True,
     root_dir = "src",
-    source_map = True,
-    tsconfig = "tsconfig.json",
     deps = [
         ":node_modules/@types/react",
         ":node_modules/@types/react-dom",
@@ -105,7 +98,7 @@ copy_file(
 #     entry_points = {
 #         "dist/webpack_build.js": ":webpack_build",
 #     },
-#     node_modules = "//experimental/service_test_ts_webpack_react_tests_assets:node_modules",
+#     node_modules = "//experimental/service_test_ts_webpack_react_tests_assets_swc:node_modules",
 #     webpack_config = "webpack.config.cjs",
 # )
 
@@ -135,20 +128,11 @@ ts_project(
     srcs = glob([
         "src/**/*.spec.ts",
     ]),
-    allow_js = True,
     assets = [
         ":assets",
     ],
-    declaration = True,
-    declaration_map = True,
-    incremental = True,
     out_dir = "dist",
-    resolve_json_module = True,
-    root_dir = [
-        "src",
-        "dist",
-    ],
-    source_map = True,
+    root_dir = "src",
     tsconfig = {
         "compilerOptions": {
             "strict": True,
@@ -198,7 +182,6 @@ ts_project(
         },
         "exclude": ["node_modules"],
     },
-    validate = False,
     deps = [
         ":node_modules/@types/chai",
         ":node_modules/@types/mocha",
@@ -240,7 +223,7 @@ copy_to_bin(
     ],
 )
 
-# my understanding is how package resolution works in js_libary case.
+# My understanding is how package resolution works in js_library case.
 # js_library(name = "pkg") somehow could be imported as @hz/bla-bla/...
 # It’s essentially hidden in the npm_translate_lock(npm_package_target_name = "pkg") in the MODULE.bazel
 # Then when translating the pnpm-lock to bazel targets it assumes any pnpm project contains a pkg target

@@ -1,0 +1,11 @@
+@use 'styles/_variables';
+@use 'styles/_reset';
+
+.app {
+  text-align: center;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}

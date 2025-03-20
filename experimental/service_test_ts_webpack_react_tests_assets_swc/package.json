@@ -1,0 +1,38 @@
+{
+  "name": "service_test_ts_webpack_react_tests_assets_swc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build:clean": "rm -rf ./dist tsconfig.tsbuildinfo",
+    "build:tsc": "tsc",
+    "build:webpack_bundle": "webpack",
+    "build:styles": "sass src/styles.scss dist/styles.css",
+    "build:index_html": "cp ./src/index.html ./dist/index.html",
+    "build": "pnpm run build:clean && pnpm run build:tsc && pnpm run build:webpack_bundle && pnpm run build:styles && pnpm run build:index_html",
+    "serve": "pnpm run build && webpack serve --open",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@swc/helpers": "0.5.15"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0",
+    "sass": "^1.83.4",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  }
+}

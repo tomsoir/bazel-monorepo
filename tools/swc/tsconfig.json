@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "isolatedDeclarations": true,
+    "declaration": true
+  }
+}
