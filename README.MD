@@ -8,7 +8,7 @@
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
         - [x] TSC TypeScript compilation support;
-          - [x] Switch to SWC TypeScript compilation support (faster than TypeScript);
+          - [x] Switch to [SWC TypeScript](https://github.com/aspect-build/rules_swc) transpiler support (faster than TypeScript);
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager);
         - [x] Bundling support
@@ -87,7 +87,7 @@
 ### PYPI (for Python):
   #### Manual dependencies update in monorepo (including transitive dependencies)
   - Use `requirements.in` file to manage (install new, update or remove old) python dependencies in the entire monorepo
-  - `$ bazel run //:generate_requirements_txt` - run to update `requirements.txt` automatically
+  - `$ bazel run //:generate_requirements_txt` - ru¡n to update `requirements.txt` automatically
 
 ### Repo maintenance
 - `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
