@@ -32,9 +32,12 @@ format_multirun(
     markdown = ":prettier",
     python = "@aspect_rules_lint//format:ruff",
     shell = "@aspect_rules_lint//format:shfmt",
-    sql = ":prettier",
     starlark = "@buildifier_prebuilt//:buildifier",
     terraform = "@aspect_rules_lint//format:terraform",
     visibility = ["//:__subpackages__"],
     yaml = "@aspect_rules_lint//format:yamlfmt",
+
+    # @TODO disabled to fix :format target
+    # Note: Uncomment also prettier sql plugin in prettier.config.cjs
+    # sql = ":prettier",
 )

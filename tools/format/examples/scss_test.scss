@@ -1,0 +1,10 @@
+$primary-color: blue;
+
+body {
+  background-color: $primary-color;
+
+  h1 {
+    font-size: 2em;
+    margin: 10px;
+  }
+}

@@ -1,0 +1,8 @@
+---
+name: TestApp
+version: 1.0
+dependencies:
+  - name: express
+    version: 4.17.1
+  - name: typescript
+    version: 4.5.4

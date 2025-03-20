@@ -13,6 +13,7 @@
         - [x] Build external packages (PNPM package manager);
         - [x] Bundling support
           - [x] Webpack support;
+          - [ ] ES-bundle support (another alternative for simple use cases e.g. to build a single file script with npm deps);
           - [ ] RSPack support (faster than Webpack);
         - [x] SCSS-styles support;
           - [x] "use" imports support;

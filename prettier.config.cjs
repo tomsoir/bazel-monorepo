@@ -4,7 +4,8 @@
 const config = {
   tabWidth: 2,
   singleQuote: true,
-  // @TODO disabled to fix prettier
+  // @TODO disabled to fix :format target
+  // Note: Uncomment also SQL in tools/format/BUILD.bazel
   // plugins: [require('prettier-plugin-sql')],
 };
 
