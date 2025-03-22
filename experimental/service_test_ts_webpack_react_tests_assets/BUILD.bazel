@@ -87,47 +87,27 @@ copy_file(
     out = "dist/index.html",
 )
 
-# !DISABLED to fix bazel build
-#
-# # @TODO: find a way to fix the `entry_points` to reuse compiled `webpack_build.js` but not
-# # the local one. TL,DR: To run this command `$ bazel run :serve` you need to build locally
-# # this project `$ pnpm run build` to be able to get access to "dist/webpack_build.js" file. :(
-# webpack_devserver(
-#     name = "serve",
-#     chdir = package_name(),
-#     data = [
-#         ":assets",
-#         ":index_html",
-#         ":styles",
-#         ":tsc",
-#         ":webpack_build",
-#     ],
-#     entry_points = {
-#         "dist/webpack_build.js": ":webpack_build",
-#     },
-#     node_modules = "//experimental/service_test_ts_webpack_react_tests_assets:node_modules",
-#     webpack_config = "webpack.config.cjs",
-# )
-
-# webpack_devserver(
-#     name = "serve",
-#     chdir = package_name(),
-#     data = [
-#         ":assets",
-#         ":index_html",
-#         ":styles",
-#         ":tsc",
-#         ":webpack_build",
-#     ],
-#     entry_points = {
-#         "dist/webpack_build.js": ":webpack_build",
-#     },
-#     grant_sandbox_write_permissions = True,
-#     log_level = "debug",
-#     node_modules = ":node_modules",
-#     tags = ["webpack_serve"],
-#     webpack_config = "webpack.config.cjs",
-# )
+webpack_devserver(
+    name = "serve",
+    chdir = package_name(),
+    data = [
+        ":assets",
+        ":index_html",
+        ":node_modules/webpack-cli",
+        ":node_modules/webpack-dev-server",
+        ":styles",
+        ":tsc",
+        ":webpack_build",
+    ],
+    entry_points = {
+        "dist/webpack_build.js": ":webpack_build",
+    },
+    grant_sandbox_write_permissions = True,
+    log_level = "debug",
+    node_modules = ":node_modules",
+    tags = ["webpack_serve"],
+    webpack_config = "webpack.config.cjs",
+)
 
 ts_project(
     name = "tsc_tests",
