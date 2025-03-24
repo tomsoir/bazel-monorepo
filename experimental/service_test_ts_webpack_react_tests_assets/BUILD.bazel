@@ -99,9 +99,12 @@ webpack_devserver(
         ":tsc",
         ":webpack_build",
     ],
-    entry_points = {
-        "dist/webpack_build.js": ":webpack_build",
-    },
+    # # For local testing (current file locates in the local /dist folder but not on bazel-bin).
+    # # to generate the local files in /dist you need to run $ pnpm run build to create and populate
+    # # the /dist folder with "dist/webpack_build.js" file
+    # entry_points = {
+    #     "dist/webpack_build.js": ":webpack_build",
+    # },
     grant_sandbox_write_permissions = True,
     log_level = "debug",
     node_modules = ":node_modules",
