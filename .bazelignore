@@ -13,3 +13,4 @@ experimental/service_test_ts_webpack_react_tests_assets/node_modules
 experimental/service_test_ts_webpack_react_tests_assets_swc/node_modules
 tools/test-mocha/node_modules
 tools/swc/node_modules
+experimental/simple_js_library_test/node_modules
