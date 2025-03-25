@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-test-ts
+  labels:
+    app: service-test-ts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-test-ts
+  template:
+    metadata:
+      labels:
+        app: service-test-ts
+    spec:
+      containers:
+        - name: service-test-ts
+          image: docker.io/tomsoir/service_test_ts:latest
+          ports:
+            - containerPort: 3000

@@ -78,8 +78,6 @@
     - `$ bazel test --test_output=all ...` - to see tests output in cli
   - `$ bazel coverage ...` - generate tests coverage
     - `$ bazel coverage --combined_report=lcov --test_output=all ...` - to see tests output + tests coverage files (in `coverage.dat`)
-  - `$ bazel run //:format` — formats everything in the repo
-  - `$ bazel run //:format.check` — check if formatting need to be applied
 
 ### PNPM (for TS/JS):
   - `$ pnpm update` - update all projects in monorepo
@@ -95,6 +93,8 @@
 ### Repo maintenance
 - `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
 - `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES
+- `$ bazel run //:format` — formats everything in the repo
+- `$ bazel run //:format.check` — check if formatting need to be applied
 
 ## Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
