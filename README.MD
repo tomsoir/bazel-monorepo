@@ -1,3 +1,5 @@
+![Build Status](https://github.com/tomsoir/tomsoir-monorepo/actions/workflows/bazel-ci.yml/badge.svg)
+
 # Bazel Monorepo Example
 
 ## Main Features:
