@@ -9,8 +9,8 @@
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
-        - [x] TSC TypeScript compilation support;
-          - [x] Switch to [SWC TypeScript](https://github.com/aspect-build/rules_swc) transpiler support (faster than TypeScript);
+        - [x] [TSC TypeScript compilation support](https://github.com/tomsoir/tomsoir-monorepo/blob/main/experimental/service_test_ts/BUILD.bazel#L7-L29);
+          - [x] [Switch to](https://github.com/tomsoir/tomsoir-monorepo/commit/efaf035d6fb80dbc5a58889eea035e6b00deebf1) [SWC TypeScript](https://github.com/aspect-build/rules_swc) transpiler support (faster than TypeScript);
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager);
         - [x] Bundling support
