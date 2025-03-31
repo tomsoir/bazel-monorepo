@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {
-    "tsconfig-to-swcconfig": "2.8.0"
+    "tsconfig-to-swcconfig": "2.8.1"
   }
 }
