@@ -64,7 +64,7 @@
     - [x] Run format check;
     - [ ] Push artifacts to registry;
 1. [ ] Infra
-    - [ ] Docker: create image;
+    - [x] Docker: create image;
     - [ ] Docker: push image to registry;
     - [ ] K8s: generate manifests;
     - [ ] K8s: deploy manifests;
