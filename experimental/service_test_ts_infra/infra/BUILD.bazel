@@ -1,0 +1,44 @@
+###########################
+# BUILD AN IMAGE
+###########################
+# Example-1 (current): https://github.com/aspect-build/rules_js/blob/main/docs/js_image_layer.md
+# Example-2: https://github.com/aspect-build/rules_js/blob/main/e2e/js_image_oci/src/BUILD.bazel
+# Reference: https://github.com/bazel-contrib/rules_oci/blob/main/docs/javascript.md
+
+load("@aspect_rules_js//js:defs.bzl", "js_image_layer")
+load("@rules_oci//oci:defs.bzl", "oci_image")
+
+platform(
+    name = "amd64_linux",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+)
+
+js_image_layer(
+    name = "tsc_binary_app_bin_layers",
+    binary = "//experimental/service_test_ts_infra:tsc_binary_app_bin",
+    platform = ":amd64_linux",
+    root = "/app",
+)
+
+oci_image(
+    name = "tsc_binary_app_bin_image",
+    architecture = "amd64",
+    cmd = ["/app/bin"],
+    entrypoint = ["bash"],
+    os = "linux",
+    tars = [
+        ":tsc_binary_app_bin_layers",
+    ],
+    workdir = select({
+        "@aspect_bazel_lib//lib:bzlmod": "/app/bin.runfiles/_main",
+        "//conditions:default": "/app/bin.runfiles/__main__",
+    }),
+)
+
+###########################
+# PUSH TO IMAGE REGISTRY
+###########################
+# ...

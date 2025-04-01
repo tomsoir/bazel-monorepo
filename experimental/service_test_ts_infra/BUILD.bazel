@@ -25,11 +25,12 @@ ts_project(
 )
 
 js_binary(
-    name = "tsc_app",
+    name = "tsc_binary_app_bin",
     chdir = package_name(),
     data = [
         "package.json",
         ":tsc",
     ],
     entry_point = "dist/index.js",
+    visibility = ["//visibility:public"],
 )
