@@ -3,107 +3,36 @@ name: Bazel CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
+
+env:
+  BUILD_BUDDY_API_KEY: ${{ secrets.BUILD_BUDDY_API_KEY }}
 
 jobs:
-  setup:
-    name: Setup and Cache Bazel
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Bazel
-        uses: bazelbuild/setup-bazelisk@v3
-
-      - name: Restore Bazel Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
-
-      # - name: Warm up Bazel Cache
-      #   run: bazel build //... || true
-
-      - name: Save Bazel Cache
-        if: always()
-        run: bazel shutdown
-
   bazel-build:
-    name: Build all targets
-    needs: setup
+    name: 🔨 Build all targets
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Restore Bazel Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
-
+      - uses: actions/checkout@v4
+      - uses: bazelbuild/setup-bazelisk@v3
       - name: Build all targets
-        run: bazel build //...
-
-      - name: Save Bazel Cache
-        if: always()
-        run: bazel shutdown
-
+        run: bazel build --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" //...
   bazel-test:
-    name: Run Bazel Tests
-    needs: setup
+    name: 🧪 Run tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Restore Bazel Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
-
-      - name: Run Bazel tests
-        run: bazel test //...
-
-      - name: Save Bazel Cache
-        if: always()
-        run: bazel shutdown
+      - uses: actions/checkout@v4
+      - uses: bazelbuild/setup-bazelisk@v3
+      - name: Run all tests
+        run: bazel test --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" //...
 
   format-check:
-    name: Run Format Check
-    needs: setup
+    name: 🧹 Format check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Restore Bazel Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/bazel
-          key: bazel-cache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            bazel-cache-${{ github.ref }}-
-            bazel-cache-
-
-      - name: Run Format Check
-        run: bazel run //:format.check
-
-      - name: Save Bazel Cache
-        if: always()
-        run: bazel shutdown
+      - uses: actions/checkout@v4
+      - uses: bazelbuild/setup-bazelisk@v3
+      - name: Run format check
+        run: bazel run  --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" //:format.check

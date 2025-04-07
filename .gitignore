@@ -8,3 +8,4 @@ dist/
 .cache
 *.d.cts
 *.d.cts.map
+.bazelrc.local

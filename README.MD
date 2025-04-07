@@ -54,7 +54,8 @@
     - [ ] Auto generate documentation
     - [ ] Use Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
-    - [ ] Add Remote Cache Execution;
+    - [x] Add Remote Cache Execution with [BuildBuddy](https://buildbuddy.io/);
+      - Note: Simply create your personal free account, and next few lines to .bazelrc and enjoy.
     - [ ] Custom scripts:
       - [ ] New bazel command to create a new project using template;
 1. [x] CI/CD integration:
@@ -102,3 +103,6 @@
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
 - [Bazel troubleshooting ](./docs/TROUBLESHOOTING.MD);
 - [Bazel training ](./docs/BAZEL_TRAINING.MD);
+
+## Repo secrets (repo > settings > secrets > actions):
+- `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI. To get one, simply create a free persons account on [BuildBuddy](https://buildbuddy.io/).

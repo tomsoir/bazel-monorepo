@@ -25,3 +25,14 @@ common --noenable_workspace
 # Enabled local disk cache
 # Use `$ bazel build //... --explain=.cache/bazel/cache.log --verbose_explanations`
 build --disk_cache=.cache/bazel
+
+# Bazel remote execution
+build --bes_results_url=https://app.buildbuddy.io/invocation/
+build --bes_backend=grpcs://remote.buildbuddy.io
+build --remote_cache=grpcs://remote.buildbuddy.io
+build --remote_timeout=3600
+# build --remote_header=x-buildbuddy-api-key=<<YOUR API KEY>>
+# Use bazelrc.local file which should be in .gitignore and contain
+# next line: "build --remote_header=x-buildbuddy-api-key=<<YOUR API KEY>>
+# To create your BUILD_BUDDY API KEY simply create your free personal account.
+try-import %workspace%/.bazelrc.local
