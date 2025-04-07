@@ -9,17 +9,19 @@
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
+        - [x] Build internal packages;
+        - [x] Build external packages (PNPM package manager support);
         - [x] [TSC TypeScript transpiler](https://www.typescriptlang.org/) [support](https://github.com/tomsoir/tomsoir-monorepo/blob/main/experimental/service_test_ts/BUILD.bazel#L7-L29);
         - [x] [SWC TypeScript transpiler](https://github.com/aspect-build/rules_swc) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/efaf035d6fb80dbc5a58889eea035e6b00deebf1) (faster TSC alternative);
-        - [x] Build internal packages;
-        - [x] Build external packages (PNPM package manager);
-        - [x] Bundling support
+        - [x] Bundling support:
           - [x] [Webpack](https://webpack.js.org/) support;
           - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152) (faster Webpack alternative);
           - [ ] [RSPack](https://rspack.dev/) support (faster Webpack alternative);
         - [x] SCSS-styles support;
           - [x] "use" imports support;
-        - [x] Static assets (images) support;
+        - [x] Static assets support;
+          - [x] Image support example;
+          - [x] JSON files support example;
       - [x] Testing:
         - [x] Tests support (Mocha/Chai);
         - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
