@@ -109,3 +109,7 @@ oci.pull(
     platforms = ["linux/amd64"],
 )
 use_repo(oci, "node_20_slim", "node_20_slim_linux_amd64")
+
+# ---
+
+bazel_dep(name = "aspect_rules_esbuild", version = "0.21.0")

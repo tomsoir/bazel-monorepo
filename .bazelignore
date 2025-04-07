@@ -15,3 +15,4 @@ tools/test-mocha/node_modules
 tools/swc/node_modules
 experimental/simple_js_library_test/node_modules
 experimental/service_test_ts_infra/node_modules
+experimental/service_test_ts_esbuild
