@@ -6,14 +6,12 @@ npm_link_all_packages(name = "node_modules")
 
 package(default_visibility = ["//:__subpackages__"])
 
-copy_to_bin(
-    name = "package_json",
-    srcs = ["package.json"],
-)
-
 js_library(
     name = "simple_js_library_test",
-    srcs = ["index.js"],
+    srcs = [
+        "index.js",
+        "package.json",
+    ],
     deps = [
         ":node_modules/cowsay",
     ],
@@ -22,7 +20,6 @@ js_library(
 js_binary(
     name = "simple-js-library-test",
     data = [
-        ":package_json",
         ":simple_js_library_test",
     ],
     entry_point = "index.js",

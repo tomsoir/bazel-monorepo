@@ -16,3 +16,4 @@ tools/swc/node_modules
 experimental/simple_js_library_test/node_modules
 experimental/service_test_ts_infra/node_modules
 experimental/service_test_ts_esbuild/node_modules
+experimental/simple_js_binary_test/node_modules
