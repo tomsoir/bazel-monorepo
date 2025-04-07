@@ -15,17 +15,17 @@
         - [x] Build external packages (PNPM package manager);
         - [x] Bundling support
           - [x] Webpack support;
-          - [ ] ES-bundle support (another alternative for simple use cases e.g. to build a single file script with npm deps);
-          - [ ] RSPack support (faster than Webpack);
+          - [x] ES-bundle support (faster Webpack alternative);
+          - [ ] RSPack support (faster Webpack alternative);
         - [x] SCSS-styles support;
           - [x] "use" imports support;
         - [x] Static assets (images) support;
-      - [x] Developing:
-        - [x] Run local server (Webpack dev server);
       - [x] Testing:
         - [x] Tests support (Mocha/Chai);
         - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
         - [x] Tests coverage;
+      - [x] Developing:
+        - [x] Run local server (Webpack dev server);
     - [x] Python (Aspect's `rules_py`);
       - [x] Building:
         - [x] Build internal packages;

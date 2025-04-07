@@ -1,3 +1,4 @@
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -24,13 +25,22 @@ ts_project(
     ],
 )
 
-js_binary(
-    name = "tsc_binary_app_bin",
-    chdir = package_name(),
-    data = [
-        "package.json",
+esbuild(
+    name = "bundle",
+    entry_point = "dist/index.js",
+    format = "cjs",
+    output = "bundle.cjs",
+    output_dir = False,
+    platform = "node",
+    splitting = False,
+    target = "es2020",
+    deps = [
         ":tsc",
     ],
-    entry_point = "dist/index.js",
-    visibility = ["//visibility:public"],
+)
+
+js_binary(
+    name = "esbuild_binary_app_bin",
+    data = [":bundle"],
+    entry_point = "bundle.cjs",
 )
