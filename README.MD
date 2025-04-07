@@ -14,9 +14,9 @@
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager);
         - [x] Bundling support
-          - [x] Webpack support;
-          - [x] ES-bundle support (faster Webpack alternative);
-          - [ ] RSPack support (faster Webpack alternative);
+          - [x] [Webpack](https://webpack.js.org/) support;
+          - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152) (faster Webpack alternative);
+          - [ ] [RSPack](https://rspack.dev/) support (faster Webpack alternative);
         - [x] SCSS-styles support;
           - [x] "use" imports support;
         - [x] Static assets (images) support;
