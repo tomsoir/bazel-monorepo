@@ -99,8 +99,9 @@
 - `$ bazel run //:format.check` — check if formatting needs to be applied.
 
 ## Secrets:
-Note: Please add a new secret to this-repo > settings > secrets > actions.
-- `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI. To get one, simply create a free personal account on [BuildBuddy](https://buildbuddy.io/).
+- `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI.
+    - For CI use, it's stored in: `repo` > settings > secrets > actions > BUILD_BUDDY_API_KEY` key.
+    - Create a free personal account on [BuildBuddy](https://buildbuddy.io/) to get this key.
 
 ## Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
