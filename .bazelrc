@@ -26,13 +26,22 @@ common --noenable_workspace
 # Use `$ bazel build //... --explain=.cache/bazel/cache.log --verbose_explanations`
 build --disk_cache=.cache/bazel
 
-# Bazel remote execution
+# RBE (Remote Bazel Execution): Setup
 build --bes_results_url=https://app.buildbuddy.io/invocation/
 build --bes_backend=grpcs://remote.buildbuddy.io
 build --remote_cache=grpcs://remote.buildbuddy.io
 build --remote_timeout=3600
+
+# RBE: configure hidden api key
 # build --remote_header=x-buildbuddy-api-key=<<YOUR API KEY>>
 # Use bazelrc.local file which should be in .gitignore and contain
 # next line: "build --remote_header=x-buildbuddy-api-key=<<YOUR API KEY>>
 # To create your BUILD_BUDDY API KEY simply create your free personal account.
 try-import %workspace%/.bazelrc.local
+
+# RBE: improve remote cache throughput.
+build --experimental_remote_cache_compression
+# RBE: significantly reduce the payload size of the uploaded build event stream by eliminating duplicate file references.
+build --nolegacy_important_outputs
+# RBE: for a more detailed timing profile
+build --noslim_profile --experimental_profile_include_target_label --experimental_profile_include_primary_output
