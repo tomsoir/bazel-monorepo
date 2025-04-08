@@ -106,6 +106,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - Create a free personal account on [BuildBuddy](https://buildbuddy.io/) to get this key.
 
 ## Other documents:
+- [Intro](./docs/INTRO.MD);
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
 - [Bazel troubleshooting ](./docs/TROUBLESHOOTING.MD);
 - [Bazel training ](./docs/BAZEL_TRAINING.MD);
