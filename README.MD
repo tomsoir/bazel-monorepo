@@ -2,6 +2,8 @@
 
 # Bazel Monorepo Example
 
+A unified monorepo example to demonstrate how to develop, build, test, and deploy full-stack web projects, infrastructure code, and build tools using Bazel. Designed for scalability, fast builds, and optimized deployment.
+
 ## Main Features:
 1. [x] Repo package managers:
     - [x] PNPM;
