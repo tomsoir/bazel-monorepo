@@ -54,8 +54,7 @@
     - [ ] Auto generate documentation
     - [ ] Use Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
-    - [x] Add Remote Cache Execution with [BuildBuddy](https://buildbuddy.io/);
-      - Note: Simply create your personal free account, and next few lines to .bazelrc and enjoy.
+    - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [ ] Custom scripts:
       - [ ] New bazel command to create a new project using template;
 1. [x] CI/CD integration:
