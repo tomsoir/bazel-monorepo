@@ -93,15 +93,18 @@
   - `$ bazel run //:generate_requirements_txt` - ru¡n to update `requirements.txt` automatically.
 
 ### Repo maintenance:
+
+#### Global Commands
+
 - `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
 - `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES.
 - `$ bazel run //:format` — formats everything in the repo.
 - `$ bazel run //:format.check` — check if formatting needs to be applied.
 
+#### Secrets (repo > settings > secrets > actions):
+- `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI. To get one, simply create a free personal account on [BuildBuddy](https://buildbuddy.io/).
+
 ## Other documents:
 - [Create monorepo - step-by-step guide](./docs/CREATE_MONOREPO.MD);
 - [Bazel troubleshooting ](./docs/TROUBLESHOOTING.MD);
 - [Bazel training ](./docs/BAZEL_TRAINING.MD);
-
-## Repo secrets (repo > settings > secrets > actions):
-- `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI. To get one, simply create a free persons account on [BuildBuddy](https://buildbuddy.io/).
