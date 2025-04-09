@@ -11,7 +11,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
-        - [x] Root package.json support for references across all projects;
+        - [x] Root package.json [support](https://github.com/tomsoir/tomsoir-monorepo/commit/60eae52e231eb0f6c0312262dccd9798636fefa2) for references across all projects;
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager support);
         - [x] [TSC TypeScript transpiler](https://www.typescriptlang.org/) [support](https://github.com/tomsoir/tomsoir-monorepo/blob/main/experimental/service_test_ts/BUILD.bazel#L7-L29);
@@ -19,7 +19,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
         - [x] Bundling support:
           - [x] [Webpack](https://webpack.js.org/) support;
           - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152) (faster Webpack alternative);
-          - [x] [RSPack](https://rspack.dev/) support (faster Webpack alternative);
+          - [x] [RSPack](https://rspack.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/ba5865b549f9dbb821b27e2d3c116ff98c0ff21b) (faster Webpack alternative);
         - [x] SCSS-styles support;
           - [x] "use" imports support;
         - [x] Static assets support;
