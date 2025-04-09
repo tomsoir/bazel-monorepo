@@ -17,18 +17,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Restore Bazel disk cache
+        uses: actions/cache@v3
+        with:
+          path: .cache/bazel
+          key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
+          restore-keys: |
+            bazel-cache-${{ runner.os }}-
+
       - name: Build all targets
         run: |
           bazel build \
             --remote_download_toplevel \
             --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
             //...
+
   bazel-test:
     name: 🧪 Run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Restore Bazel disk cache
+        uses: actions/cache@v3
+        with:
+          path: .cache/bazel
+          key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
+          restore-keys: |
+            bazel-cache-${{ runner.os }}-
+
       - name: Run all tests
         run: |
           bazel test \
@@ -42,9 +61,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Restore Bazel disk cache
+        uses: actions/cache@v3
+        with:
+          path: .cache/bazel
+          key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
+          restore-keys: |
+            bazel-cache-${{ runner.os }}-
+
       - name: Run format check
         run: |
           bazel run \
-          --remote_download_toplevel \
-          --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
-          //:format.check
+            --remote_download_toplevel \
+            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+            //:format.check
