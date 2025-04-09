@@ -32,7 +32,7 @@ jobs:
       - name: Run all tests
         run: |
           bazel test \
-            --remote_download_toplevel \
+            --remote_download_minimal \
             --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
             //...
 
