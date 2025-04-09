@@ -18,7 +18,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bazelbuild/setup-bazelisk@v3
       - name: Build all targets
-        run: bazel build --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" //...
+        run: |
+          bazel build \
+            --remote_download_toplevel \
+            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+            //...
   bazel-test:
     name: 🧪 Run tests
     runs-on: ubuntu-latest
@@ -26,7 +30,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bazelbuild/setup-bazelisk@v3
       - name: Run all tests
-        run: bazel test --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" //...
+        run: |
+          bazel test \
+            --remote_download_toplevel \
+            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+            //...
 
   format-check:
     name: 🧹 Format check
@@ -35,4 +43,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bazelbuild/setup-bazelisk@v3
       - name: Run format check
-        run: bazel run  --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" //:format.check
+        run: |
+          bazel run \
+          --remote_download_toplevel \
+          --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+          //:format.check
