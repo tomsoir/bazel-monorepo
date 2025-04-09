@@ -29,7 +29,6 @@ jobs:
       - name: Build all targets
         run: |
           bazel build \
-            --remote_download_toplevel \
             --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
             //...
 
@@ -51,7 +50,6 @@ jobs:
       - name: Run all tests
         run: |
           bazel test \
-            --remote_download_minimal \
             --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
             //...
 
@@ -73,6 +71,5 @@ jobs:
       - name: Run format check
         run: |
           bazel run \
-            --remote_download_toplevel \
             --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
             //:format.check
