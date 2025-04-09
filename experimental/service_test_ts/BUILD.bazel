@@ -23,8 +23,15 @@ ts_project(
     source_map = True,
     tsconfig = "tsconfig.json",
     deps = [
-        ":node_modules/@types/express",
-        ":node_modules/express",
+        # There is no point to use
+        # ":node_modules/@types/express",
+        # ":node_modules/express",
+
+        # Example how to use monorepo root NPM packages instead of
+        # repeating the same declaration from project's package.json
+        # to project's package.json
+        "//:node_modules/@types/express",
+        "//:node_modules/express",
     ],
 )
 

@@ -11,6 +11,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
 1. [x] Programming languages support:
     - [x] TypeScript / JavaScript (Aspect's `rules_ts`);
       - [x] Building:
+        - [x] Root package.json support for references across all projects;
         - [x] Build internal packages;
         - [x] Build external packages (PNPM package manager support);
         - [x] [TSC TypeScript transpiler](https://www.typescriptlang.org/) [support](https://github.com/tomsoir/tomsoir-monorepo/blob/main/experimental/service_test_ts/BUILD.bazel#L7-L29);
@@ -53,10 +54,10 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - [x] SHFMT —> shell/bash scripts
     - [x] terraform —> terraform
 1. [ ] Development:
+    - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [ ] Auto generate documentation
     - [ ] Use Gazelle to auto update BUILD files;
     - [ ] Use IBazel to watch files;
-    - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [ ] Custom scripts:
       - [ ] New bazel command to create a new project using template;
 1. [x] CI/CD integration:
@@ -96,6 +97,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
 
 ### Repo maintenance:
 - `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
+- `$ bazel fetch @npm//...` - update Bazel's copy of pnpm lockfile. Useful after adding new NPM packages.
 - `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES.
 - `$ bazel run //:format` — formats everything in the repo.
 - `$ bazel run //:format.check` — check if formatting needs to be applied.
