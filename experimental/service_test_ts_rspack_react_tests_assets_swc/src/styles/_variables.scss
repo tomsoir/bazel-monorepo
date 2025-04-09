@@ -1,0 +1,39 @@
+:root {
+  --background: #b94ebe;
+  --footer-background: rgba(255, 255, 255, 0.5);
+
+  --text-primary: #202020;
+  --text-secondary: #6d6d6d;
+  --text-contrast-dark: #202020;
+  --text-contrast-white: #f5f5f5;
+
+  --border: #dcdcdc;
+  --border-active: #202020;
+  --contrast: #c8ff62;
+  --form-valid-fail: rgba(255, 0, 0, 0.2);
+  --table-header: #f0f0f0;
+  --label-fail: #ffc1c1;
+  --label-neutral: #bababa;
+  --block-background: #e1e1e1;
+  --block-border: #999999;
+}
+
+[data-theme='dark'] {
+  --background: #000000;
+  --footer-background: rgba(0, 0, 0, 0.5);
+
+  --text-primary: #f5f5f5;
+  --text-secondary: #bababa;
+  --text-contrast-dark: #202020;
+  --text-contrast-white: #f5f5f5;
+
+  --border: #5f5c5c;
+  --border-active: #c8ff62;
+  --contrast: #c8ff62;
+  --form-valid-fail: rgba(255, 0, 0, 0.2);
+  --table-header: #202020;
+  --label-fail: #ffc1c1;
+  --label-neutral: #bababa;
+  --block-background: #111111;
+  --block-border: #555555;
+}

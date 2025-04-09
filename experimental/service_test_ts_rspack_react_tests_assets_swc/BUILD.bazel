@@ -1,0 +1,209 @@
+load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
+load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary", "sass_library")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//:tools/skylib/ts.bzl", "ts_project")
+load("//tools/rspack:rspack.bzl", "rspack")
+
+npm_link_all_packages(name = "node_modules")
+
+package(default_visibility = ["//:__subpackages__"])
+
+ts_project(
+    name = "tsc",
+    srcs = glob(
+        [
+            "src/**/*.ts",
+            "src/**/*.tsx",
+        ],
+        exclude = [
+            "src/**/*.spec.ts",
+        ],
+    ),
+    assets = [
+        ":assets",
+    ],
+    out_dir = "dist",
+    root_dir = "src",
+    deps = [
+        ":node_modules/@types/react",
+        ":node_modules/@types/react-dom",
+        ":node_modules/react",
+        ":node_modules/react-dom",
+    ],
+)
+
+ts_project(
+    name = "tsc_tests",
+    testonly = True,
+    srcs = glob([
+        "src/**/*.spec.ts",
+    ]),
+    assets = [
+        ":assets",
+    ],
+    out_dir = "dist",
+    root_dir = "src",
+    tsconfig = {
+        "compilerOptions": {
+            "strict": True,
+            "target": "ESNext",
+            "module": "ESNext",
+            "incremental": True,
+            "sourceMap": True,
+            "inlineSources": True,
+            "noUnusedLocals": True,
+            "moduleResolution": "node",
+            "esModuleInterop": True,
+            "importHelpers": True,
+            "allowSyntheticDefaultImports": True,
+            "forceConsistentCasingInFileNames": True,
+            "declaration": True,
+            "declarationMap": True,
+            "useUnknownInCatchVariables": False,
+            "isolatedModules": True,
+            "noImplicitOverride": True,
+            "preserveConstEnums": True,
+            "skipLibCheck": True,
+            "allowJs": True,
+            "emitDeclarationOnly": False,
+            "resolveJsonModule": True,
+            "strictNullChecks": True,
+            "jsx": "react-jsx",
+            "outDir": "dist",
+            "rootDir": "src",
+            # This is super to 1. use "rootDirs" and have two source paths there:
+            # - the "src" path for spec files (`*.spec.ts`) only declared in srcs of the `tsc_tests` rule
+            # - the "dist" path for all compiled TS files into the /dist folder.
+            # Background. When building the tsc_tests rule it has only "src/**/*.spec.ts" specified in the srcs arg
+            # but no actual ts files. Most likely every `spec.ts` file will have an import like `./util1.js` so that
+            # `spec.ts` will also need a source file (which we can't provide in the tsc_test because it will raise the
+            # conflict between :tsc and :tsc_tests when both rules uses the same source files which is forbidden).
+            # These missing *.ts source files are exist after building the `:tsc` rule which will store the output in
+            # the /dist folder (as declared in :tsc). So all we need for :tsc_tests and `spec.ts` files to properly reference
+            # to that /dist folder. For this we need this:
+            # - add the `":tsc",` as a dependency for `:tsc_tests`
+            # - tell the Typescript where to find compiled ts sources (they are in /dist). Typescript allows to use "rootDirs"
+            # property in tsconfig.json (do not mix and much with another "rootDir" prop), so we can tell the typescript where
+            # to look for .ts source files for building the target
+            "rootDirs": [
+                "src",
+                "dist",
+            ],
+        },
+        "exclude": ["node_modules"],
+    },
+    deps = [
+        ":node_modules/@types/chai",
+        ":node_modules/@types/mocha",
+        ":node_modules/chai",
+        ":node_modules/mocha",
+        ":tsc",
+    ],
+)
+
+sass_library(
+    name = "styles_lib",
+    srcs = [
+        "src/styles.scss",
+        "src/styles/_reset.scss",
+        "src/styles/_variables.scss",
+    ],
+)
+
+sass_binary(
+    name = "styles",
+    src = "src/styles.scss",
+    output_dir = "dist",
+    output_name = "styles.css",
+    deps = [":styles_lib"],
+)
+
+copy_to_bin(
+    name = "assets",
+    srcs = [
+        "assets/icons/icon1.svg",
+        "assets/icons/icon2.svg",
+        "assets/images/image1.png",
+    ],
+)
+
+js_library(
+    name = "pkg",
+    srcs = [
+        "assets",
+        "package.json",
+    ],
+    deps = [":tsc"],
+)
+
+copy_file(
+    name = "index_html",
+    src = "src/index.html",
+    out = "dist/index.html",
+)
+
+copy_to_bin(
+    name = "package_json",
+    srcs = ["package.json"],
+)
+
+js_test(
+    name = "test",
+    size = "small",
+    timeout = "short",
+    args = ["--no-build"],
+    data = [
+        ".mocharc.json",
+        ":package_json",
+        ":pkg",
+        ":tsc_tests",
+        "//tools/test-mocha:mocha_test_lib",
+    ],
+    entry_point = "//tools/test-mocha:mocha_test_lib",
+    env = {},
+    log_level = "error",
+    tags = ["mocha-test"],
+)
+
+js_library(
+    name = "rspack_dev_config",
+    srcs = ["rspack.dev.config.cjs"],
+    deps = [
+        # ":node_modules/@hz/build-tools",
+        # ":node_modules/@hz/build-webpack",
+        ":node_modules/@rspack/core",
+        # ":node_modules/@types/node",
+        # ":node_modules/html-webpack-plugin",
+        ":node_modules/ts-checker-rspack-plugin",
+    ],
+)
+
+# This macro generates the following list of commands:
+# -----
+# $ bazel build rspack_bundle_dev
+# $ bazel run rspack_bundle_dev.serve
+rspack(
+    name = "rspack_bundle",
+    srcs = [
+        ":assets",
+        ":index_html",
+        ":package_json",
+        ":styles",
+        ":tsc",
+    ],
+    dev_config = ":rspack_dev_config",
+    env = {
+        "RSPACK_CONFIG_VALIDATE": "loose",
+    },
+    exec_properties = select({
+        "//conditions:default": {},
+    }),
+    node_modules = ":node_modules",
+    prod_config = False,
+    visibility = ["//visibility:public"],
+    deps = [
+        ":node_modules/html-webpack-plugin",
+    ],
+)

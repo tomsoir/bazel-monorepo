@@ -1,0 +1,32 @@
+{
+  "name": "service_test_ts_rspack_react_tests_assets_swc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@swc/helpers": "0.5.15"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0",
+    "sass": "^1.83.4",
+    "source-map-loader": "5.0.0",
+    "html-webpack-plugin": "5.6.3",
+    "@rspack/core": "1.2.7",
+    "@rspack/cli": "1.2.7",
+    "@rspack/dev-server": "1.0.10",
+    "ts-checker-rspack-plugin": "1.1.1",
+    "@rsdoctor/rspack-plugin": "0.4.13"
+  }
+}

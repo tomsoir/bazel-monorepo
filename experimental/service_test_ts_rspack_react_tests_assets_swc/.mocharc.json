@@ -1,0 +1,5 @@
+{
+  "extension": ["js"],
+  "node-option": ["experimental-json-modules=node"],
+  "spec": ["dist/**/*.spec.js"]
+}

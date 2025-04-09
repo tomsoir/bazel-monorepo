@@ -42,7 +42,7 @@ build --remote_timeout=3600
 try-import %workspace%/.bazelrc.local
 
 # RBE: improve remote cache throughput.
-build --experimental_remote_cache_compression
+build --remote_cache_compression
 # RBE: significantly reduce the payload size of the uploaded build event stream by eliminating duplicate file references.
 build --nolegacy_important_outputs
 # RBE: for a more detailed timing profile

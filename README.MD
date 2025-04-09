@@ -19,7 +19,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
         - [x] Bundling support:
           - [x] [Webpack](https://webpack.js.org/) support;
           - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152) (faster Webpack alternative);
-          - [ ] [RSPack](https://rspack.dev/) support (faster Webpack alternative);
+          - [x] [RSPack](https://rspack.dev/) support (faster Webpack alternative);
         - [x] SCSS-styles support;
           - [x] "use" imports support;
         - [x] Static assets support;
@@ -30,7 +30,8 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
         - [x] Tests spec files separation from the source code (`:tsc` and `:tsc_tests` are separate);
         - [x] Tests coverage;
       - [x] Developing:
-        - [x] Run local server (Webpack dev server);
+        - [x] Run local dev server (Webpack);
+        - [x] Run local dev server (RSpack);
     - [x] Python (Aspect's `rules_py`);
       - [x] Building:
         - [x] Build internal packages;
