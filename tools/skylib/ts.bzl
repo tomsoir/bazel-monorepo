@@ -18,7 +18,7 @@ def ts_project(
     incremental = kwargs.pop("incremental", False)
     declaration_map = kwargs.pop("declaration_map", False)
     resolve_json_module = kwargs.pop("resolve_json_module", True)
-    allow_js = kwargs.pop("allow_js", True)
+    allow_js = kwargs.pop("allow_js", False)
     testonly = kwargs.pop("testonly", False)
 
     ### SWC transpiler declaration begins ###

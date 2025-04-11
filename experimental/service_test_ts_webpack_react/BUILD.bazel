@@ -16,7 +16,7 @@ ts_project(
         "src/**/*.tsx",
         # ], exclude = ["src/**/*.spec.ts"]),
     ]),
-    allow_js = True,
+    allow_js = False,
     declaration = True,
     declaration_map = True,
     incremental = True,

@@ -1,6 +1,6 @@
 import func2 from './index2.js';
 
-function func1() {
+function func1(): void {
   console.log(1);
   func2();
 }

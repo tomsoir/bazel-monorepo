@@ -19,9 +19,9 @@
     "noImplicitOverride": true,
     "preserveConstEnums": true,
     "skipLibCheck": true,
-    "allowJs": true,
     "resolveJsonModule": true,
     "strictNullChecks": true,
+    "isolatedDeclarations": true,
 
     "rootDir": "src",
     "outDir": "dist"

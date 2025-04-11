@@ -21,7 +21,7 @@ ts_project(
             "src/**/*.spec.ts",
         ],
     ),
-    allow_js = True,
+    allow_js = False,
     assets = [
         ":assets",
     ],
@@ -118,7 +118,7 @@ ts_project(
     srcs = glob([
         "src/**/*.spec.ts",
     ]),
-    allow_js = True,
+    allow_js = False,
     assets = [
         ":assets",
     ],
@@ -153,7 +153,8 @@ ts_project(
             "noImplicitOverride": True,
             "preserveConstEnums": True,
             "skipLibCheck": True,
-            "allowJs": True,
+            # "allowJs": True,
+            "isolatedDeclarations": True,
             "emitDeclarationOnly": False,
             "resolveJsonModule": True,
             "strictNullChecks": True,

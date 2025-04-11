@@ -1,4 +1,6 @@
-const App = () => {
+import React from 'react';
+
+const App = (): React.ReactElement => {
   const imageURL = new URL('../assets/images/image1.png', import.meta.url).href;
   const icon1URL = new URL('../assets/icons/icon1.svg', import.meta.url).href;
   const icon2URL = new URL('../assets/icons/icon2.svg', import.meta.url).href;

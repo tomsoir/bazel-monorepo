@@ -13,7 +13,7 @@ ts_project(
     srcs = glob([
         "src/**/*.ts",
     ]),
-    allow_js = True,
+    allow_js = False,
     declaration = True,
     declaration_map = True,
     incremental = True,

@@ -3,6 +3,6 @@ export default function func2() {
   return 2;
 }
 
-export function add(a: number, b: number) {
+export function add(a: number, b: number): number {
   return a + b;
 }

@@ -11,7 +11,7 @@ import func2 from './util2.js';
 // in this folder disables this check.
 // debugger;
 
-function func1() {
+function func1(): number {
   console.log(1);
   return func2();
 }
