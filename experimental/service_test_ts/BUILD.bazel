@@ -21,6 +21,7 @@ ts_project(
     resolve_json_module = True,
     root_dir = "src",
     source_map = True,
+    transpiler = "tsc",
     tsconfig = "tsconfig.json",
     deps = [
         # There is no point to use
