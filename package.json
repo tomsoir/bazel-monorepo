@@ -16,7 +16,7 @@
     "onlyBuiltDependencies": []
   },
   "dependencies": {
-    "@swc/helpers": "0.5.15",
+    "@swc/helpers": "0.5.17",
     "express": "^5.1.0",
     "webpack": "^5.99.5",
     "webpack-cli": "^6.0.1"
