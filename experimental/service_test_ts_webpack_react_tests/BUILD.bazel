@@ -4,7 +4,7 @@ load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_test")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("//tools/webpack:webpack.bzl", "webpack")
+load("//:tools/skylib/webpack.bzl", "webpack")
 
 npm_link_all_packages(name = "node_modules")
 

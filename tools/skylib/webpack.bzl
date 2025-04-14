@@ -30,14 +30,14 @@ def webpack(
         srcs = srcs,
         chdir = native.package_name(),
         entry_point = entry_point,
-        node_modules = "//tools/webpack:node_modules",
+        node_modules = ":node_modules",
         output_dir = False,
         tags = ["webpack"],
         webpack_config = webpack_config,
         deps = [
-            "//tools/webpack:node_modules/webpack",
-            "//tools/webpack:node_modules/webpack-cli",
-            "//tools/webpack:node_modules/webpack-dev-server",
+            ":node_modules/webpack",
+            ":node_modules/webpack-cli",
+            ":node_modules/webpack-dev-server",
         ],
         **kwargs
     )
@@ -48,25 +48,13 @@ def webpack(
             chdir = native.package_name(),
             data = [
                 ":{}".format(name),
-
-                # # Note 1: This doesn't work for some reason. This should be a primary setup
-                # # to encapsulate all webpack in one bazel webpack package. Instead of these
-                # # packages, it still works because of the declaration of these dependencies
-                # # in the root package.json unexpected). :( Ideally to make this setup work.
-                # "//tools/webpack:node_modules/webpack",
-                # "//tools/webpack:node_modules/webpack-cli",
-                # "//tools/webpack:node_modules/webpack-dev-server",
-
-                # Note 2: This set of 3 webpack targets will only work when project's
-                # package.json (that imports this macro) contains all these dependencies
-                # ("dependency": { "webpack":"...", "webpack-cli":"...", "webpack-dev-server":"..."})
                 ":node_modules/webpack",
                 ":node_modules/webpack-cli",
                 ":node_modules/webpack-dev-server",
             ] + srcs + data,
             grant_sandbox_write_permissions = True,
             log_level = "debug",  # ["fatal", "error", "warn", "info", "debug"]
-            node_modules = "//tools/webpack:node_modules",
+            node_modules = ":node_modules",
             tags = ["webpack_serve"],
             webpack_config = "webpack.config.cjs",
             **kwargs
