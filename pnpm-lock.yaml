@@ -47,7 +47,7 @@ importers:
         version: 5.0.1
       ts-node-dev:
         specifier: ^2.0.0
-        version: 2.0.0(@types/node@22.14.0)(typescript@5.6.2)
+        version: 2.0.0(@types/node@22.14.1)(typescript@5.6.2)
 
   experimental/service_test_ts_infra:
     dependencies:
@@ -60,7 +60,7 @@ importers:
         version: 5.0.0
       ts-node-dev:
         specifier: ^2.0.0
-        version: 2.0.0(@types/node@22.14.0)(typescript@5.6.2)
+        version: 2.0.0(@types/node@22.14.1)(typescript@5.6.2)
 
   experimental/service_test_ts_rspack_react_tests_assets_swc:
     dependencies:
@@ -185,14 +185,14 @@ importers:
         specifier: ^1.83.4
         version: 1.83.4
       webpack:
-        specifier: ^5.97.1
-        version: 5.97.1(webpack-cli@6.0.1)
+        specifier: ^5.99.5
+        version: 5.99.5(webpack-cli@6.0.1)
       webpack-cli:
         specifier: ^6.0.1
-        version: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.97.1)
+        version: 6.0.1(webpack-dev-server@5.2.1)(webpack@5.99.5)
       webpack-dev-server:
         specifier: ^5.2.0
-        version: 5.2.0(webpack-cli@6.0.1)(webpack@5.97.1)
+        version: 5.2.1(webpack-cli@6.0.1)(webpack@5.99.5)
 
   experimental/service_test_ts_webpack_react_tests_assets:
     dependencies:
@@ -322,6 +322,18 @@ importers:
         specifier: 0.5.21
         version: 0.5.21
 
+  tools/webpack:
+    devDependencies:
+      webpack:
+        specifier: ^5.97.1
+        version: 5.99.5(webpack-cli@6.0.1)
+      webpack-cli:
+        specifier: ^6.0.1
+        version: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.99.5)
+      webpack-dev-server:
+        specifier: ^5.2.0
+        version: 5.2.0(webpack-cli@6.0.1)(webpack@5.99.5)
+
 packages:
 
   '@babel/code-frame@7.25.7':
@@ -391,6 +403,12 @@ packages:
 
   '@jsonjoy.com/json-pack@1.1.1':
     resolution: {integrity: sha512-osjeBqMJ2lb/j/M8NCPjs1ylqWIcTRTycIhVB5pt6LgzgeRSb0YRZ7j9RfA8wIUrsr/medIuhVyonXRZWLyfdw==}
+    engines: {node: '>=10.0'}
+    peerDependencies:
+      tslib: '2'
+
+  '@jsonjoy.com/json-pack@1.2.0':
+    resolution: {integrity: sha512-io1zEbbYcElht3tdlqEOFxZ0dMTYrHz9iMf0gqn1pPjZFTCgM5R4R5IMA20Chb2UPYYsxjzs8CgZ7Nb5n2K2rA==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
@@ -701,6 +719,9 @@ packages:
   '@types/http-proxy@1.17.15':
     resolution: {integrity: sha512-25g5atgiVNTIv0LBDTg1H74Hvayx0ajtJPLLcYE3whFv75J0pWNtOBzaXJQgDTmrX1bx5U9YC2w/n65BN1HwRQ==}
 
+  '@types/http-proxy@1.17.16':
+    resolution: {integrity: sha512-sdWoUajOB1cd0A8cRRQ1cfyWNbmFKLAqBB89Y8x5iYyG/mkJHc0YUH8pdWBy2omi9qtCpiIgGjuwO0dQST2l5w==}
+
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
@@ -721,6 +742,9 @@ packages:
 
   '@types/node@22.14.0':
     resolution: {integrity: sha512-Kmpl+z84ILoG+3T/zQFyAJsU6EPTmOCj8/2+83fSN6djd6I4o7uOuGIH6vq3PrjY5BGitSbFuMN18j3iknubbA==}
+
+  '@types/node@22.14.1':
+    resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
 
   '@types/pegjs@0.10.6':
     resolution: {integrity: sha512-eLYXDbZWXh2uxf+w8sXS8d6KSoXTswfps6fvCUuVAGN8eRpfe7h9eSRydxiSJvo9Bf+GzifsDOr9TMQlmJdmkw==}
@@ -768,6 +792,9 @@ packages:
 
   '@types/tapable@2.2.7':
     resolution: {integrity: sha512-D6QzACV9vNX3r8HQQNTOnpG+Bv1rko+yEA82wKs3O9CQ5+XW7HI7TED17/UE7+5dIxyxZIWTxKbsBeF6uKFCwA==}
+
+  '@types/ws@8.18.1':
+    resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
 
   '@types/ws@8.5.13':
     resolution: {integrity: sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==}
@@ -1131,6 +1158,10 @@ packages:
 
   compression@1.7.5:
     resolution: {integrity: sha512-bQJ0YRck5ak3LgtnpKkiabX5pNF7tMUh1BSy2ZBOTh0Dim0BUu6aPPwByIns6/A5Prh8PufSPerMDUklpzes2Q==}
+    engines: {node: '>= 0.8.0'}
+
+  compression@1.8.0:
+    resolution: {integrity: sha512-k6WLKfunuqCYD3t6AsuPGvQWaKwuLLh2/xHNcX4qE+vIfDNXpSqnrhwA7O53R7WVQUnt8dVAIW+YHr7xTgOgGA==}
     engines: {node: '>= 0.8.0'}
 
   concat-map@0.0.1:
@@ -1683,11 +1714,20 @@ packages:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
 
-  http-parser-js@0.5.8:
-    resolution: {integrity: sha512-SGeBX54F94Wgu5RH3X5jsDtf4eHyRogWX1XGT3b4HuW3tQPM4AaBzoUji/4AAJNXCEOWZ5O0DgZmJw1947gD5Q==}
+  http-parser-js@0.5.10:
+    resolution: {integrity: sha512-Pysuw9XpUq5dVc/2SMHpuTY01RFl8fttgcyunjL7eEMhGM3cI4eOmiCycJDVCo/7O7ClfQD3SaI6ftDzqOXYMA==}
 
   http-proxy-middleware@2.0.7:
     resolution: {integrity: sha512-fgVY8AV7qU7z/MmXJ/rxwbrtQH4jBQ9m7kp3llF0liB7glmFeVZFBepQb32T3y8n8k2+AEYuMPCpinYW+/CuRA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@types/express': ^4.17.13
+    peerDependenciesMeta:
+      '@types/express':
+        optional: true
+
+  http-proxy-middleware@2.0.9:
+    resolution: {integrity: sha512-c1IyJYLYppU574+YI7R4QyX2ystMtVXZwIdzazUIPIJsHuWNd+mho2j+bKoHftndicGj9yh+xjd+l0yj7VeT1Q==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@types/express': ^4.17.13
@@ -1870,13 +1910,16 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  jsox@1.2.121:
-    resolution: {integrity: sha512-9Ag50tKhpTwS6r5wh3MJSAvpSof0UBr39Pto8OnzFT32Z/pAbxAsKHzyvsyMEHVslELvHyO/4/jaQELHk8wDcw==}
+  jsox@1.2.123:
+    resolution: {integrity: sha512-LYordXJ/0Q4G8pUE1Pvh4fkfGvZY7lRe4WIJKl0wr0rtFDVw9lcdNW95GH0DceJ6E9xh41zJNW0vreEz7xOxCw==}
     hasBin: true
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
+
+  launch-editor@2.10.0:
+    resolution: {integrity: sha512-D7dBRJo/qcGX9xlvt/6wUYzQxjh5G1RvZPgPv8vi4KRU99DVQL/oW7tnVOCCTm2HGeo3C5HvGE5Yrh6UBoZ0vA==}
 
   launch-editor@2.9.1:
     resolution: {integrity: sha512-Gcnl4Bd+hRO9P9icCP/RVVT2o8SFlPXofuCxvA2SaZuH45whSvf5p8x5oih5ftLiVhEI4sp5xDY+R+b3zJBh5w==}
@@ -1933,6 +1976,10 @@ packages:
 
   memfs@4.15.1:
     resolution: {integrity: sha512-ufCzgFwiVnR6R9cCYuvwznJdhdYXEvFl0hpnM4cCtVaVkHuqBR+6fo2sqt1SSMdp+uiHw9GyPZr3OMM5tqjSmQ==}
+    engines: {node: '>= 4.0.0'}
+
+  memfs@4.17.0:
+    resolution: {integrity: sha512-4eirfZ7thblFmqFjywlTmuWVSvccHAJbn1r8qQLzmTO11qcqpohOjmY2mFce6x7x7WtskzRqApPD0hv+Oa74jg==}
     engines: {node: '>= 4.0.0'}
 
   merge-descriptors@1.0.3:
@@ -2847,6 +2894,19 @@ packages:
       webpack-cli:
         optional: true
 
+  webpack-dev-server@5.2.1:
+    resolution: {integrity: sha512-ml/0HIj9NLpVKOMq+SuBPLHcmbG+TGIjXRHsYfZwocUBIqEvws8NnS/V9AFQ5FKP+tgn5adwVwRrTEpGL33QFQ==}
+    engines: {node: '>= 18.12.0'}
+    hasBin: true
+    peerDependencies:
+      webpack: ^5.0.0
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack:
+        optional: true
+      webpack-cli:
+        optional: true
+
   webpack-merge@6.0.1:
     resolution: {integrity: sha512-hXXvrjtx2PLYx4qruKl+kyRSLc52V+cCvMxRjmKwoA+CBbbF5GfIBtR6kCvl0fYGqTUPKB+1ktVmTHqMOzgCBg==}
     engines: {node: '>=18.0.0'}
@@ -2948,6 +3008,18 @@ packages:
 
   ws@8.18.0:
     resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  ws@8.18.1:
+    resolution: {integrity: sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -3070,6 +3142,14 @@ snapshots:
       tslib: 2.8.1
 
   '@jsonjoy.com/json-pack@1.1.1(tslib@2.8.1)':
+    dependencies:
+      '@jsonjoy.com/base64': 1.1.2(tslib@2.8.1)
+      '@jsonjoy.com/util': 1.5.0(tslib@2.8.1)
+      hyperdyperid: 1.2.0
+      thingies: 1.21.0(tslib@2.8.1)
+      tslib: 2.8.1
+
+  '@jsonjoy.com/json-pack@1.2.0(tslib@2.8.1)':
     dependencies:
       '@jsonjoy.com/base64': 1.1.2(tslib@2.8.1)
       '@jsonjoy.com/util': 1.5.0(tslib@2.8.1)
@@ -3396,7 +3476,7 @@ snapshots:
 
   '@types/bonjour@3.5.13':
     dependencies:
-      '@types/node': 22.13.1
+      '@types/node': 22.14.1
 
   '@types/chai@5.0.1':
     dependencies:
@@ -3404,8 +3484,8 @@ snapshots:
 
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
-      '@types/express-serve-static-core': 5.0.2
-      '@types/node': 22.13.1
+      '@types/express-serve-static-core': 4.19.6
+      '@types/node': 22.14.1
 
   '@types/connect@3.4.38':
     dependencies:
@@ -3413,7 +3493,7 @@ snapshots:
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 22.14.0
+      '@types/node': 22.14.1
 
   '@types/deep-eql@4.0.2': {}
 
@@ -3435,8 +3515,8 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.6':
     dependencies:
-      '@types/node': 22.13.1
-      '@types/qs': 6.9.17
+      '@types/node': 22.14.1
+      '@types/qs': 6.9.18
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
 
@@ -3458,7 +3538,7 @@ snapshots:
     dependencies:
       '@types/body-parser': 1.19.5
       '@types/express-serve-static-core': 4.19.6
-      '@types/qs': 6.9.17
+      '@types/qs': 6.9.18
       '@types/serve-static': 1.15.7
 
   '@types/express@5.0.0':
@@ -3487,6 +3567,10 @@ snapshots:
     dependencies:
       '@types/node': 22.13.1
 
+  '@types/http-proxy@1.17.16':
+    dependencies:
+      '@types/node': 22.14.1
+
   '@types/json-schema@7.0.15': {}
 
   '@types/jsonfile@6.1.4':
@@ -3499,13 +3583,17 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 22.13.1
+      '@types/node': 22.14.1
 
   '@types/node@22.13.1':
     dependencies:
       undici-types: 6.20.0
 
   '@types/node@22.14.0':
+    dependencies:
+      undici-types: 6.21.0
+
+  '@types/node@22.14.1':
     dependencies:
       undici-types: 6.21.0
 
@@ -3541,12 +3629,12 @@ snapshots:
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 22.13.1
+      '@types/node': 22.14.1
       '@types/send': 0.17.4
 
   '@types/sockjs@0.3.36':
     dependencies:
-      '@types/node': 22.13.1
+      '@types/node': 22.14.1
 
   '@types/strip-bom@3.0.0': {}
 
@@ -3555,6 +3643,10 @@ snapshots:
   '@types/tapable@2.2.7':
     dependencies:
       tapable: 2.2.1
+
+  '@types/ws@8.18.1':
+    dependencies:
+      '@types/node': 22.14.1
 
   '@types/ws@8.5.13':
     dependencies:
@@ -3679,6 +3771,20 @@ snapshots:
       webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.98.0)
     optionalDependencies:
       webpack-dev-server: 5.2.0(webpack-cli@6.0.1)(webpack@5.98.0)
+
+  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.0)(webpack@5.99.5)':
+    dependencies:
+      webpack: 5.99.5(webpack-cli@6.0.1)
+      webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.99.5)
+    optionalDependencies:
+      webpack-dev-server: 5.2.0(webpack-cli@6.0.1)(webpack@5.99.5)
+
+  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.1)(webpack@5.99.5)':
+    dependencies:
+      webpack: 5.99.5(webpack-cli@6.0.1)
+      webpack-cli: 6.0.1(webpack-dev-server@5.2.1)(webpack@5.99.5)
+    optionalDependencies:
+      webpack-dev-server: 5.2.1(webpack-cli@6.0.1)(webpack@5.99.5)
 
   '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack@5.99.5)':
     dependencies:
@@ -3978,9 +4084,21 @@ snapshots:
 
   compressible@2.0.18:
     dependencies:
-      mime-db: 1.52.0
+      mime-db: 1.54.0
 
   compression@1.7.5:
+    dependencies:
+      bytes: 3.1.2
+      compressible: 2.0.18
+      debug: 2.6.9
+      negotiator: 0.6.4
+      on-headers: 1.0.2
+      safe-buffer: 5.2.1
+      vary: 1.1.2
+    transitivePeerDependencies:
+      - supports-color
+
+  compression@1.8.0:
     dependencies:
       bytes: 3.1.2
       compressible: 2.0.18
@@ -4185,7 +4303,7 @@ snapshots:
   engine.io@6.6.4:
     dependencies:
       '@types/cors': 2.8.17
-      '@types/node': 22.14.0
+      '@types/node': 22.14.1
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.7.2
@@ -4574,11 +4692,23 @@ snapshots:
       statuses: 2.0.1
       toidentifier: 1.0.1
 
-  http-parser-js@0.5.8: {}
+  http-parser-js@0.5.10: {}
 
   http-proxy-middleware@2.0.7(@types/express@4.17.21):
     dependencies:
       '@types/http-proxy': 1.17.15
+      http-proxy: 1.18.1
+      is-glob: 4.0.3
+      is-plain-obj: 3.0.0
+      micromatch: 4.0.8
+    optionalDependencies:
+      '@types/express': 4.17.21
+    transitivePeerDependencies:
+      - debug
+
+  http-proxy-middleware@2.0.9(@types/express@4.17.21):
+    dependencies:
+      '@types/http-proxy': 1.17.16
       http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
@@ -4724,9 +4854,14 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  jsox@1.2.121: {}
+  jsox@1.2.123: {}
 
   kind-of@6.0.3: {}
+
+  launch-editor@2.10.0:
+    dependencies:
+      picocolors: 1.1.1
+      shell-quote: 1.8.2
 
   launch-editor@2.9.1:
     dependencies:
@@ -4773,6 +4908,13 @@ snapshots:
   memfs@4.15.1:
     dependencies:
       '@jsonjoy.com/json-pack': 1.1.1(tslib@2.8.1)
+      '@jsonjoy.com/util': 1.5.0(tslib@2.8.1)
+      tree-dump: 1.0.2(tslib@2.8.1)
+      tslib: 2.8.1
+
+  memfs@4.17.0:
+    dependencies:
+      '@jsonjoy.com/json-pack': 1.2.0(tslib@2.8.1)
       '@jsonjoy.com/util': 1.5.0(tslib@2.8.1)
       tree-dump: 1.0.2(tslib@2.8.1)
       tslib: 2.8.1
@@ -5019,7 +5161,7 @@ snapshots:
 
   prettier-plugin-sql@0.19.0(prettier@3.5.3):
     dependencies:
-      jsox: 1.2.121
+      jsox: 1.2.123
       node-sql-parser: 5.3.8
       prettier: 3.5.3
       sql-formatter: 15.5.2
@@ -5565,7 +5707,7 @@ snapshots:
     optionalDependencies:
       '@rspack/core': 1.2.7(@swc/helpers@0.5.17)
 
-  ts-node-dev@2.0.0(@types/node@22.14.0)(typescript@5.6.2):
+  ts-node-dev@2.0.0(@types/node@22.14.1)(typescript@5.6.2):
     dependencies:
       chokidar: 3.6.0
       dynamic-dedupe: 0.3.0
@@ -5575,7 +5717,7 @@ snapshots:
       rimraf: 2.7.1
       source-map-support: 0.5.21
       tree-kill: 1.2.2
-      ts-node: 10.9.2(@types/node@22.14.0)(typescript@5.6.2)
+      ts-node: 10.9.2(@types/node@22.14.1)(typescript@5.6.2)
       tsconfig: 7.0.0
       typescript: 5.6.2
     transitivePeerDependencies:
@@ -5583,14 +5725,14 @@ snapshots:
       - '@swc/wasm'
       - '@types/node'
 
-  ts-node@10.9.2(@types/node@22.14.0)(typescript@5.6.2):
+  ts-node@10.9.2(@types/node@22.14.1)(typescript@5.6.2):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 22.14.0
+      '@types/node': 22.14.1
       acorn: 8.14.1
       acorn-walk: 8.3.4
       arg: 4.1.3
@@ -5746,6 +5888,44 @@ snapshots:
     optionalDependencies:
       webpack-dev-server: 5.2.0(webpack-cli@6.0.1)(webpack@5.98.0)
 
+  webpack-cli@6.0.1(webpack-dev-server@5.2.0)(webpack@5.99.5):
+    dependencies:
+      '@discoveryjs/json-ext': 0.6.3
+      '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1)(webpack@5.99.5)
+      '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1)(webpack@5.99.5)
+      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.0)(webpack@5.99.5)
+      colorette: 2.0.20
+      commander: 12.1.0
+      cross-spawn: 7.0.6
+      envinfo: 7.14.0
+      fastest-levenshtein: 1.0.16
+      import-local: 3.2.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.99.5(webpack-cli@6.0.1)
+      webpack-merge: 6.0.1
+    optionalDependencies:
+      webpack-dev-server: 5.2.0(webpack-cli@6.0.1)(webpack@5.99.5)
+
+  webpack-cli@6.0.1(webpack-dev-server@5.2.1)(webpack@5.99.5):
+    dependencies:
+      '@discoveryjs/json-ext': 0.6.3
+      '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1)(webpack@5.99.5)
+      '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1)(webpack@5.99.5)
+      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1)(webpack-dev-server@5.2.1)(webpack@5.99.5)
+      colorette: 2.0.20
+      commander: 12.1.0
+      cross-spawn: 7.0.6
+      envinfo: 7.14.0
+      fastest-levenshtein: 1.0.16
+      import-local: 3.2.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.99.5(webpack-cli@6.0.1)
+      webpack-merge: 6.0.1
+    optionalDependencies:
+      webpack-dev-server: 5.2.1(webpack-cli@6.0.1)(webpack@5.99.5)
+
   webpack-cli@6.0.1(webpack@5.99.5):
     dependencies:
       '@discoveryjs/json-ext': 0.6.3
@@ -5766,7 +5946,7 @@ snapshots:
   webpack-dev-middleware@7.4.2(webpack@5.97.1):
     dependencies:
       colorette: 2.0.20
-      memfs: 4.15.1
+      memfs: 4.17.0
       mime-types: 2.1.35
       on-finished: 2.4.1
       range-parser: 1.2.1
@@ -5777,7 +5957,7 @@ snapshots:
   webpack-dev-middleware@7.4.2(webpack@5.98.0):
     dependencies:
       colorette: 2.0.20
-      memfs: 4.15.1
+      memfs: 4.17.0
       mime-types: 2.1.35
       on-finished: 2.4.1
       range-parser: 1.2.1
@@ -5788,7 +5968,7 @@ snapshots:
   webpack-dev-middleware@7.4.2(webpack@5.99.5(webpack-cli@6.0.1(webpack@5.99.5))):
     dependencies:
       colorette: 2.0.20
-      memfs: 4.15.1
+      memfs: 4.17.0
       mime-types: 2.1.35
       on-finished: 2.4.1
       range-parser: 1.2.1
@@ -5907,6 +6087,83 @@ snapshots:
     optionalDependencies:
       webpack: 5.98.0(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.98.0)
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
+      - utf-8-validate
+
+  webpack-dev-server@5.2.0(webpack-cli@6.0.1)(webpack@5.99.5):
+    dependencies:
+      '@types/bonjour': 3.5.13
+      '@types/connect-history-api-fallback': 1.5.4
+      '@types/express': 4.17.21
+      '@types/serve-index': 1.9.4
+      '@types/serve-static': 1.15.7
+      '@types/sockjs': 0.3.36
+      '@types/ws': 8.5.13
+      ansi-html-community: 0.0.8
+      bonjour-service: 1.3.0
+      chokidar: 3.6.0
+      colorette: 2.0.20
+      compression: 1.7.5
+      connect-history-api-fallback: 2.0.0
+      express: 4.21.2
+      graceful-fs: 4.2.11
+      http-proxy-middleware: 2.0.7(@types/express@4.17.21)
+      ipaddr.js: 2.2.0
+      launch-editor: 2.9.1
+      open: 10.1.0
+      p-retry: 6.2.1
+      schema-utils: 4.3.0
+      selfsigned: 2.4.1
+      serve-index: 1.9.1
+      sockjs: 0.3.24
+      spdy: 4.0.2
+      webpack-dev-middleware: 7.4.2(webpack@5.99.5(webpack-cli@6.0.1))
+      ws: 8.18.0
+    optionalDependencies:
+      webpack: 5.99.5(webpack-cli@6.0.1)
+      webpack-cli: 6.0.1(webpack-dev-server@5.2.0)(webpack@5.99.5)
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
+      - utf-8-validate
+
+  webpack-dev-server@5.2.1(webpack-cli@6.0.1)(webpack@5.99.5):
+    dependencies:
+      '@types/bonjour': 3.5.13
+      '@types/connect-history-api-fallback': 1.5.4
+      '@types/express': 4.17.21
+      '@types/express-serve-static-core': 4.19.6
+      '@types/serve-index': 1.9.4
+      '@types/serve-static': 1.15.7
+      '@types/sockjs': 0.3.36
+      '@types/ws': 8.18.1
+      ansi-html-community: 0.0.8
+      bonjour-service: 1.3.0
+      chokidar: 3.6.0
+      colorette: 2.0.20
+      compression: 1.8.0
+      connect-history-api-fallback: 2.0.0
+      express: 4.21.2
+      graceful-fs: 4.2.11
+      http-proxy-middleware: 2.0.9(@types/express@4.17.21)
+      ipaddr.js: 2.2.0
+      launch-editor: 2.10.0
+      open: 10.1.0
+      p-retry: 6.2.1
+      schema-utils: 4.3.0
+      selfsigned: 2.4.1
+      serve-index: 1.9.1
+      sockjs: 0.3.24
+      spdy: 4.0.2
+      webpack-dev-middleware: 7.4.2(webpack@5.99.5(webpack-cli@6.0.1))
+      ws: 8.18.1
+    optionalDependencies:
+      webpack: 5.99.5(webpack-cli@6.0.1)
+      webpack-cli: 6.0.1(webpack-dev-server@5.2.1)(webpack@5.99.5)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -6051,7 +6308,7 @@ snapshots:
 
   websocket-driver@0.7.4:
     dependencies:
-      http-parser-js: 0.5.8
+      http-parser-js: 0.5.10
       safe-buffer: 5.2.1
       websocket-extensions: 0.1.4
 
@@ -6092,6 +6349,8 @@ snapshots:
   ws@8.17.1: {}
 
   ws@8.18.0: {}
+
+  ws@8.18.1: {}
 
   xtend@4.0.2: {}
 

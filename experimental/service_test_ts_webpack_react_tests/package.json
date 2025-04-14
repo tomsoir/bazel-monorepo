@@ -30,7 +30,7 @@
     "chai": "^5.1.2",
     "mocha": "^11.1.0",
     "sass": "^1.83.4",
-    "webpack": "^5.97.1",
+    "webpack": "^5.99.5",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
   }

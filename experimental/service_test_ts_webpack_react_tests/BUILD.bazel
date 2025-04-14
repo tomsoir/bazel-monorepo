@@ -2,9 +2,9 @@ load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_test")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
-load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//tools/webpack:webpack.bzl", "webpack")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -38,49 +38,7 @@ ts_project(
     ],
 )
 
-# # React-js need document DOM API context to be executing which is available
-# # when running the js app in a browser, so js_binary can NOT be used now since
-# # it executes js app in NodeJS that doesn't have it.
-# js_binary(
-#     name="tsc_app",
-#     data=[
-#         ":tsc",
-#         "package.json",
-#     ],
-#     chdir= package_name(),
-#     entry_point = "dist/index.js",
-# )
-
-webpack_bundle(
-    name = "webpack_build",
-    srcs = [":tsc"],
-    chdir = package_name(),
-    entry_point = "dist/index.js",
-    node_modules = ":node_modules",
-    output_dir = False,
-    tags = ["webpack"],
-    webpack_config = "webpack.config.cjs",
-    deps = [
-        ":node_modules/webpack",
-    ],
-)
-
-# # React-js need document DOM API context to be executing which is available
-# # when running the js app in a browser, so js_binary can NOT be used now since
-# # it executes js app in NodeJS that doesn't have it.
-# js_binary(
-#     name="webpack_app",
-#     data=[
-#         ":webpack_build",
-#     ],
-#     chdir= package_name(),
-#     entry_point = "webpack_build.js",
-# )
-
-# Rule works!
 # @TODO: find a better way!
-# Note: We need to figure out first how to inject css into React app:
-# Dynamically (inject during bundling) or statically (by linking statically generated file)
 sass_binary(
     name = "styles",
     src = "src/styles.scss",
@@ -88,7 +46,6 @@ sass_binary(
     output_name = "styles.css",
 )
 
-# Rule works!
 # @TODO: find a better way!
 copy_file(
     name = "index_html",
@@ -96,27 +53,18 @@ copy_file(
     out = "dist/index.html",
 )
 
-webpack_devserver(
-    name = "serve",
-    chdir = package_name(),
+# Macro adds:
+# :webpack_build
+# :webpack_build.serve
+webpack(
+    name = "webpack_build",
+    srcs = [":tsc"],
     data = [
         ":index_html",
-        ":node_modules/webpack-cli",
-        ":node_modules/webpack-dev-server",
         ":styles",
-        ":tsc",
-        ":webpack_build",
     ],
-    # # For local testing (current file locates in the local /dist folder but not on bazel-bin).
-    # # to generate the local files in /dist you need to run $ pnpm run build to create and populate
-    # # the /dist folder with "dist/webpack_build.js" file
-    # entry_points = {
-    #     "dist/webpack_build.js": ":webpack_build",
-    # },
-    grant_sandbox_write_permissions = True,
-    log_level = "debug",
-    node_modules = ":node_modules",
-    tags = ["webpack_serve"],
+    entry_point = "dist/index.js",
+    include_webpack_serve = True,
     webpack_config = "webpack.config.cjs",
 )
 

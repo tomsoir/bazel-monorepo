@@ -2,9 +2,9 @@ load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
-load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary", "sass_library")
 load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//tools/webpack:webpack.bzl", "webpack")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -41,23 +41,6 @@ ts_project(
     ],
 )
 
-webpack_bundle(
-    name = "webpack_build",
-    srcs = [
-        ":assets",
-        ":tsc",
-    ],
-    chdir = package_name(),
-    entry_point = "dist/index.js",
-    node_modules = ":node_modules",
-    output_dir = False,
-    tags = ["webpack"],
-    webpack_config = "webpack.config.cjs",
-    deps = [
-        ":node_modules/webpack",
-    ],
-)
-
 # Rule works!
 # @TODO: find a better way!
 # Note: We need to figure out first how to inject css into React app:
@@ -79,6 +62,15 @@ sass_binary(
     deps = [":styles_lib"],
 )
 
+copy_to_bin(
+    name = "assets",
+    srcs = [
+        "assets/icons/icon1.svg",
+        "assets/icons/icon2.svg",
+        "assets/images/image1.png",
+    ],
+)
+
 # Rule works!
 # @TODO: find a better way to generate index.html in bundle operation!
 copy_file(
@@ -87,28 +79,21 @@ copy_file(
     out = "dist/index.html",
 )
 
-webpack_devserver(
-    name = "serve",
-    chdir = package_name(),
-    data = [
+# Macro adds:
+# :webpack_build
+# :webpack_build.serve
+webpack(
+    name = "webpack_build",
+    srcs = [
         ":assets",
-        ":index_html",
-        ":node_modules/webpack-cli",
-        ":node_modules/webpack-dev-server",
-        ":styles",
         ":tsc",
-        ":webpack_build",
     ],
-    # # For local testing (current file locates in the local /dist folder but not on bazel-bin).
-    # # to generate the local files in /dist you need to run $ pnpm run build to create and populate
-    # # the /dist folder with "dist/webpack_build.js" file
-    # entry_points = {
-    #     "dist/webpack_build.js": ":webpack_build",
-    # },
-    grant_sandbox_write_permissions = True,
-    log_level = "debug",
-    node_modules = ":node_modules",
-    tags = ["webpack_serve"],
+    data = [
+        ":index_html",
+        ":styles",
+    ],
+    entry_point = "dist/index.js",
+    include_webpack_serve = True,
     webpack_config = "webpack.config.cjs",
 )
 
@@ -213,15 +198,6 @@ js_test(
     env = {},
     log_level = "error",
     tags = ["mocha-test"],
-)
-
-copy_to_bin(
-    name = "assets",
-    srcs = [
-        "assets/icons/icon1.svg",
-        "assets/icons/icon2.svg",
-        "assets/images/image1.png",
-    ],
 )
 
 # my understanding is how package resolution works in js_libary case.
