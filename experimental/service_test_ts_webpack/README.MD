@@ -7,6 +7,15 @@ $ bazel bunld :webpack_build
 $ bazel run :webpack_app
 ```
 
+# Live development with iBazel
+```sh
+# one time: install ibazel
+$ brew install ibazel
+# run the app-target. Ibazel will monitor changes in source files and rebuild the target
+$ ibazel run experimental/service_test_ts_webpack:webpack_app
+# make changes in any source file —> save changes -> ibazel will reload the target
+```
+
 ## Features
 
 - ~~Support TS file imports without .js extension~~
