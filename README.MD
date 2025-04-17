@@ -35,7 +35,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - [x] Python (Aspect's `rules_py`);
       - [x] Building:
         - [x] Build internal packages;
-        - [x] Build external packages (PYPI-package manager support);
+        - [x] Build external packages (PYPI package manager support);
       - [x] Testing:
         - [x] Tests support;
         - [x] Tests coverage;
@@ -48,7 +48,7 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
         - [x] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
-    - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SLQ, Markdown;
+    - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SQL, Markdown;
     - [x] Yamlfmt —> Yaml;
     - [x] Buildifier —> Starlark;
     - [x] Gofumpt —> Go
@@ -86,14 +86,14 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - `$ bazel coverage --combined_report=lcov --test_output=all ...` - to see tests output + tests coverage files (in `coverage.dat`).
 
 ### PNPM (for TS/JS):
-  - `$ pnpm update` - update all projects in monorepo.
+  - `$ pnpm update` - update all projects in the monorepo.
   - `$ pnpm install` - install all npm deps for all projects in monorepo.
   - `$ pnpm add` — install package in some project (required `$cd` into it, example: `$ pnpm add typescript --save-dev`).
   - `$ pnpm run` — run script in package.json (example `$ pnpm run build`).
 
 ### PYPI (for Python):
   #### Manual dependencies update in monorepo (including transitive dependencies).
-  - Use `requirements.in` file to manage (install new, update or remove old) python dependencies in the entire monorepo.
+  - Use `requirements.in` file to manage (install new, update or remove old) Python dependencies in the entire monorepo.
   - `$ bazel run //:generate_requirements_txt` - ru¡n to update `requirements.txt` automatically.
 
 ### Repo maintenance:
