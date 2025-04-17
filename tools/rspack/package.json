@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {},
   "devDependencies": {
-    "@rspack/cli": "1.2.7",
-    "@rspack/core": "1.2.7",
+    "@rspack/cli": "1.3.5",
+    "@rspack/core": "1.3.5",
     "@rspack/dev-server": "1.0.10",
     "source-map-loader": "5.0.0"
   }
