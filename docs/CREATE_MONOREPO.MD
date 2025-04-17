@@ -79,3 +79,12 @@
       - Use: `$ bazel run //:generate_requirements_txt` to update it
   - [Add Python language support — commit](https://github.com/tomsoir/tomsoir-monorepo/commit/1c0efc049f7ae6babb20d16b616b7061b46e5c95)
   - [Add Python tests support - commit](https://github.com/tomsoir/tomsoir-monorepo/commit/aaf9d7b5d0cb7b8212d418710bfff54c5b854209)
+
+## Install and run ibazel
+
+- Install ibazel (Mac): `$ brew install ibazel`
+- Run any target you want, update source files, ibazel will automatically reload the app
+  - Example for a simple console app: `$ ibazel run experimental/service_test_ts_webpack:webpack_app --sandbox_debug`
+  - Example for webpack serve hot reload (5 seconds): `$ ibazel run //experimental/service_test_ts_webpack_react_tests:webpack_build.serve --sandbox_debug`
+  - Example for speed rspack serve hot reload (less than a second): `$ ibazel run //experimental/service_test_ts_rspack_react_tests_assets_swc:rspack_bundle_dev.serve --sandbox_debug`
+- KNOWN ISSUE: ibazel fails when saving a previous changes :(. No idea how to fix it so far.
