@@ -56,11 +56,11 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - [x] terraform —> terraform
 1. [ ] Development:
     - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
-    - [x] Use IBazel to watch files;
-    - [ ] Auto generate documentation
-    - [ ] Use Gazelle to auto update BUILD files;
+    - [x] Add watcher IBazel to re-build targets on source files change ([instruction](https://github.com/tomsoir/tomsoir-monorepo/commit/9a851378982eb49e1f564928a091e7bb8b7627f3));
+    - [ ] Auto-generate documentation
+    - [ ] Use Gazelle to auto-update BUILD files;
     - [ ] Custom scripts:
-      - [ ] New bazel command to create a new project using template;
+      - [ ] New bazel command to create a new project using a template;
 1. [x] CI/CD integration:
     - [x] Renovate bot support to update monorepo dependencies;
     - [x] Add dependencies review for PRs (license, Vulnerabilities, Denied, etc...);
