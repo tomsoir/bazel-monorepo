@@ -18,8 +18,8 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
         - [x] [SWC TypeScript transpiler](https://github.com/aspect-build/rules_swc) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/efaf035d6fb80dbc5a58889eea035e6b00deebf1) (faster TSC alternative);
         - [x] Bundling support:
           - [x] [Webpack](https://webpack.js.org/) support;
-          - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152) (faster Webpack alternative);
-          - [x] [RSPack](https://rspack.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/ba5865b549f9dbb821b27e2d3c116ff98c0ff21b) (faster Webpack alternative);
+          - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152)
+          - [x] [RSPack](https://rspack.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/ba5865b549f9dbb821b27e2d3c116ff98c0ff21b) (Webpack drop in replacement);
           - [x] [Vite](https://vite.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/66bcb1c95fbd92f189ce4e97315580a17f33e8a3);
         - [x] SCSS-styles support;
           - [x] "use" imports support;
