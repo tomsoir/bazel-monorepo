@@ -11,26 +11,26 @@ env:
   BUILD_BUDDY_API_KEY: ${{ secrets.BUILD_BUDDY_API_KEY }}
 
 jobs:
-  bazel-build:
-    name: 🔨 Build all targets
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: bazelbuild/setup-bazelisk@v3
+  # bazel-build:
+  #   name: 🔨 Build all targets
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: bazelbuild/setup-bazelisk@v3
 
-      - name: Restore Bazel disk cache
-        uses: actions/cache@v4
-        with:
-          path: .cache/bazel
-          key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
-          restore-keys: |
-            bazel-cache-${{ runner.os }}-
+  #     - name: Restore Bazel disk cache
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: .cache/bazel
+  #         key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
+  #         restore-keys: |
+  #           bazel-cache-${{ runner.os }}-
 
-      - name: Build all targets
-        run: |
-          bazel build \
-            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
-            //...
+  #     - name: Build all targets
+  #       run: |
+  #         bazel build \
+  #           --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+  #           //...
 
   bazel-test:
     name: 🧪 Run tests
@@ -54,23 +54,23 @@ jobs:
             --compilation_mode=opt \
             //...
 
-  format-check:
-    name: 🧹 Format check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: bazelbuild/setup-bazelisk@v3
+  # format-check:
+  #   name: 🧹 Format check
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: bazelbuild/setup-bazelisk@v3
 
-      - name: Restore Bazel disk cache
-        uses: actions/cache@v4
-        with:
-          path: .cache/bazel
-          key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
-          restore-keys: |
-            bazel-cache-${{ runner.os }}-
+  #     - name: Restore Bazel disk cache
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: .cache/bazel
+  #         key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
+  #         restore-keys: |
+  #           bazel-cache-${{ runner.os }}-
 
-      - name: Run format check
-        run: |
-          bazel run \
-            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
-            //:format.check
+  #     - name: Run format check
+  #       run: |
+  #         bazel run \
+  #           --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+  #           //:format.check

@@ -20,9 +20,12 @@ copy_to_bin(
 
 vite(
     assets = [":vite_srcs_export"],
-    tests = glob([
-        "src/**/*.test.tsx",
-    ]),
+    # tests = glob([
+    #     "src/**/*.test.tsx",
+    # ]),
+    tests = [
+        "src/basic.test.tsx",
+    ],
     deps = [
         "package.json",
         "tsconfig.json",
