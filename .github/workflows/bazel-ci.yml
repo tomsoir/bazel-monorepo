@@ -51,7 +51,8 @@ jobs:
         run: |
           bazel test \
             --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
-            //...
+            //... \
+            --sandbox_debug
 
   format-check:
     name: 🧹 Format check
