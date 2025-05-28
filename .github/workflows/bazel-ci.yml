@@ -61,14 +61,10 @@ jobs:
         run: |
           bazel test \
             --nocache_test_results \
-            --nocache_test_results_behavior=ignore \
             --discard_analysis_cache \
             --noremote_accept_cached \
-            --noremote_cache \
             --noremote_upload_local_results \
-            --noincremental \
             --notrack_incremental_state \
-            --nostore_local_disk_results \
             --test_output=all \
             //...
 
