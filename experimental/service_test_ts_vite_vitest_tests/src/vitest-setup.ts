@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom';
 import 'jsdom';
 
+/**
+ * Everything below is for debugging only
+ * It prints out the list of files in bazel-out directory
+ */
 import fs from 'fs';
 import path from 'path';
 
