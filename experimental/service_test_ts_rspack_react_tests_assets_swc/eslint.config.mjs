@@ -18,6 +18,7 @@
 
 export default [
   {
+    root: true,
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
       '@typescript-eslint/no-unsafe-call': 'off',

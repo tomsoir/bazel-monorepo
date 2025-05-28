@@ -15,6 +15,7 @@ eslint = lint_eslint_aspect(
         # Label("//experimental/service_test_ts_webpack_react_tests:eslintrc"),
         Label("@//:eslintrc"),
         Label("@//:tsconfig"),
+        Label("//experimental/service_test_ts_webpack_react_tests:eslintrc"),
     ],
 )
 eslint_test = lint_test(aspect = eslint)

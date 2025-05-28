@@ -1,6 +1,6 @@
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
-load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_test")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -148,9 +148,22 @@ ts_project(
     ],
 )
 
+js_library(
+    name = "eslintrc",
+    # srcs = [".eslintrc.mjs"],
+    srcs = ["eslint.config.mjs"],
+    deps = [
+        "//:node_modules/@eslint/js",
+        "//:node_modules/typescript-eslint",
+    ],
+)
+
 copy_to_bin(
     name = "package_json",
-    srcs = ["package.json"],
+    srcs = [
+        "package.json",
+        ":eslintrc",
+    ],
 )
 
 js_test(
