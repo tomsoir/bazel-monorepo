@@ -53,10 +53,23 @@ jobs:
           path: "~/.cache/bazel"
           key: bazel
       - name: Run all tests
+        # run: |
+        #   bazel test \
+        #     --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+        #     --compilation_mode=opt \
+        #     //...
         run: |
           bazel test \
-            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
-            --compilation_mode=opt \
+            --nocache_test_results \
+            --nocache_test_results_behavior=ignore \
+            --discard_analysis_cache \
+            --noremote_accept_cached \
+            --noremote_cache \
+            --noremote_upload_local_results \
+            --noincremental \
+            --notrack_incremental_state \
+            --nostore_local_disk_results \
+            --test_output=all \
             //...
 
   # format-check:
