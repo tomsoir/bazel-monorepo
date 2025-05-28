@@ -21,7 +21,7 @@ copy_to_bin(
 vite(
     assets = [":vite_srcs_export"],
     tests = glob([
-        "src/*.test.tsx",
+        "src/**/*.test.tsx",
     ]),
     deps = [
         "package.json",
