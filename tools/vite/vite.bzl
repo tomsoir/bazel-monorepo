@@ -31,12 +31,12 @@ def vite(tests = [], assets = [], deps = [], **kwargs):
         visibility = ["//visibility:public"],
     )
 
-    # vitest_bin.vitest_test(
-    #     name = "vitest",
-    #     args = [
-    #         "run",
-    #         "--config=vite.config.ts",
-    #     ],
-    #     chdir = native.package_name(),
-    #     data = BUILD_DEPS + assets + deps + tests + ROOT_NPM_FIX,
-    # )
+    vitest_bin.vitest_test(
+        name = "vitest",
+        args = [
+            "run",
+            "--config=vite.config.ts",
+        ],
+        chdir = native.package_name(),
+        data = BUILD_DEPS + assets + deps + tests + ROOT_NPM_FIX,
+    )
