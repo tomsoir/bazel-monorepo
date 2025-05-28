@@ -37,20 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # Cache Bazelisk binaries (speeds up setup-bazelisk)
-      - name: Cache Bazelisk binary
-        uses: actions/cache@v4
-        with:
-          path: /home/runner/.cache/bazelisk
-          key: bazelisk-linux-v1.26.0
-
-      # Setup Bazelisk (pin exact version to avoid extra resolution/download)
       - uses: bazelbuild/setup-bazelisk@v3
-        with:
-          bazelisk-version: v1.26.0
 
-      # Cache Bazel disk cache (used by bazel itself)
       - name: Restore Bazel disk cache
         uses: actions/cache@v4
         with:
@@ -59,7 +47,6 @@ jobs:
           restore-keys: |
             bazel-cache-${{ runner.os }}-
 
-      # Run tests with remote caching via BuildBuddy
       - name: Run all tests
         run: |
           bazel test \

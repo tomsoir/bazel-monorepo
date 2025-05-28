@@ -24,43 +24,10 @@ vite(
     #     "src/**/*.test.tsx",
     # ]),
     tests = [
-        "src/basic.test.tsx",
+        "src/basic.spec.tsx",
     ],
     deps = [
         "package.json",
         "tsconfig.json",
-        # ":tsc",
     ],
 )
-
-# ----------
-# NOT IN USE
-# ----------
-# load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
-
-# ts_project(
-#     name = "tsc",
-#     srcs = glob([
-#         "src/**/*.ts",
-#         "src/**/*.tsx",
-#         "src/**/*.css",
-#         "src/**/*.svg",
-#         "src/**/*.ts",
-#         "src/**/*.tsx",
-#         "src/**/*.html",
-#         "src/utils/**/*.tsx",
-#         "public/**/*.svg",
-#     ]),
-#     allow_js = False,
-#     declaration = True,
-#     declaration_map = True,
-#     incremental = True,
-#     out_dir = "dist",
-#     resolve_json_module = True,
-#     root_dir = "src",
-#     source_map = False,
-#     tsconfig = "tsconfig.json",
-#     deps = [
-#         ":node_modules",
-#     ],
-# )
