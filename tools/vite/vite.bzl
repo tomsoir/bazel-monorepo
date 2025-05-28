@@ -33,10 +33,12 @@ def vite(tests = [], assets = [], deps = [], **kwargs):
 
     vitest_bin.vitest_test(
         name = "vitest",
-        args = [
-            "run",
-            "--config=vite.config.ts",
-        ],
+        # args = [
+        #     "run",
+        #     "--config=vite.config.ts",
+        #     "--include=src/**/*.spec.tsx",
+        # ],
+        args = ["-c", "find . && npx vitest run --config=vite.config.ts"],
         chdir = native.package_name(),
         data = BUILD_DEPS + assets + deps + tests + ROOT_NPM_FIX,
     )
