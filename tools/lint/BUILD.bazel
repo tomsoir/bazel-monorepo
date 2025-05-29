@@ -8,7 +8,10 @@ load("@npm//:stylelint/package_json.bzl", stylelint_bin = "bin")
 
 package(default_visibility = ["//:__subpackages__"])
 
-eslint_bin.eslint_binary(name = "eslint")
+eslint_bin.eslint_binary(
+    name = "eslint",
+    env = {"ESLINT_USE_FLAT_CONFIG": "false"},
+)
 
 stylelint_bin.stylelint_binary(name = "stylelint")
 
