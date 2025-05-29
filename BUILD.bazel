@@ -31,6 +31,7 @@ js_library(
     name = "eslintrc",
     srcs = [
         "eslint.config.mjs",
+        # ".eslintignore",
         # "//experimental/service_test_ts_webpack_react_tests:eslintrc",
     ],
     deps = [

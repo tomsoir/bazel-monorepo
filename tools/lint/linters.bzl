@@ -12,9 +12,12 @@ eslint = lint_eslint_aspect(
     # See https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file-resolution
     # We must also include any other config files we expect eslint to be able to locate, e.g. tsconfigs
     configs = [
-        # Label("//experimental/service_test_ts_webpack_react_tests:eslintrc"),
         Label("@//:eslintrc"),
         Label("@//:tsconfig"),
+        Label("//experimental/service_test_ts_webpack_react_tests_assets_swc:tsconfig"),
+        Label("//experimental/service_test_ts_webpack_react_tests_assets:tsconfig"),
+        Label("//experimental/service_test_ts_rspack_react_tests_assets_swc:tsconfig"),
+        Label("//experimental/service_test_ts_webpack_react_tests:tsconfig"),
         Label("//experimental/service_test_ts_webpack_react_tests:eslintrc"),
     ],
 )
