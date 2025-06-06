@@ -105,6 +105,56 @@ ts_project(
 2. To debug eslint configs:
 - rename `.eslint.js` to `.eslint.cjs`
 - run this from the root:
+
 ```sh
-$ ESLINT_USE_FLAT_CONFIG=false ESLINT_DEBUG=true DEBUG=eslint:* npx eslint --config .eslintrc.cjs --ext .ts,.tsx,.js,.json experimental/service_test_ts_webpack_react_tests/
+# -------------
+# NPM debugging
+# -------------
+# [WORKS BUT —> if there is config specified it will ignore any other root configs] npm version: per project —> full debug output
+$ ESLINT_USE_FLAT_CONFIG=false npx eslint --config experimental/service_test_ts_webpack_react_tests/.eslintrc.cjs --ext .ts,.tsx,.cjs experimental/service_test_ts_webpack_react_tests
+
+# [WORKS WELL —> reads root's .eslint.cjs config, then applies/respects sub project's  .eslint.cjs config too] npm version —> clean output
+$ ESLINT_USE_FLAT_CONFIG=false npx eslint --ext .ts,.tsx,.cjs experimental
+
+# [WORKS WELL] npm version —> full debug output
+$ ESLINT_USE_FLAT_CONFIG=false ESLINT_DEBUG=true DEBUG=eslint:* npx eslint --ext .ts,.tsx,.cjs experimental
+
+# ---------------
+# Bazel debugging
+# ---------------
+
+# [DOESN'T WORK —> because it runs eslint against files in bazel output, but we need to run it on analysis phase when source files are being provided to bazel from rules rush as ts_project(srcs = [... all .ts files ...])]: bazel version —> no output
+$ bazel run //tools/lint:eslint -- --resolve-plugins-relative-to . --ext .ts,.tsx,.cjs ./experimental
+
+# [DOESN'T WORK —> same reason as above. We need to run aspects action that wraps lint binary to execute it on analysis phase not on output phase]: bazel version —> no output
+$ bazel run //tools/lint:eslint --  --ext .ts,.tsx,.cjs ./experimental
+```
+
+3. Bazel debugging: find Lint output
+```sh
+# Run the lint command
+# Each lint action produces outputs (usually .out file):
+$ bazel lint //experimental/service_test_ts_webpack_react_tests/...
+
+# Find the output file (.out) path
+$ find bazel-bin/ -name '*AspectRulesLintESLint.out'
+
+# Read it
+$ cat bazel-bin/experimental/service_test_ts_webpack_react_tests_assets_swc/tsc.AspectRulesLintESLint.out
+```
+
+4. Bazel debugging via TEST: to see exact eslint error (with config etc) do this:
+```sh
+# Add this below to your target's BUILD.bazel file where you want to debug lint error output after running bazel lint
+# E.g. for this project: /experimental/service_test_ts_webpack_react_tests
+# - Open /experimental/service_test_ts_webpack_react_tests/BUILD.bazel
+# - Add this
+# ---
+# load("//tools/lint:linters.bzl", "eslint_test")
+# eslint_test(
+#     name = "lint_my_project",
+#     srcs = [":your_ts_project_or_js_library"],
+# )
+# - Run test (bazel clean is important!)):
+$ bazel clean && bazel test //experimental/service_test_ts_webpack_react_tests:lint_my_project
 ```

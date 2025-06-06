@@ -1,19 +1,26 @@
 module.exports = exports = {
+  root: true,
   extends: '../../.eslintrc.cjs',
-  // env: {
-  //   jest: true
-  // },
-  // parser: '@typescript-eslint/parser',
-  // plugins: ['@typescript-eslint'],
-  // settings: {
-  //   react: {
-  //     version: 'detect'
-  //   }
-  // },
   rules: {
     // 'no-undef': ['off']
+    // "indent": ['off'],
+    // "comma-dangle": ['off'],
+    // "@typescript-eslint/no-require-imports": ['off'],
   },
 };
+
+// -------------------------------------------------------
+// -------------------------------------------------------
+// -------------------------------------------------------
+
+// // $ ESLINT_USE_FLAT_CONFIG=false npx eslint --config experimental/service_test_ts_webpack_react_tests/.eslintrc.cjs --ext .ts,.tsx,.cjs experimental/service_test_ts_webpack_react_tests
+// // $ ESLINT_USE_FLAT_CONFIG=false npx eslint --ext .ts,.tsx,.cjs experimental
+// // $ bazel run //tools/lint:eslint -- --resolve-plugins-relative-to . --ext .ts,.tsx,.cjs ./experimental
+// // $ bazel run //tools/lint:eslint --  --ext .ts,.tsx,.cjs ./experimental
+
+// -------------------------------------------------------
+// -------------------------------------------------------
+// -------------------------------------------------------
 
 // /* eslint-env node */
 // // module.exports = {

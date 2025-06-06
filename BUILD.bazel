@@ -30,10 +30,8 @@ alias(
 js_library(
     name = "eslintrc",
     srcs = [
-        # ".eslintrc.js",
         ".eslintrc.cjs",
         # "eslint.config.mjs",
-        # ".eslintignore",
     ],
     deps = [
         "//:node_modules/@eslint/js",

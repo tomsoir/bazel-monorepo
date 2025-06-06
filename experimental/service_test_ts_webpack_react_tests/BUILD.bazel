@@ -5,6 +5,7 @@ load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
 load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("//:tools/skylib/webpack.bzl", "webpack")
+load("//tools/lint:linters.bzl", "eslint_test")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -182,24 +183,23 @@ js_library(
     name = "eslintrc",
     srcs = [
         ".eslintrc.cjs",
-        # "eslint.config.js",
         # "eslint.config.mjs",
         # "package.json",
     ],
-    deps = [
-        # "//:node_modules/@eslint/js",
-        # "//:node_modules/typescript-eslint",
-        "//:eslintrc",
+    # deps = [
+    #     # "//:node_modules/@eslint/js",
+    #     # "//:node_modules/typescript-eslint",
+    #     "//:eslintrc",
 
-        # "@//:node_modules/eslint",
-        # "@//:node_modules/@eslint/js",
-        # "@//:node_modules/typescript",
-        # "@//:node_modules/typescript-eslint",
-        # "@//:node_modules/@typescript-eslint/eslint-plugin",
-    ],
+    #     # "@//:node_modules/eslint",
+    #     # "@//:node_modules/@eslint/js",
+    #     # "@//:node_modules/typescript",
+    #     # "@//:node_modules/typescript-eslint",
+    #     # "@//:node_modules/@typescript-eslint/eslint-plugin",
+    # ],
 )
 
-# js_library(
-#     name = "eslint-override",
-#     srcs = ["index.js"],
-# )
+eslint_test(
+    name = "lint_my_project",
+    srcs = [":tsc"],
+)

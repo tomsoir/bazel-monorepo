@@ -1,3 +1,18 @@
+// tomsoir-monorepo/experimental/service_test_ts_webpack_react_tests/eslint.config.js
+
+// export default [
+//   {
+//     files: ['**/*.{ts,tsx}'],
+//     rules: {
+//       '@typescript-eslint/no-unsafe-call': ['off'],
+//       '@typescript-eslint/no-unsafe-assignment': ['off'],
+//       '@typescript-eslint/no-unused-expressions': ['off'],
+//     },
+//   },
+// ];
+
+// // --------------------------------------------
+
 // // module.exports = {
 // //     extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
 // //     parser: "@typescript-eslint/parser",
