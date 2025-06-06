@@ -153,7 +153,6 @@ copy_to_bin(
     name = "package_json",
     srcs = [
         "package.json",
-        ":eslintrc",
     ],
 )
 
@@ -183,6 +182,7 @@ ts_config(
 eslint_test(
     name = "lint_my_project",
     srcs = [":tsc"],
+    tags = ["manual"],
 )
 
 js_library(

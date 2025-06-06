@@ -56,6 +56,9 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - [x] Gofumpt —> Go
     - [x] SHFMT —> shell/bash scripts
     - [x] terraform —> terraform
+1. [ ] Linting:
+    - [x] Eslint (new flat format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
+    - [ ] Flake8 —> Py
 1. [ ] Development:
     - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [x] Add watcher IBazel to re-build targets on source files change ([instruction](https://github.com/tomsoir/tomsoir-monorepo/commit/9a851378982eb49e1f564928a091e7bb8b7627f3));
@@ -86,6 +89,8 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
     - `$ bazel test --test_output=all ...` - to see tests output in cli.
   - `$ bazel coverage ...` - generate tests coverage.
     - `$ bazel coverage --combined_report=lcov --test_output=all ...` - to see tests output + tests coverage files (in `coverage.dat`).
+  - `$ bazel lint ...` - lint all projects.
+    - `$ bazel lint //experimental/service_test_ts_webpack_react_tests/...` — lint individual project.
 
 ### PNPM (for TS/JS):
   - `$ pnpm update` - update all projects in the monorepo.
@@ -102,8 +107,11 @@ A unified monorepo example to demonstrate how to develop, build, test, and deplo
 - `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
 - `$ bazel fetch @npm//...` - update Bazel's copy of pnpm lockfile. Useful after adding new NPM packages.
 - `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES.
-- `$ bazel run //:format` — formats everything in the repo.
-- `$ bazel run //:format.check` — check if formatting needs to be applied.
+- `$ bazel run format` — formats everything in the repo.
+  - `$ bazel run //:format` — formats everything in the repo (explicit run from the root)
+  - `$ bazel run //:format.check` — check if formatting needs to be applied.
+- `$ bazel lint ...` - lints all projects.
+    - `$ bazel lint //experimental/service_test_ts_webpack_react_tests/...` — lints individual project.
 
 ## Secrets:
 - `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI.
