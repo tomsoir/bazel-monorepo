@@ -1,8 +1,8 @@
 ![Build Status](https://github.com/tomsoir/tomsoir-monorepo/actions/workflows/bazel-ci.yml/badge.svg)
 
-# Bazel Monorepo Example
+# Bazel Multi-Language Monorepo Example
 
-A unified monorepo example to demonstrate how to develop, build, test, and deploy full-stack web projects, infrastructure code, and build tools using Bazel. Designed for scalability, fast builds, and optimized deployment.
+This is a unified mono repo example that demonstrates how to develop, build, test, and deploy full-stack web projects, infrastructure code, and build tools using Bazel. It is designed for scalability, fast builds, and optimized deployment.
 
 ## Main Features:
 1. [x] Repo package managers:
