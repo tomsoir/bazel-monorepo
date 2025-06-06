@@ -179,27 +179,16 @@ ts_config(
     src = "tsconfig.json",
 )
 
-js_library(
-    name = "eslintrc",
-    srcs = [
-        ".eslintrc.cjs",
-        # "eslint.config.mjs",
-        # "package.json",
-    ],
-    # deps = [
-    #     # "//:node_modules/@eslint/js",
-    #     # "//:node_modules/typescript-eslint",
-    #     "//:eslintrc",
-
-    #     # "@//:node_modules/eslint",
-    #     # "@//:node_modules/@eslint/js",
-    #     # "@//:node_modules/typescript",
-    #     # "@//:node_modules/typescript-eslint",
-    #     # "@//:node_modules/@typescript-eslint/eslint-plugin",
-    # ],
-)
-
+# $ bazel clean && bazel test //experimental/service_test_ts_webpack_react_tests:lint_my_project --sandbox_debug
 eslint_test(
     name = "lint_my_project",
     srcs = [":tsc"],
+)
+
+js_library(
+    name = "flat-eslintrc",
+    srcs = [
+        "eslint.config.mjs",
+        "package.json",
+    ],
 )

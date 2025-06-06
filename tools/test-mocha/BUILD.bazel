@@ -23,10 +23,3 @@ js_library(
         ":node_modules/source-map-support",
     ],
 )
-
-js_library(
-    name = "eslintrc",
-    srcs = [
-        ".eslintrc.cjs",
-    ],
-)

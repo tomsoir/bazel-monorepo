@@ -9,9 +9,6 @@ eslint = lint_eslint_aspect(
     configs = [
         Label("@//:eslintrc"),
         Label("@//:tsconfig"),
-        Label("@//tools/test-mocha:eslintrc"),
-        Label("@//experimental/service_test_ts_webpack_react_tests:tsconfig"),
-        Label("@//experimental/service_test_ts_webpack_react_tests:eslintrc"),
     ],
 )
 eslint_test = lint_test(aspect = eslint)

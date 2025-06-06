@@ -30,13 +30,17 @@ alias(
 js_library(
     name = "eslintrc",
     srcs = [
-        ".eslintrc.cjs",
-        # "eslint.config.mjs",
+        "eslint.config.mjs",
     ],
     deps = [
         "//:node_modules/@eslint/js",
         "//:node_modules/eslint",
         "//:node_modules/typescript-eslint",
+
+        # Example of using KINDA multi projects eslintrc configs for new Flat Eslint
+        # format of config. TL,DR: flat format is when all eslint projects configs
+        # are stored in the single root eslint.config.mjs file.
+        "//experimental/service_test_ts_webpack_react_tests:flat-eslintrc",
     ],
 )
 

@@ -4,38 +4,10 @@ package(default_visibility = ["//:__subpackages__"])
 
 eslint_bin.eslint_binary(
     name = "eslint",
-    # data = [
-    #     "@//:eslintrc",
-    #     "@//:tsconfig",
-    #     # -
-    #     "@//tools/test-mocha:eslintrc",
-    #     # -
-    #     "@//experimental/service_test_ts_webpack_react_tests:tsconfig",
-    #     "@//experimental/service_test_ts_webpack_react_tests:eslintrc",
-
-    #     #
-    #     # DEPS
-    #     #
-    #     "@//:node_modules/eslint",
-    #     "@//:node_modules/@eslint/js",
-    #     "@//:node_modules/typescript",
-    #     # "@//:node_modules/typescript-eslint",
-    #     "@//:node_modules/@typescript-eslint/parser",
-    #     "@//:node_modules/@typescript-eslint/eslint-plugin",
-    # ],
     env = {
-        "ESLINT_USE_FLAT_CONFIG": "false",
+        # "ESLINT_USE_FLAT_CONFIG": "false",
         "ESLINT_DEBUG": "true",
         "DEBUG": "eslint:*",
         # "NODE_PATH": "./node_modules",
     },
 )
-
-# load("//tools/lint:linters.bzl", "eslint_test")
-# eslint_test(
-#     name = "eslintt",
-#     # targets = [
-#     #     "//experimental/service_test_ts_webpack_react_tests",
-#     #     "//tools/lint",
-#     # ],
-# )
