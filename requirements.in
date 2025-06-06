@@ -2,3 +2,4 @@ cowsay
 flask
 pytest
 pytest-cov
+flake8

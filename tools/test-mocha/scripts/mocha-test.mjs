@@ -68,7 +68,7 @@ async function runMochaTests() {
     // // $ cat /private/var/tmp/_bazel_tomsoir/828ce2621fc2cfba90cf9c567be84b76/execroot/_main/bazel-out/darwin_x86_64-fastbuild/testlogs/experimental/service_test_ts_webpack_react_tests/test/test.log
     // console.log('>>>>', {commandStr});
   } catch (e) {
-    console.error(`Tests failed! \n\n\n`, e);
+    console.error('Tests failed! \n\n\n', e);
   }
   return exitCode;
 }

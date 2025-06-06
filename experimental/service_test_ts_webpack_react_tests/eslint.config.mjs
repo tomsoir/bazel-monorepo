@@ -1,165 +1,165 @@
-// module.exports = {
-//     extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-//     parser: "@typescript-eslint/parser",
-//     plugins: ["@typescript-eslint/eslint-plugin"],
-//     root: true,
-//     rules: {
-//       'no-unused-vars': 'warn', // Example: Warning for unused variables
-//       'no-console': 'warn', // Example: Warning for console statements
-//       '@typescript-eslint/no-unsafe-call': 'off',
-//       '@typescript-eslint/no-unsafe-assignment': 'off',
-//       '@typescript-eslint/no-unused-expressions': 'off'
-//     }
-//   };
+// // module.exports = {
+// //     extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+// //     parser: "@typescript-eslint/parser",
+// //     plugins: ["@typescript-eslint/eslint-plugin"],
+// //     root: true,
+// //     rules: {
+// //       'no-unused-vars': 'warn', // Example: Warning for unused variables
+// //       'no-console': 'warn', // Example: Warning for console statements
+// //       '@typescript-eslint/no-unsafe-call': 'off',
+// //       '@typescript-eslint/no-unsafe-assignment': 'off',
+// //       '@typescript-eslint/no-unused-expressions': 'off'
+// //     }
+// //   };
 
-export default {
-  root: true,
-  files: ['**/*.ts', '**/*.tsx'],
-  rules: {
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unused-expressions': 'off',
-  },
-};
-
-// import eslint from '@eslint/js';
-// import tseslint from 'typescript-eslint';
-
-// export default tseslint.config(
-//   eslint.configs.recommended,
-
-//   {
-//     files: ['**/*.ts'],
-//     extends: [
-//       ...tseslint.configs.recommendedTypeChecked,
-//       ...tseslint.configs.stylisticTypeChecked,
-//     ],
-//     languageOptions: {
-//       parserOptions: {
-//         // indicates to find the closest tsconfig.json for each source file
-//         project: true,
-//       },
-//     },
+// export default {
+//   root: true,
+//   files: ['**/*.ts', '**/*.tsx'],
+//   rules: {
+//     '@typescript-eslint/no-unsafe-call': 'off',
+//     '@typescript-eslint/no-unsafe-assignment': 'off',
+//     '@typescript-eslint/no-unused-expressions': 'off',
 //   },
-
-//   // Demonstrate override for a subdirectory.
-//   // Note that unlike eslint 8 and earlier, it does not resolve to a configuration file
-//   // in a parent folder of the files being checked; instead it only looks in the working
-//   // directory.
-//   // https://eslint.org/docs/latest/use/configure/migration-guide#glob-based-configs
-//   {
-//     files: ['experimental/**'],
-//     rules: {
-//       // "@typescript-eslint/no-redundant-type-constituents": "error",
-//       'sort-imports': 'warn',
-//       'no-debugger': 'off',
-
-//       "@typescript-eslint/no-unsafe-call": "off",
-//       "@typescript-eslint/no-unsafe-assignment": "off",
-//       "@typescript-eslint/no-unused-expressions": "off",
-//     },
-//   },
-
-//   {
-//     files: ['**/*.mjs', '**/*.cjs', '**/*.js'],
-//     rules: {
-//       'no-undef': 'off',
-//     },
-//   },
-// );
-
-// ====================
-
-// // // const base = require("../../.eslintrc.cjs")
-// const base = require("../../eslint.config.mjs")
-
-// base["rules"] = {
-//   'no-unused-vars': 'warn', // Example: Warning for unused variables
-//   'no-console': 'warn', // Example: Warning for console statements
-//   '@typescript-eslint/no-unsafe-call': 'off',
-//   '@typescript-eslint/no-unsafe-assignment': 'off',
-//   '@typescript-eslint/no-unused-expressions': 'off',
-//   "@typescript-eslint/no-unsafe-assignment": 'off',
 // };
 
-// module.exports = base;
+// // import eslint from '@eslint/js';
+// // import tseslint from 'typescript-eslint';
 
-// --------------
+// // export default tseslint.config(
+// //   eslint.configs.recommended,
 
-// // module.exports = {
-// //     env: {
-// //       node: true,
+// //   {
+// //     files: ['**/*.ts'],
+// //     extends: [
+// //       ...tseslint.configs.recommendedTypeChecked,
+// //       ...tseslint.configs.stylisticTypeChecked,
+// //     ],
+// //     languageOptions: {
+// //       parserOptions: {
+// //         // indicates to find the closest tsconfig.json for each source file
+// //         project: true,
+// //       },
 // //     },
+// //   },
+
+// //   // Demonstrate override for a subdirectory.
+// //   // Note that unlike eslint 8 and earlier, it does not resolve to a configuration file
+// //   // in a parent folder of the files being checked; instead it only looks in the working
+// //   // directory.
+// //   // https://eslint.org/docs/latest/use/configure/migration-guide#glob-based-configs
+// //   {
+// //     files: ['experimental/**'],
+// //     rules: {
+// //       // "@typescript-eslint/no-redundant-type-constituents": "error",
+// //       'sort-imports': 'warn',
+// //       'no-debugger': 'off',
+
+// //       "@typescript-eslint/no-unsafe-call": "off",
+// //       "@typescript-eslint/no-unsafe-assignment": "off",
+// //       "@typescript-eslint/no-unused-expressions": "off",
+// //     },
+// //   },
+
+// //   {
+// //     files: ['**/*.mjs', '**/*.cjs', '**/*.js'],
+// //     rules: {
+// //       'no-undef': 'off',
+// //     },
+// //   },
+// // );
+
+// // ====================
+
+// // // // const base = require("../../.eslintrc.cjs")
+// // const base = require("../../eslint.config.mjs")
+
+// // base["rules"] = {
+// //   'no-unused-vars': 'warn', // Example: Warning for unused variables
+// //   'no-console': 'warn', // Example: Warning for console statements
+// //   '@typescript-eslint/no-unsafe-call': 'off',
+// //   '@typescript-eslint/no-unsafe-assignment': 'off',
+// //   '@typescript-eslint/no-unused-expressions': 'off',
+// //   "@typescript-eslint/no-unsafe-assignment": 'off',
 // // };
 
-// // export default {
-// //   "root": true,
-// //   // "env": {
-// //   //   "node": true
-// //   // },
-// //   "rules": {
-// //     "@typescript-eslint/no-unsafe-call": "off",
-// //     "@typescript-eslint/no-unsafe-assignment": "off",
-// //     "@typescript-eslint/no-unused-expressions": "off",
-// //   }
-// // }
+// // module.exports = base;
 
-// // export default [
+// // --------------
+
+// // // module.exports = {
+// // //     env: {
+// // //       node: true,
+// // //     },
+// // // };
+
+// // // export default {
+// // //   "root": true,
+// // //   // "env": {
+// // //   //   "node": true
+// // //   // },
+// // //   "rules": {
+// // //     "@typescript-eslint/no-unsafe-call": "off",
+// // //     "@typescript-eslint/no-unsafe-assignment": "off",
+// // //     "@typescript-eslint/no-unused-expressions": "off",
+// // //   }
+// // // }
+
+// // // export default [
+// // //   {
+// // //     root: true,
+// // //     files: ['**/*.ts', '**/*.tsx'],
+// // //     rules: {
+// // //       '@typescript-eslint/no-unsafe-call': 'off',
+// // //       '@typescript-eslint/no-unsafe-assignment': 'off',
+// // //       '@typescript-eslint/no-unused-expressions': 'off',
+// // //     },
+// // //   },
+// // // ];
+
+// // // @ts-check
+
+// // import eslint from '@eslint/js';
+// // import tseslint from 'typescript-eslint';
+
+// // export default tseslint.config(
+// //   eslint.configs.recommended,
+
 // //   {
-// //     root: true,
-// //     files: ['**/*.ts', '**/*.tsx'],
+// //     files: ['**/*.ts'],
+// //     extends: [
+// //       ...tseslint.configs.recommendedTypeChecked,
+// //       ...tseslint.configs.stylisticTypeChecked,
+// //     ],
+// //     languageOptions: {
+// //       parserOptions: {
+// //         // indicates to find the closest tsconfig.json for each source file
+// //         project: true,
+// //       },
+// //     },
+// //   },
+
+// //   // Demonstrate override for a subdirectory.
+// //   // Note that unlike eslint 8 and earlier, it does not resolve to a configuration file
+// //   // in a parent folder of the files being checked; instead it only looks in the working
+// //   // directory.
+// //   // https://eslint.org/docs/latest/use/configure/migration-guide#glob-based-configs
+// //   {
+// //     files: ['**/*.ts'],
 // //     rules: {
+// //       'no-debugger': 'off',
+// //       // "@typescript-eslint/no-redundant-type-constituents": "error",
+// //       'sort-imports': 'warn',
+
 // //       '@typescript-eslint/no-unsafe-call': 'off',
 // //       '@typescript-eslint/no-unsafe-assignment': 'off',
 // //       '@typescript-eslint/no-unused-expressions': 'off',
 // //     },
 // //   },
-// // ];
 
-// // @ts-check
-
-// import eslint from '@eslint/js';
-// import tseslint from 'typescript-eslint';
-
-// export default tseslint.config(
-//   eslint.configs.recommended,
-
-//   {
-//     files: ['**/*.ts'],
-//     extends: [
-//       ...tseslint.configs.recommendedTypeChecked,
-//       ...tseslint.configs.stylisticTypeChecked,
-//     ],
-//     languageOptions: {
-//       parserOptions: {
-//         // indicates to find the closest tsconfig.json for each source file
-//         project: true,
-//       },
-//     },
-//   },
-
-//   // Demonstrate override for a subdirectory.
-//   // Note that unlike eslint 8 and earlier, it does not resolve to a configuration file
-//   // in a parent folder of the files being checked; instead it only looks in the working
-//   // directory.
-//   // https://eslint.org/docs/latest/use/configure/migration-guide#glob-based-configs
-//   {
-//     files: ['**/*.ts'],
-//     rules: {
-//       'no-debugger': 'off',
-//       // "@typescript-eslint/no-redundant-type-constituents": "error",
-//       'sort-imports': 'warn',
-
-//       '@typescript-eslint/no-unsafe-call': 'off',
-//       '@typescript-eslint/no-unsafe-assignment': 'off',
-//       '@typescript-eslint/no-unused-expressions': 'off',
-//     },
-//   },
-
-//   {
-//     files: ['**/*.mjs', '**/*.cjs', '**/*.js'],
-//     rules: {
-//       'no-undef': 'off',
-//     },
-//   },
-// );
+// //   {
+// //     files: ['**/*.mjs', '**/*.cjs', '**/*.js'],
+// //     rules: {
+// //       'no-undef': 'off',
+// //     },
+// //   },
+// // );

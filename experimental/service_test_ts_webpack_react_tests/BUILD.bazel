@@ -182,14 +182,20 @@ js_library(
     name = "eslintrc",
     srcs = [
         ".eslintrc.cjs",
-        "eslint.config.js",
-        "eslint.config.mjs",
-        "package.json",
+        # "eslint.config.js",
+        # "eslint.config.mjs",
+        # "package.json",
     ],
     deps = [
         # "//:node_modules/@eslint/js",
         # "//:node_modules/typescript-eslint",
         "//:eslintrc",
+
+        # "@//:node_modules/eslint",
+        # "@//:node_modules/@eslint/js",
+        # "@//:node_modules/typescript",
+        # "@//:node_modules/typescript-eslint",
+        # "@//:node_modules/@typescript-eslint/eslint-plugin",
     ],
 )
 

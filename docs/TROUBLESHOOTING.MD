@@ -96,3 +96,15 @@ ts_project(
     ],
 )
 ```
+
+
+## Lint debug command
+
+1. Run eslint rule directly to see errors `$ bazel run //tools/lint:eslint -- --resolve-plugins-relative-to . --ext .ts,.tsx,.js,.cjs --config .eslintrc.cjs .`
+
+2. To debug eslint configs:
+- rename `.eslint.js` to `.eslint.cjs`
+- run this from the root:
+```sh
+$ ESLINT_USE_FLAT_CONFIG=false ESLINT_DEBUG=true DEBUG=eslint:* npx eslint --config .eslintrc.cjs --ext .ts,.tsx,.js,.json experimental/service_test_ts_webpack_react_tests/
+```
