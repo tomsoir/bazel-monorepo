@@ -31,3 +31,13 @@ vite(
         "tsconfig.json",
     ],
 )
+
+filegroup(
+    name = "css",
+    srcs = glob(
+        [
+            "src/**/*.css",
+        ],
+    ),
+    tags = ["lint-with-stylelint"],
+)

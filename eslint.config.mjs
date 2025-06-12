@@ -6,16 +6,34 @@ import someRandomProjectEslintConfig from './experimental/service_test_ts_webpac
 export default tseslint.config(
   {
     ignores: [
-      '**/package.json', // Ignore all package.json files
-      'experimental/service_test_ts_rspack_react_tests_assets_swc/package.json' // Or target specific file
+      '**/package.json' // Ignore all package.json files
     ]
   },
 
   eslint.configs.recommended,
 
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.json'],
-    ignores: ['**/*.json'],
+    files: ['**/*.mjs', '**/*.cjs'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module'
+      }
+    },
+    rules: {
+      'no-undef': 'off',
+      'no-unused-vars': 'warn',
+      // Add style rules
+      indent: ['error', 2],
+      'comma-dangle': ['error', 'never'],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'object-curly-spacing': ['error', 'always']
+    }
+  },
+
+  {
+    files: ['**/*.ts', '**/*.tsx'],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked
@@ -37,10 +55,11 @@ export default tseslint.config(
     files: ['experimental/**'],
     ignores: [
       // 'experimental/service_test_ts_webpack_react_tests/**',
-      'experimental/**/*.json'
     ],
     rules: {
       '@typescript-eslint/no-redundant-type-constituents': 'error',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
       'sort-imports': 'off',
       'no-debugger': 'off'
     }
@@ -64,7 +83,7 @@ export default tseslint.config(
         'error',
         { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
       ],
-      'no-console': ['warn'],
+      'no-console': ['off'],
       eqeqeq: ['error', 'always'],
       curly: ['error', 'all'],
       'max-len': ['error', { code: 120 }],
@@ -74,5 +93,17 @@ export default tseslint.config(
 
   // Demonstrate/ mimics multi-project (subdirectory) approach from
   // the old ESLINT config format (before 9 ver)
-  ...someRandomProjectEslintConfig
+  ...someRandomProjectEslintConfig,
+
+  {
+    files: [
+      'experimental/service_test_ts_webpack_react_tests_assets/**',
+      'experimental/service_test_ts_rspack_react_tests_assets_swc/**',
+      'experimental/service_test_ts_webpack_react_tests_assets_swc/**'
+    ],
+    rules: {
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off'
+    }
+  }
 );

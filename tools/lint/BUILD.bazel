@@ -13,4 +13,6 @@ eslint_bin.eslint_binary(
     },
 )
 
-stylelint_bin.stylelint_binary(name = "stylelint")
+stylelint_bin.stylelint_binary(
+    name = "stylelint",
+)

@@ -1,12 +1,9 @@
 * {
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
+  box-sizing: border-box;
 }
 
 html {
   background: var(--background);
-
   display: flex;
   justify-content: center;
   min-height: 100%;
@@ -16,7 +13,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -34,6 +30,7 @@ li {
 
 a {
   color: var(--text-primary);
+
   &:hover {
     color: var(--text-secondary);
   }
