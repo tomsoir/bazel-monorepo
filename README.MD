@@ -58,6 +58,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - [x] terraform —> terraform
 1. [ ] Linting:
     - [x] Eslint (new flat format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
+    - [x] Stylint —> CSS, SCSS ([commit](https://github.com/tomsoir/bazel-monorepo/commit/b2e651068dc6204a061f3cf38b7fc684d69d0b5e))
     - [ ] Flake8 —> Py
 1. [ ] Development:
     - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
