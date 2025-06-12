@@ -2,6 +2,8 @@
 lint:
   aspects:
     - //tools/lint:linters.bzl%eslint
+    - //tools/lint:linters.bzl%stylelint
+
     # - //tools/lint:linters.bzl%buf
     # - //tools/lint:linters.bzl%flake8
     # - //tools/lint:linters.bzl%ktlint

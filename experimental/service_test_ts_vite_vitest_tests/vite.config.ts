@@ -11,13 +11,13 @@ export default defineConfig({
   root: '.',
   build: {
     rollupOptions: {
-      input: './src/index.html',
+      input: './src/index.html'
     },
-    outDir: 'dist',
+    outDir: 'dist'
   },
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/vitest-setup.ts',
-  },
+    setupFiles: './src/vitest-setup.ts'
+  }
 });

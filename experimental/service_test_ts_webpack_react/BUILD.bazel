@@ -116,3 +116,13 @@ webpack_devserver(
     tags = ["webpack_serve"],
     webpack_config = "webpack.config.cjs",
 )
+
+filegroup(
+    name = "css",
+    srcs = glob(
+        [
+            "src/**/*.scss",
+        ],
+    ),
+    tags = ["lint-with-stylelint"],
+)
