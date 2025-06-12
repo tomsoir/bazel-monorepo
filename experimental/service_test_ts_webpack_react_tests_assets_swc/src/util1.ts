@@ -14,6 +14,6 @@ function func1(): number {
   return func2();
 }
 
-console.log(`Start!`);
+console.log('Start!');
 
 export default func1;

@@ -1,7 +1,7 @@
 ./bazel-bin
 ./bazel-out
 ./bazel-testlogs
-./bazel-tomsoir-monorepo
+./bazel-bazel-monorepo
 
 node_modules
 

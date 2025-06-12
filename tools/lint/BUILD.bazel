@@ -1,4 +1,5 @@
 load("@npm//:eslint/package_json.bzl", eslint_bin = "bin")
+load("@npm//:stylelint/package_json.bzl", stylelint_bin = "bin")
 
 package(default_visibility = ["//:__subpackages__"])
 
@@ -11,3 +12,5 @@ eslint_bin.eslint_binary(
         # "NODE_PATH": "./node_modules",
     },
 )
+
+stylelint_bin.stylelint_binary(name = "stylelint")

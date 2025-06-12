@@ -5,6 +5,6 @@ function func1(): void {
   func2();
 }
 
-console.log(`Start!`);
+console.log('Start!');
 
 func1();
