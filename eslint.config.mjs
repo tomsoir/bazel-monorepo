@@ -7,8 +7,8 @@ export default tseslint.config(
   {
     ignores: [
       '**/package.json', // Ignore all package.json files
-      'experimental/service_test_ts_rspack_react_tests_assets_swc/package.json', // Or target specific file
-    ],
+      'experimental/service_test_ts_rspack_react_tests_assets_swc/package.json' // Or target specific file
+    ]
   },
 
   eslint.configs.recommended,
@@ -18,14 +18,14 @@ export default tseslint.config(
     ignores: ['**/*.json'],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked
     ],
     languageOptions: {
       parserOptions: {
         // indicates to find the closest tsconfig.json for each source file
-        project: true,
-      },
-    },
+        project: true
+      }
+    }
   },
 
   // Demonstrate override for a subdirectory.
@@ -37,21 +37,21 @@ export default tseslint.config(
     files: ['experimental/**'],
     ignores: [
       // 'experimental/service_test_ts_webpack_react_tests/**',
-      'experimental/**/*.json',
+      'experimental/**/*.json'
     ],
     rules: {
       '@typescript-eslint/no-redundant-type-constituents': 'error',
       'sort-imports': 'off',
-      'no-debugger': 'off',
-    },
+      'no-debugger': 'off'
+    }
   },
 
   // Demonstrate an additional override after subdirectory files override.
   {
     files: ['**/*.mjs', '**/*.cjs', '**/*.js'],
     rules: {
-      'no-undef': 'off',
-    },
+      'no-undef': 'off'
+    }
   },
 
   {
@@ -62,17 +62,17 @@ export default tseslint.config(
       semi: ['error', 'always'],
       'no-unused-vars': [
         'error',
-        { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+        { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
       ],
       'no-console': ['warn'],
       eqeqeq: ['error', 'always'],
       curly: ['error', 'all'],
       'max-len': ['error', { code: 120 }],
-      'comma-dangle': ['error', 'never'],
-    },
+      'comma-dangle': ['error', 'never']
+    }
   },
 
   // Demonstrate/ mimics multi-project (subdirectory) approach from
   // the old ESLINT config format (before 9 ver)
-  ...someRandomProjectEslintConfig,
+  ...someRandomProjectEslintConfig
 );

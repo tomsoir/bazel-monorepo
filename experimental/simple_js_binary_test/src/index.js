@@ -5,7 +5,7 @@ import file22JSON from './file22.json' assert { type: 'json' };
 const cowWords = cowsay.say({
   text: "I'm a moooodule",
   e: 'oO',
-  T: 'U ',
+  T: 'U '
 });
 console.log(cowWords);
 

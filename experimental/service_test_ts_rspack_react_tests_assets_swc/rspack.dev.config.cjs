@@ -9,31 +9,31 @@ module.exports = {
   output: {
     filename: 'rspack_build.js', // Output bundled file
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    clean: true
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(svg|png)$/,
-        type: 'asset/resource',
-      },
-    ],
+        type: 'asset/resource'
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'dist', 'index.html'),
-    }),
+      template: path.resolve(__dirname, 'dist', 'index.html')
+    })
   ],
   devServer: {
     open: true,
     hot: true,
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'dist')
     },
-    port: 8080,
-  },
+    port: 8080
+  }
 };

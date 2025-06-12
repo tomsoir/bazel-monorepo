@@ -12,7 +12,7 @@ const customRender: any = (ui: React.ReactElement, options = {}) =>
   render(ui, {
     // wrap provider(s) here if needed
     wrapper: ({ children }) => children,
-    ...options,
+    ...options
   });
 
 // override render export

@@ -5,10 +5,10 @@ module.exports = {
   entry: path.resolve(__dirname, 'dist', 'index.js'),
   output: {
     filename: 'webpack_build.js', // Output bundled file
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   // mode: 'production', // Set Webpack mode to production for optimization
   mode: 'development', // Set mode to development for faster builds during dev
@@ -16,8 +16,8 @@ module.exports = {
     open: true, // Open browser automatically
     hot: true, // Enable Hot Module Replacement (HMR)
     static: {
-      directory: path.resolve(__dirname, 'dist'),
+      directory: path.resolve(__dirname, 'dist')
     },
-    port: 8080,
-  },
+    port: 8080
+  }
 };
