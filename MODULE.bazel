@@ -50,7 +50,7 @@ register_toolchains("@sass_toolchains//:all")
 # ---
 
 # copy_to_bin, etc...
-bazel_dep(name = "aspect_bazel_lib", version = "2.19.3")
+bazel_dep(name = "aspect_bazel_lib", version = "2.19.4")
 
 # ---
 
