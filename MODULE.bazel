@@ -43,6 +43,7 @@ bazel_dep(name = "gzgz_rules_sass", version = "1.0.3")
 
 sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
 use_repo(sass, "sass_toolchains")
+
 sass.toolchain(sass_version = "1.63.6")
 
 register_toolchains("@sass_toolchains//:all")
@@ -54,7 +55,7 @@ bazel_dep(name = "aspect_bazel_lib", version = "2.19.4")
 
 # ---
 
-bazel_dep(name = "buildifier_prebuilt", version = "8.0.3")
+bazel_dep(name = "buildifier_prebuilt", version = "8.2.0.2")
 
 # ---
 
@@ -99,6 +100,7 @@ bazel_dep(name = "rules_oci", version = "2.2.6")
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 oci.toolchains(name = "oci_toolchains")
 use_repo(oci, "oci_toolchains_crane_toolchains", "oci_toolchains_regctl_toolchains")
+
 oci.pull(
     name = "node_20_slim",
     image = "docker.io/library/node:20-slim",
