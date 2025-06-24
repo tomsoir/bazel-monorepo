@@ -54,7 +54,7 @@ bazel_dep(name = "aspect_bazel_lib", version = "2.19.4")
 
 # ---
 
-bazel_dep(name = "buildifier_prebuilt", version = "8.0.3")
+bazel_dep(name = "buildifier_prebuilt", version = "8.2.0.2")
 
 # ---
 
