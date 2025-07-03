@@ -21,3 +21,10 @@ spec:
           # test_image_sha: __IMAGE_DIGEST__
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
