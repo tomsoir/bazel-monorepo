@@ -63,6 +63,10 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
 1. [ ] Development:
     - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [x] Add watcher IBazel to re-build targets on source files change ([instruction](https://github.com/tomsoir/tomsoir-monorepo/commit/9a851378982eb49e1f564928a091e7bb8b7627f3));
+    - [x] Add custom Bazel rules examples:
+        - Simple Bazel rule example of creating a file in bazel-bin ([commit](https://github.com/tomsoir/bazel-monorepo/commit/6aa4be60c563ce90c2919ee7db38df209b85496d))
+        - Simple Bazel rule example of using a dependency rule ([commit](https://github.com/tomsoir/bazel-monorepo/commit/e023f613a194360642d4135fc93a8412905e7591))
+        - Simple Bazel rule example of using external (Go-app) binary ([commit](https://github.com/tomsoir/bazel-monorepo/commit/354d367e734b5c08cf836334c91a63d8868ddffe))
     - [ ] Auto-generate documentation
     - [ ] Use Gazelle to auto-update BUILD files;
     - [ ] Custom scripts:
