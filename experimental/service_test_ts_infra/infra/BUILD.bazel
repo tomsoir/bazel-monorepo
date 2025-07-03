@@ -6,7 +6,7 @@
 # Reference: https://github.com/bazel-contrib/rules_oci/blob/main/docs/javascript.md
 
 load("@aspect_rules_js//js:defs.bzl", "js_image_layer")
-load("@rules_oci//oci:defs.bzl", "oci_image")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_push")
 
 platform(
     name = "amd64_linux",
@@ -38,7 +38,27 @@ oci_image(
     }),
 )
 
-###########################
-# PUSH TO IMAGE REGISTRY
-###########################
-# ...
+oci_push(
+    name = "push_image",
+    image = ":tsc_binary_app_bin_image",
+    repository = "docker.io/tomsoir/service_test_ts_infra",
+    tags = ["latest"],
+)
+
+# @TODO: Yeah, it works BUT —> NO.
+#
+# # $ bazel build //experimental/service_test_ts_infra/infra:generate_k8s_manifest
+# genrule(
+#     name = "generate_k8s_manifest",
+#     srcs = glob(["k8s_manifests/*.yaml"]),
+#     outs = ["final_k8s.yaml"],
+#     tools = [":tsc_binary_app_bin_image.digest"],
+#     cmd = """
+#     IMG=$$(tr -d '\\n' < $(location :tsc_binary_app_bin_image.digest))
+#     mkdir -p $$(dirname $@)
+#     for f in $(SRCS); do
+#         sed "s|__IMAGE_DIGEST__|$${IMG}|g" $$f >> $@
+#         echo -e "\\n---\\n" >> $@
+#     done
+#     """,
+# )

@@ -81,7 +81,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - [ ] Push artifacts to registry;
 1. [ ] Infra:
     - [x] Docker: create image;
-    - [ ] Docker: push image to registry;
+    - [x] Docker: push image to registry;
     - [ ] K8s: generate manifests;
     - [ ] K8s: deploy manifests;
     - [ ] Terraform: run plan;

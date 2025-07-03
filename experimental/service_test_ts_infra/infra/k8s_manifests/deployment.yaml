@@ -18,5 +18,6 @@ spec:
       containers:
         - name: service-test-ts
           image: docker.io/tomsoir/service_test_ts:latest
+          # test_image_sha: __IMAGE_DIGEST__
           ports:
             - containerPort: 3000
