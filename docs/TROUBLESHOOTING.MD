@@ -158,3 +158,12 @@ $ cat bazel-bin/experimental/service_test_ts_webpack_react_tests_assets_swc/tsc.
 # - Run test (bazel clean is important!)):
 $ bazel clean && bazel test //experimental/service_test_ts_webpack_react_tests:lint_my_project
 ```
+
+5. If you need to know details about some target. E.g. after running `$ bazel build ...` you'v got this warning:
+```
+WARNING: /Users/tomsoir/Sites/Tomsoir/bazel-monorepo/experimental/service_test_ts_rspack_react_tests_assets_swc/BUILD.bazel:14:11: in _build_test rule //experimental/service_test_ts_rspack_react_tests_assets_swc:tsc_typecheck_test: target '//experimental/service_test_ts_rspack_react_tests_assets_swc:tsc_typecheck_test' depends on deprecated target '@@bazel_tools//src/conditions:host_windows_x64_constraint': No longer used by Bazel and will be removed in the future. Migrate to toolchains or define your own version of this setting.
+```
+To get more details this target (where it came from etc...), run the following query:
+```sh
+$ bazel query --output=build //experimental/service_test_ts_rspack_react_tests_assets_swc:tsc_typecheck_test
+```
