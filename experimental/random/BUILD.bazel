@@ -1,4 +1,4 @@
-load("//:tools/skylib/test_rules.bzl", "bar_binary", "foo_binary")
+load("//:tools/skylib/test_rules.bzl", "bar_binary", "baz_binary", "foo_binary")
 
 # Rule that creates text file with HELLO WORLD text and using BASH command
 genrule(
@@ -31,4 +31,9 @@ bar_binary(
     name = "hello_bar_bin1",
     src = [":hello_bin2"],
     username = "Artem",
+)
+
+baz_binary(
+    name = "hello_baz_bin1",
+    src = [":hello_bar_bin1"],
 )

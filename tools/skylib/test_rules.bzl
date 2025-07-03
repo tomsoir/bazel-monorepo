@@ -151,3 +151,93 @@ bar_binary = rule(
         "src": attr.label_list(allow_files = False),
     },
 )
+
+# ----------------------------
+# Rule: Test bar_binary
+#
+# Purpose:
+#   - Creates {rule_name}"_patched_by_go_app" file in bazel-bin/experiments/random
+#   - Update file content with using go app as an external plugin
+#   - It teaches how to add and use any other binary (it can be GO, Python, JS etc..)
+#     inside bazel rule declaration
+#
+# BUILD declaration example:
+#   ```
+#   load("//:tools/skylib/test_rules.bzl", "foo_binary")
+#   foo_binary(
+#       name = "hello_bin2",
+#       username = "Tkachenko",
+#   )
+#   bar_binary(
+#       name = "hello_bar_bin1",
+#       username = "Artem",
+#       src = [":hello_bin2"],
+#   )
+#   baz_binary(
+#       name = "hello_baz_bin1",
+#       src = [":hello_bar_bin1"],
+#   )
+#   ```
+#
+# Output:
+#   - New filename: "hello_bar_bin1_patched_by_go_app"
+#   - Created in: bazel-bin/experiments/random/
+#   - Content:
+#       "HELLO Artem!"
+#       "HELLO Tkachenko!"
+#       "HELLO WORKS FROM GO APP!"
+# ----------------------------
+def _use_go_bin_app_example(ctx, file_to_edit):
+    out_file = ctx.actions.declare_file(file_to_edit.basename + "_patched_by_go_app")
+
+    ctx.actions.run(
+        executable = ctx.executable._use_go_bin_app,
+        arguments = [
+            "--file",
+            file_to_edit.path,
+            "--output",
+            out_file.path,
+        ],
+        inputs = [file_to_edit],
+        outputs = [out_file],
+        mnemonic = "GoAppend",
+        progress_message = "Appending to copy of %s" % file_to_edit.basename,
+    )
+
+    return out_file
+
+def _baz_bin_imp(ctx):
+    print(">>> (1.1) IMP BAZ ctx.label", ctx.label)
+    print(">>> (1.1) IMP BAZ ctx.label.name", ctx.label.name)
+
+    # 1. Get file from src (assuming 1 target, 1 file)
+    src_files = []
+    for dep in ctx.attr.src:
+        src_files += dep.files.to_list()
+    print(">>> (1.1) IMP BAZ src_files", src_files)
+
+    if not src_files:
+        fail("Expected at least one src file")
+
+    # 2. Collect all output files after appending using Go app.
+    updated_files = []
+    for f in src_files:
+        updated = _use_go_bin_app_example(ctx, f)
+        updated_files.append(updated)
+    print(">>> (1.1) IMP BAZ updated_files", updated_files)
+
+    return [DefaultInfo(files = depset(updated_files))]
+
+baz_binary = rule(
+    implementation = _baz_bin_imp,
+    attrs = {
+        "username": attr.string(),
+        "src": attr.label_list(allow_files = False),
+        "_use_go_bin_app": attr.label(
+            default = Label("//experimental/simple_go_bin:simple_go_bin_app"),
+            cfg = "exec",
+            executable = True,
+            allow_files = True,
+        ),
+    },
+)
