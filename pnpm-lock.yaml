@@ -25,8 +25,8 @@ importers:
         specifier: ^9.29.0
         version: 9.29.0
       '@prettier/plugin-xml':
-        specifier: ^0.13.1
-        version: 0.13.1
+        specifier: ^3.0.0
+        version: 3.4.1(prettier@3.6.0)
       '@types/express':
         specifier: ^5.0.3
         version: 5.0.3
@@ -898,8 +898,10 @@ packages:
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
 
-  '@prettier/plugin-xml@0.13.1':
-    resolution: {integrity: sha512-jJbjvFEsxOT2Jhv2yydOvJbnSREJy+OECwHyZaYr05jLXlJeBrzy5YY1fDYpwTfKk1B2YqNExXI+x3Zm5yGfeA==}
+  '@prettier/plugin-xml@3.4.1':
+    resolution: {integrity: sha512-Uf/6/+9ez6z/IvZErgobZ2G9n1ybxF5BhCd7eMcKqfoWuOzzNUxBipNo3QAP8kRC1VD18TIo84no7LhqtyDcTg==}
+    peerDependencies:
+      prettier: ^3.0.0
 
   '@rolldown/pluginutils@1.0.0-beta.11':
     resolution: {integrity: sha512-L/gAA/hyCSuzTF1ftlzUSI/IKr2POHsv1Dd78GfqkR83KMNuswWD61JxGV2L7nRwBBBSDr6R1gCkdTmoN7W4ag==}
@@ -4623,7 +4625,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
-  '@prettier/plugin-xml@0.13.1':
+  '@prettier/plugin-xml@3.4.1(prettier@3.6.0)':
     dependencies:
       '@xml-tools/parser': 1.0.11
       prettier: 3.6.0
