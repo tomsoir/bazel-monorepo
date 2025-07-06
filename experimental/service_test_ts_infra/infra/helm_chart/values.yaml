@@ -1,0 +1,9 @@
+# Default values for example-project.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  repository: tomsoir/example-project
+  tag: latest

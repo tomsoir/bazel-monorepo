@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-project
+spec:
+  replicas: "{{ .Values.replicaCount }}"
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: example-project
+
+  # Make sure that readinessProbe is specififed as well.
+  strategy:
+    # Update strategy
+    type: RollingUpdate
+    rollingUpdate:
+      # Maximum number of additional pods that can be created
+      # above the desired number of pods during the update
+      maxSurge: 1
+      # Maximum number of pods that can be unavailable during the update
+      # Note: it must be set to 0 if app consyst from only 1 pod otherwise
+      # you will see 503 for 5-10 seconds during pods restart
+      maxUnavailable: 0
+
+  template:
+    metadata:
+      labels:
+        app: example-project
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: example-project # Match pods with this label
+              topologyKey: kubernetes.io/hostname # Ensure pods are scheduled on different nodes
+
+      containers:
+        - name: example-project
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+
+          readinessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10

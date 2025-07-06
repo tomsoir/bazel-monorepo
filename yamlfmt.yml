@@ -1,6 +1,7 @@
----
 formatter:
-  include_document_start: true
+  indent: 2
+  include_document_start: false
+  explicit_start: false
   retain_line_breaks: true
   line_length: 80
 

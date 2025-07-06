@@ -1,4 +1,3 @@
----
 lint:
   aspects:
     - //tools/lint:linters.bzl%eslint

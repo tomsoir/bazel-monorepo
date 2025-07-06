@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-project
+  annotations:
+    # to prevent HTTP requests being redirect to HTTPS.
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ""
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: example-project
+                port:
+                  number: 80
+    - host: "tomsoir.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: example-project
+                port:
+                  number: 80
+
+  # - host: "*.tomsoir.com"
+  #   http:
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         backend:
+  #           service:
+  #             name: example-project
+  #             port:
+  #               number: 80
+  # SSL termination happens on Nginx revert proxy (another standalone NGINX
+  # directly installed in OS using Ansible) that is installed in-front the
+  # k8s cluster to terminate SSL and re-route traffic to K8s NodePort 32114
+  # (which is analog of HTTP port 80) since k8s has ports limitation (intentionally
+  # enforced to prevent conflicts with OS. Read more about it here:
+  # https://kubernetes.github.io/ingress-nginx/deploy/baremetal/) from
+  # default: 30000-32767 and 80 and 443 are not in this range.
+  #
+  # tls:
+  #   - hosts:
+  #       - "tomsoir.com"
+  #       - "*.tomsoir.com"
+  #     secretName: example-project-tls-secret
