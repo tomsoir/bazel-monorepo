@@ -124,7 +124,7 @@ bazel_dep(name = "aspect_rules_esbuild", version = "0.22.1")
 # ---
 # ---
 
-bazel_dep(name = "aspect_rules_lint", version = "1.4.4")
+bazel_dep(name = "aspect_rules_lint", version = "1.5.1")
 
 # # bazel_dep(name = "aspect_rules_lint", version = "0.0.0")
 # # bazel_dep(name = "aspect_bazel_lib", version = "2.7.7")
