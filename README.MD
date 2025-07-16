@@ -96,6 +96,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
   - `$ bazel coverage ...` - generate tests coverage.
     - `$ bazel coverage --combined_report=lcov --test_output=all ...` - to see tests output + tests coverage files (in `coverage.dat`).
   - `$ bazel lint ...` - lint all projects.
+    - `$ bazel lint ... --fix` - lint fix all projects.
     - `$ bazel lint //experimental/service_test_ts_webpack_react_tests/...` — lint individual project.
 
 ### PNPM (for TS/JS):
