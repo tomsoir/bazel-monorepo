@@ -67,7 +67,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
         - [x] Simple Bazel rule example of creating a file in bazel-bin ([commit](https://github.com/tomsoir/bazel-monorepo/commit/6aa4be60c563ce90c2919ee7db38df209b85496d))
         - [x] Simple Bazel rule example of using a dependency rule ([commit](https://github.com/tomsoir/bazel-monorepo/commit/e023f613a194360642d4135fc93a8412905e7591))
         - [x] Simple Bazel rule example of using external (Go-app) binary ([commit](https://github.com/tomsoir/bazel-monorepo/commit/354d367e734b5c08cf836334c91a63d8868ddffe))
-        - [x] Simple Bazel rule example of writing back to the source of the project workspace ([commit](https://github.com/tomsoir/bazel-monorepo/commit/?))
+        - [x] Simple Bazel rule example of writing back to the source of the project workspace ([commit](https://github.com/tomsoir/bazel-monorepo/commit/04766499fbc61cb8a4eba82b090bce1ad4f8de03))
     - [ ] Auto-generate documentation
     - [ ] Use Gazelle to auto-update BUILD files;
     - [ ] Custom scripts:
