@@ -54,3 +54,10 @@ js_library(
     srcs = ["stylelint.config.mjs"],
     deps = [":node_modules/stylelint-config-standard"],
 )
+
+exports_files(
+    [
+        ".flake8",
+    ],
+    visibility = ["//visibility:public"],
+)
