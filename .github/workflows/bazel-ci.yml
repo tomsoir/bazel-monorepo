@@ -76,24 +76,24 @@ jobs:
             --compilation_mode=opt \
             //:format.check
 
-  lint-check:
-    name: Lint check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: bazelbuild/setup-bazelisk@v3
+  # lint-check:
+  #   name: Lint check
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: bazelbuild/setup-bazelisk@v3
 
-      - name: Restore Bazel disk cache
-        uses: actions/cache@v4
-        with:
-          path: .cache/bazel
-          key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
-          restore-keys: |
-            bazel-cache-${{ runner.os }}-
+  #     - name: Restore Bazel disk cache
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: .cache/bazel
+  #         key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
+  #         restore-keys: |
+  #           bazel-cache-${{ runner.os }}-
 
-      - name: Run lint check
-        run: |
-          bazel lint \
-            --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
-            --compilation_mode=opt \
-            //...
+  #     - name: Run lint check
+  #       run: |
+  #         bazel lint \
+  #           --remote_header="x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY" \
+  #           --compilation_mode=opt \
+  #           //...

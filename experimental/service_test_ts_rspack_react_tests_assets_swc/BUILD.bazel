@@ -138,6 +138,7 @@ js_library(
         "package.json",
     ],
     deps = [":tsc"],
+    # tags = ["nolint"],
 )
 
 copy_file(
