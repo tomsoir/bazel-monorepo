@@ -138,7 +138,7 @@ js_library(
         "package.json",
     ],
     deps = [":tsc"],
-    # tags = ["nolint"],
+    # tags = ["no-lint"],
 )
 
 copy_file(

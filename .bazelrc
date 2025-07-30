@@ -20,6 +20,8 @@ common --@aspect_rules_ts//ts:skipLibCheck=always
 # Bazel 6.4 or greater: 'common' means 'any command that supports this flag'
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 
+# common --@aspect_rules_lint//lint:fail_on_violation
+
 common --noenable_workspace
 
 # Enabled local disk cache

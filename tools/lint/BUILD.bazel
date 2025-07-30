@@ -1,12 +1,17 @@
 load("@npm//:eslint/package_json.bzl", eslint_bin = "bin")
 load("@npm//:stylelint/package_json.bzl", stylelint_bin = "bin")
 load("@rules_python//python/entry_points:py_console_script_binary.bzl", "py_console_script_binary")
+load("//tools/lint:linters.bzl", "eslint_test")
 
 package(default_visibility = ["//:__subpackages__"])
 
 # ESlint binary
 # Note-1: test it by running: `$ bazel run //tools/lint:eslint -- --help`)
 # Note-2: run individual target: `$ bazel lint experimental/service_test_ts_rspack_react_tests_assets_swc/...`
+# Note-3: run lint aspect directly: `$ bazel build --aspects=//tools/lint:linters.bzl%eslint //experimental/service_test_ts_rspack_react_tests_assets_swc/...`
+#   This ^ will always be successful, because the aspect implementation has fail_on_violation set to False.
+#   But you can still see the lint exit code (which is saved in the bazel-bin/../AspectRulesLintESLint.out.exit_code file
+#   Run this: `$ cat bazel-bin/experimental/service_test_ts_rspack_react_tests_assets_swc/tsc.AspectRulesLintESLint.out.exit_code`
 eslint_bin.eslint_binary(
     name = "eslint",
     env = {
@@ -15,6 +20,11 @@ eslint_bin.eslint_binary(
         # "DEBUG": "eslint:*",
         # "NODE_PATH": "./node_modules",
     },
+    fixed_args = [
+        # "--no-ignore",
+        # "--no-warn-ignored",
+    ],
+    log_level = "debug",
 )
 
 # Stylelint binary
@@ -28,4 +38,21 @@ stylelint_bin.stylelint_binary(
 py_console_script_binary(
     name = "flake8",
     pkg = "@pypi//flake8:pkg",
+)
+
+# $ bazel lint //...
+eslint_test(
+    name = "lint",
+    srcs = [
+        "//experimental/service_test_ts:tsc",
+        "//experimental/service_test_ts_esbuild:tsc",
+        "//experimental/service_test_ts_infra:tsc",
+        "//experimental/service_test_ts_rspack_react_tests_assets_swc:tsc",
+        "//experimental/service_test_ts_webpack:tsc",
+        "//experimental/service_test_ts_webpack_react:tsc",
+        "//experimental/service_test_ts_webpack_react_tests:tsc",
+        "//experimental/service_test_ts_webpack_react_tests_assets:tsc",
+        "//experimental/service_test_ts_webpack_react_tests_assets_swc:tsc",
+    ],
+    # tags = ["manual"],
 )
