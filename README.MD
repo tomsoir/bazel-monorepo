@@ -111,13 +111,13 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
   - `$ bazel run //:generate_requirements_txt` - ru¡n to update `requirements.txt` automatically.
 
 ### Repo maintenance:
-- `$ bazel fetch //...` - fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
-- `$ bazel fetch @npm//...` - update Bazel's copy of pnpm lockfile. Useful after adding new NPM packages.
-- `$ bazel mod tidy` - (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES.
+- `$ bazel fetch //...` — fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.
+- `$ bazel fetch @npm//...` — update Bazel's copy of pnpm lockfile. Useful after adding new NPM packages.
+- `$ bazel mod tidy` — (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES.
 - `$ bazel run format` — formats everything in the repo.
   - `$ bazel run //:format` — formats everything in the repo (explicit run from the root)
   - `$ bazel run //:format.check` — check if formatting needs to be applied.
-- `$ bazel lint ...` - lints all projects.
+- `$ bazel lint ...` — lints all projects.
     - `$ bazel lint //experimental/service_test_ts_webpack_react_tests/...` — lints individual project.
 
 ## Secrets:
