@@ -122,7 +122,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
 
 ## Secrets:
 - `BUILD_BUDDY_API_KEY` - auth account key for BuildBuddy remote execution UI.
-    - For CI use, it's stored in: `repo` > settings > secrets > actions > BUILD_BUDDY_API_KEY` key.
+    - For CI use, it's stored in: `repo > settings > secrets > actions > BUILD_BUDDY_API_KEY` key.
     - Create a free personal account on [BuildBuddy](https://buildbuddy.io/) to get this key.
 
 ## Other documents:
