@@ -5,13 +5,13 @@ load("@aspect_rules_lint//lint:stylelint.bzl", "lint_stylelint_aspect")
 
 # Eslint
 eslint = lint_eslint_aspect(
-    binary = Label("@//tools/lint:eslint"),
+    binary = Label("//tools/lint:eslint"),
     # ESLint will resolve the configuration file by looking in the working directory first.
     # See https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file-resolution
     # We must also include any other config files we expect eslint to be able to locate, e.g. tsconfigs
     configs = [
-        Label("@//:eslintrc"),
-        Label("@//:eslintrc_tsconfig"),
+        Label("//:eslintrc"),
+        Label("//:eslintrc_tsconfig"),
     ],
 )
 eslint_test = lint_test(aspect = eslint)

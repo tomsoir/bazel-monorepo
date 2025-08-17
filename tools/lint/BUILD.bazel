@@ -23,6 +23,8 @@ eslint_bin.eslint_binary(
     fixed_args = [
         # "--no-ignore",
         # "--no-warn-ignored",
+        "--no-warn-ignored",
+        "--max-warnings=100000",
     ],
     log_level = "debug",
 )
