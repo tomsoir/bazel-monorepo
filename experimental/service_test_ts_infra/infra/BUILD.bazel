@@ -53,6 +53,8 @@ oci_push(
 #     srcs = glob(["k8s_manifests/*.yaml"]),
 #     outs = ["final_k8s.yaml"],
 #     tools = [":tsc_binary_app_bin_image.digest"],
+#
+#     # concatenate all k8s manifests into one file
 #     cmd = """
 #     IMG=$$(tr -d '\\n' < $(location :tsc_binary_app_bin_image.digest))
 #     mkdir -p $$(dirname $@)
@@ -61,4 +63,26 @@ oci_push(
 #         echo -e "\\n---\\n" >> $@
 #     done
 #     """,
+# )
+
+
+# @TODO: Yeah, it works BUT —> NO.
+
+# genrule(
+#     name = "render_chart",
+#     srcs = glob(["helm_chart/**"]),
+#     outs = ["all.manifests.yaml"],
+#     # cmd = """$(HELM_BIN) --help""",
+#     cmd = """
+#       set -euo pipefail
+
+#       CHART_DIR=$$(dirname $(location helm_chart/Chart.yaml))
+
+#       $(HELM_BIN) template myrelease "$$CHART_DIR" \
+#         --namespace default \
+#         --values $(location helm_chart/values.yaml) \
+#         --include-crds \
+#         > "$@"
+#     """,
+#     toolchains = ["@rules_helm//helm:current_toolchain"],
 # )

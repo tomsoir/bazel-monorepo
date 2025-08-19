@@ -28,6 +28,12 @@ alias(
 )
 
 js_library(
+    name = "test_file",
+    srcs = ["test_file.test.mjs"],
+    visibility = ["//visibility:public"],
+)
+
+js_library(
     name = "eslintrc",
     srcs = [
         "eslint.config.mjs",
