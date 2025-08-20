@@ -12,6 +12,7 @@ package(default_visibility = ["//:__subpackages__"])
 #   This ^ will always be successful, because the aspect implementation has fail_on_violation set to False.
 #   But you can still see the lint exit code (which is saved in the bazel-bin/../AspectRulesLintESLint.out.exit_code file
 #   Run this: `$ cat bazel-bin/experimental/service_test_ts_rspack_react_tests_assets_swc/tsc.AspectRulesLintESLint.out.exit_code`
+#   Run aquery to all details: `$ bazel aquery --aspects=//tools/lint:linters.bzl%eslint //experimental/service_test_ts_rspack_react_tests_assets_swc/... --sandbox_debug`
 eslint_bin.eslint_binary(
     name = "eslint",
     env = {
@@ -24,7 +25,7 @@ eslint_bin.eslint_binary(
         # "--no-ignore",
         # "--no-warn-ignored",
         "--no-warn-ignored",
-        "--max-warnings=100000122",
+        "--max-warnings=100000",
     ],
     log_level = "debug",
 )
