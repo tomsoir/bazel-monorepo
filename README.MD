@@ -56,7 +56,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - [x] Gofumpt —> Go
     - [x] SHFMT —> shell/bash scripts
     - [x] terraform —> terraform
-1. [ ] Linting:
+1. [x] Linting:
     - [x] Eslint V9 (flat config format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
     - [x] Stylint —> CSS, SCSS ([commit](https://github.com/tomsoir/bazel-monorepo/commit/b2e651068dc6204a061f3cf38b7fc684d69d0b5e))
     - [x] Flake8 —> Py ([commit](https://github.com/tomsoir/bazel-monorepo/commit/160e7b3b85b902e21eb6589a9e733cb888286a8e))
