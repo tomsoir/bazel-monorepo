@@ -57,7 +57,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - [x] SHFMT —> shell/bash scripts
     - [x] terraform —> terraform
 1. [ ] Linting:
-    - [x] Eslint V9 (new flat format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
+    - [x] Eslint V9 (flat config format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
     - [x] Stylint —> CSS, SCSS ([commit](https://github.com/tomsoir/bazel-monorepo/commit/b2e651068dc6204a061f3cf38b7fc684d69d0b5e))
     - [x] Flake8 —> Py ([commit](https://github.com/tomsoir/bazel-monorepo/commit/160e7b3b85b902e21eb6589a9e733cb888286a8e))
 1. [ ] Development:
@@ -74,17 +74,19 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
       - [ ] New bazel command to create a new project using a template;
 1. [x] CI/CD integration:
     - [x] Renovate bot support to update monorepo dependencies;
-    - [x] Add dependencies review for PRs (license, Vulnerabilities, Denied, etc...);
+    - [x] Add dependencies review for PRs (license, Vulnerabilities, denied, etc...);
     - [x] Use local CI cache to store Bazel artifacts;
     - [x] Build all targets;
     - [x] Run all tests;
     - [x] Run format check;
-    - [ ] Push artifacts to registry;
+    - [x] Run lint check;
 1. [ ] Infra:
     - [x] Docker: create image;
     - [x] Docker: push image to registry;
-    - [ ] K8s: generate manifests;
-    - [ ] K8s: deploy manifests;
+    - [x] K8s: generate manifests with concat;
+    - [x] K8s: generate manifests with helm;
+    - [ ] K8s: manual manifests deploy;
+    - [ ] K8s: gitops manifests deploy;
     - [ ] Terraform: run plan;
     - [ ] Terraform: update cloud manifest;
 
