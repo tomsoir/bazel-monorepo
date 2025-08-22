@@ -6,7 +6,9 @@ import someRandomProjectEslintConfig from './experimental/service_test_ts_webpac
 export default tseslint.config(
   {
     ignores: [
-      '**/package.json' // Ignore all package.json files
+      '**/package.json', // Ignore all package.json files
+      '**/dist/**', // Ignore all dist directories
+      '**/node_modules/**' // Ignore node_modules
     ]
   },
 
@@ -52,10 +54,17 @@ export default tseslint.config(
   // directory.
   // https://eslint.org/docs/latest/use/configure/migration-guide#glob-based-configs
   {
-    files: ['experimental/**'],
-    ignores: [
-      // 'experimental/service_test_ts_webpack_react_tests/**',
+    files: ['experimental/**/*.ts', 'experimental/**/*.tsx'],
+    extends: [
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked
     ],
+    languageOptions: {
+      parserOptions: {
+        // indicates to find the closest tsconfig.json for each source file
+        project: true
+      }
+    },
     rules: {
       '@typescript-eslint/no-redundant-type-constituents': 'error',
       '@typescript-eslint/no-unsafe-assignment': 'off',

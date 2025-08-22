@@ -174,11 +174,7 @@ js_library(
     name = "rspack_dev_config",
     srcs = ["rspack.dev.config.cjs"],
     deps = [
-        # ":node_modules/@hz/build-tools",
-        # ":node_modules/@hz/build-webpack",
-        ":node_modules/@rspack/core",
-        # ":node_modules/@types/node",
-        # ":node_modules/html-webpack-plugin",
+        ":node_modules/html-webpack-plugin",
         ":node_modules/ts-checker-rspack-plugin",
     ],
 )
