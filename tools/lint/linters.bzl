@@ -10,7 +10,9 @@ eslint = lint_eslint_aspect(
     # See https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file-resolution
     # We must also include any other config files we expect eslint to be able to locate, e.g. tsconfigs
     configs = [
-        Label("//:stylelintrc"),
+        # was added here for tests only
+        # Label("//:stylelintrc"),
+
         Label("//:eslintrc"),
         Label("//:eslintrc_tsconfig"),
     ],
