@@ -5,7 +5,7 @@ module(
 
 # ---
 
-bazel_dep(name = "aspect_rules_ts", version = "3.6.3")
+bazel_dep(name = "aspect_rules_ts", version = "3.7.0")
 
 rules_ts_ext = use_extension("@aspect_rules_ts//ts:extensions.bzl", "ext", dev_dependency = True)
 rules_ts_ext.deps(
@@ -15,7 +15,7 @@ use_repo(rules_ts_ext, "npm_typescript")
 
 # ---
 
-bazel_dep(name = "aspect_rules_js", version = "2.4.2")
+bazel_dep(name = "aspect_rules_js", version = "2.5.0")
 
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm", dev_dependency = True)
 npm.npm_translate_lock(
@@ -51,7 +51,7 @@ register_toolchains("@sass_toolchains//:all")
 # ---
 
 # copy_to_bin, etc...
-bazel_dep(name = "aspect_bazel_lib", version = "2.20.0")
+bazel_dep(name = "aspect_bazel_lib", version = "2.21.1")
 
 # ---
 
@@ -114,7 +114,7 @@ bazel_dep(name = "aspect_rules_esbuild", version = "0.22.1")
 
 # ---
 
-bazel_dep(name = "aspect_rules_lint", version = "1.5.3")
+bazel_dep(name = "aspect_rules_lint", version = "1.6.0")
 
 # ---
 
