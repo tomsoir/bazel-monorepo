@@ -12,7 +12,6 @@ eslint = lint_eslint_aspect(
     configs = [
         # was added here for tests only
         # Label("//:stylelintrc"),
-
         Label("//:eslintrc"),
         Label("//:eslintrc_tsconfig"),
     ],
