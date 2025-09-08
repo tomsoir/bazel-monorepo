@@ -33,7 +33,7 @@ use_repo(pnpm, "pnpm")
 
 # ---
 
-bazel_dep(name = "aspect_rules_webpack", version = "0.17.0")
+bazel_dep(name = "aspect_rules_webpack", version = "0.17.1")
 
 # ---
 
