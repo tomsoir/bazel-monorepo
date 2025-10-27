@@ -58,6 +58,7 @@ js_library(
 exports_files(
     [
         ".flake8",
+        ".shellcheckrc",
     ],
     visibility = ["//visibility:public"],
 )
