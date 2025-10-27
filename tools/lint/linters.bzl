@@ -1,8 +1,8 @@
 load("@aspect_rules_lint//lint:eslint.bzl", "lint_eslint_aspect")
 load("@aspect_rules_lint//lint:flake8.bzl", "lint_flake8_aspect")
 load("@aspect_rules_lint//lint:lint_test.bzl", "lint_test")
-load("@aspect_rules_lint//lint:stylelint.bzl", "lint_stylelint_aspect")
 load("@aspect_rules_lint//lint:shellcheck.bzl", "lint_shellcheck_aspect")
+load("@aspect_rules_lint//lint:stylelint.bzl", "lint_stylelint_aspect")
 
 # Eslint
 eslint = lint_eslint_aspect(
