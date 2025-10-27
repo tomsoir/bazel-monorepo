@@ -18,7 +18,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
         - [x] [SWC TypeScript transpiler](https://github.com/aspect-build/rules_swc) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/efaf035d6fb80dbc5a58889eea035e6b00deebf1) (faster TSC alternative);
         - [x] Bundling support:
           - [x] [Webpack](https://webpack.js.org/) support;
-          - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152)
+          - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152);
           - [x] [RSPack](https://rspack.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/ba5865b549f9dbb821b27e2d3c116ff98c0ff21b) (Webpack drop in replacement);
           - [x] [Vite](https://vite.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/66bcb1c95fbd92f189ce4e97315580a17f33e8a3);
         - [x] SCSS-styles support;
@@ -53,23 +53,23 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SQL, Markdown;
     - [x] Yamlfmt —> Yaml;
     - [x] Buildifier —> Starlark;
-    - [x] Gofumpt —> Go
-    - [x] SHFMT —> shell/bash scripts
-    - [x] terraform —> terraform
+    - [x] Gofumpt —> Go;
+    - [x] SHFMT —> shell/bash scripts;
+    - [x] Terraform —> Terraform;
 1. [x] Linting:
     - [x] Eslint V9 (flat config format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
-    - [x] Stylint —> CSS, SCSS ([commit](https://github.com/tomsoir/bazel-monorepo/commit/b2e651068dc6204a061f3cf38b7fc684d69d0b5e))
-    - [x] Flake8 —> Py ([commit](https://github.com/tomsoir/bazel-monorepo/commit/160e7b3b85b902e21eb6589a9e733cb888286a8e))
-    - [x] Shellcheck —> shell/bash scripts ([commit](https://github.com/tomsoir/bazel-monorepo/commit/8fa05d837dafc371c10e61b36909d966e832d593))
+    - [x] Stylint —> CSS, SCSS ([commit](https://github.com/tomsoir/bazel-monorepo/commit/b2e651068dc6204a061f3cf38b7fc684d69d0b5e));
+    - [x] Flake8 —> Py ([commit](https://github.com/tomsoir/bazel-monorepo/commit/160e7b3b85b902e21eb6589a9e733cb888286a8e));
+    - [x] Shellcheck —> shell/bash scripts ([commit](https://github.com/tomsoir/bazel-monorepo/commit/8fa05d837dafc371c10e61b36909d966e832d593));
 1. [ ] Development:
     - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [x] Add watcher IBazel to re-build targets on source files change ([instruction](https://github.com/tomsoir/tomsoir-monorepo/commit/9a851378982eb49e1f564928a091e7bb8b7627f3));
     - [x] Add custom Bazel rules examples:
-        - [x] Simple Bazel rule example of creating a file in bazel-bin ([commit](https://github.com/tomsoir/bazel-monorepo/commit/6aa4be60c563ce90c2919ee7db38df209b85496d))
-        - [x] Simple Bazel rule example of using a dependency rule ([commit](https://github.com/tomsoir/bazel-monorepo/commit/e023f613a194360642d4135fc93a8412905e7591))
-        - [x] Simple Bazel rule example of using external (Go-app) binary ([commit](https://github.com/tomsoir/bazel-monorepo/commit/354d367e734b5c08cf836334c91a63d8868ddffe))
-        - [x] Simple Bazel rule example of writing back to the source of the project workspace ([commit](https://github.com/tomsoir/bazel-monorepo/commit/04766499fbc61cb8a4eba82b090bce1ad4f8de03))
-    - [ ] Auto-generate documentation
+        - [x] Simple Bazel rule example of creating a file in bazel-bin ([commit](https://github.com/tomsoir/bazel-monorepo/commit/6aa4be60c563ce90c2919ee7db38df209b85496d));
+        - [x] Simple Bazel rule example of using a dependency rule ([commit](https://github.com/tomsoir/bazel-monorepo/commit/e023f613a194360642d4135fc93a8412905e7591));
+        - [x] Simple Bazel rule example of using external (Go-app) binary ([commit](https://github.com/tomsoir/bazel-monorepo/commit/354d367e734b5c08cf836334c91a63d8868ddffe));
+        - [x] Simple Bazel rule example of writing back to the source of the project workspace ([commit](https://github.com/tomsoir/bazel-monorepo/commit/04766499fbc61cb8a4eba82b090bce1ad4f8de03));
+    - [ ] Auto-generate documentation;
     - [ ] Use Gazelle to auto-update BUILD files;
     - [ ] Custom scripts:
       - [ ] New bazel command to create a new project using a template;
@@ -118,7 +118,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
 - `$ bazel fetch @npm//...` — update Bazel's copy of pnpm lockfile. Useful after adding new NPM packages.
 - `$ bazel mod tidy` — (analog of `bazel sync` in WORKSPACE) sync / check the status of dependencies in MODULES.
 - `$ bazel run format` — formats everything in the repo.
-  - `$ bazel run //:format` — formats everything in the repo (explicit run from the root)
+  - `$ bazel run //:format` — formats everything in the repo (explicit run from the root).
   - `$ bazel run //:format.check` — check if formatting needs to be applied.
 - `$ bazel lint ...` — lints all projects.
     - `$ bazel lint //experimental/service_test_ts_webpack_react_tests/...` — lints individual project.
