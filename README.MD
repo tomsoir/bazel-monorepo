@@ -60,7 +60,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - [x] Eslint V9 (flat config format) —> JS, JSX, TS, TSX, CJS, MJS. ([commit](https://github.com/tomsoir/tomsoir-monorepo/commit/3efb77f17ce9e584e49616395f797be97f0f71f3));
     - [x] Stylint —> CSS, SCSS ([commit](https://github.com/tomsoir/bazel-monorepo/commit/b2e651068dc6204a061f3cf38b7fc684d69d0b5e))
     - [x] Flake8 —> Py ([commit](https://github.com/tomsoir/bazel-monorepo/commit/160e7b3b85b902e21eb6589a9e733cb888286a8e))
-    - [x] Shellcheck —> shell/bash scripts ([commit](?))
+    - [x] Shellcheck —> shell/bash scripts ([commit](https://github.com/tomsoir/bazel-monorepo/commit/8fa05d837dafc371c10e61b36909d966e832d593))
 1. [ ] Development:
     - [x] Add Remote Cache Execution [support](https://github.com/tomsoir/tomsoir-monorepo/commit/7dde136d44f72132bbb03c81aa2511de35ec19b9) with [BuildBuddy](https://buildbuddy.io/);
     - [x] Add watcher IBazel to re-build targets on source files change ([instruction](https://github.com/tomsoir/tomsoir-monorepo/commit/9a851378982eb49e1f564928a091e7bb8b7627f3));
