@@ -1,0 +1,39 @@
+load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_devserver")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+package(default_visibility = ["//:__subpackages__"])
+
+webpack_devserver(
+    name = "serve",
+    chdir = package_name(),
+    data = [
+        #
+        # These two work just fine TOO :)
+        # "//experimental/service_test_ts_webpack_react_filegroup_test/service_producer:webpack_build",
+        # "//experimental/service_test_ts_webpack_react_filegroup_test/service_producer:index_html_to_bin_root",
+        #
+        # This is filegroup demo —> it works
+        # CONTEXT: I would like to test how it is to run in Project A files-outputs generated in Project B
+        #
+        # PROBLEM: files-outputs generated in service_producer are not copied to service_consumer so
+        # in service_consumer, in it's webpack config we have to adjust resolving path for dev server
+        # config to be aligned (path.resolve(__dirname, '..', 'service_producer', 'webpack_build.js'))
+        # with the path to service_producer :( — what a bullshit :(
+        #
+        # IMPORTANT: in order to make it work at first, i did a lot of $ bazel clean
+        # since for some reasons without it everything stucked heavily in bazel cache.
+        # SO THIS IS MUST TO RUN bazel clean OR use --sandbox_debug all the time when running
+        # $ bazel run //experimental/service_test_ts_webpack_react_filegroup_test/service_consumer:serve
+        "//experimental/service_test_ts_webpack_react_filegroup_test/service_producer:exported_data",
+        #
+        ":node_modules/webpack-cli",
+        ":node_modules/webpack-dev-server",
+    ],
+    grant_sandbox_write_permissions = True,
+    log_level = "error",
+    node_modules = ":node_modules",
+    tags = ["webpack_serve"],
+    webpack_config = "webpack.config.cjs",
+)

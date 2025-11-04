@@ -1,0 +1,61 @@
+load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+package(default_visibility = ["//:__subpackages__"])
+
+copy_file(
+    name = "index_html_to_bin_root",
+    src = "src/index.html",
+    out = "index.html",
+)
+
+ts_project(
+    name = "tsc",
+    srcs = glob([
+        "src/**/*.tsx",
+    ]),
+    allow_js = False,
+    declaration = True,
+    declaration_map = True,
+    incremental = True,
+    out_dir = "dist",
+    resolve_json_module = True,
+    root_dir = "src",
+    source_map = True,
+    tsconfig = "tsconfig.json",
+    deps = [
+        ":node_modules/@types/react",
+        ":node_modules/@types/react-dom",
+        ":node_modules/react",
+        ":node_modules/react-dom",
+        ":node_modules/webpack-dev-server",
+    ],
+)
+
+webpack_bundle(
+    name = "webpack_build",
+    srcs = [":tsc"],
+    chdir = package_name(),
+    entry_point = "dist/index.js",
+    node_modules = ":node_modules",
+    output_dir = False,
+    tags = ["webpack"],
+    webpack_config = "webpack.config.cjs",
+    deps = [
+        ":node_modules/webpack",
+        ":node_modules/webpack-dev-server",
+    ],
+)
+
+filegroup(
+    name = "exported_data",
+    data = [
+        ":index_html_to_bin_root",
+        ":webpack_build",
+    ],
+)

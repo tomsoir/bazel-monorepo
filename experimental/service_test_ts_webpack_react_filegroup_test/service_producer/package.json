@@ -1,0 +1,31 @@
+{
+  "name": "service_test_ts_webpack_react_filegroup_test_producer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build:clean": "rm -rf ./dist tsconfig.tsbuildinfo",
+    "build:tsc": "tsc",
+    "build:webpack_bundle": "webpack",
+    "build:index_html": "cp ./src/index.html ./dist/index.html",
+    "build": "pnpm run build:clean && pnpm run build:tsc && pnpm run build:webpack_bundle && pnpm run build:index_html",
+    "serve": "pnpm run build && webpack serve --open",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
