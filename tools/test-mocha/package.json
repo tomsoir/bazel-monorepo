@@ -9,6 +9,6 @@
   "dependencies": {
     "dotenv": "17.2.3",
     "source-map-support": "0.5.21",
-    "mocha": "11.7.4"
+    "mocha": "11.7.5"
   }
 }
