@@ -112,7 +112,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
   #### Manual dependencies update in monorepo (including transitive dependencies).
   - Use `requirements.in` file to manage (install new, update or remove old) Python dependencies in the entire monorepo.
   - `$ bazel run //:pip_generate_requirements_txt` - run to update `requirements.txt` automatically.
-  - `$ bazel run //:pip_update_requirements` - run to update versions in `requirements.txt` automatically.
+  - `$ bazel run //:pip_generate_requirements_txt -- --upgrade` - run to update versions in `requirements.txt` automatically.
 
 ### Repo maintenance:
 - `$ bazel fetch //...` — fetches all external dependencies required for building all targets in your workspace. Note: It does this without actually building them.

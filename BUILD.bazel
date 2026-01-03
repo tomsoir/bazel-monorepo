@@ -9,14 +9,9 @@ package(default_visibility = ["//visibility:public"])
 
 # Generate requirements.txt from requirements.in
 # $ bazel run //:pip_generate_requirements_txt
-pip_compile(name = "pip_generate_requirements_txt")
-
 # Update all packages to latest versions (like npm update)
-# $ bazel run //:pip_update_requirements
-pip_compile(
-    name = "pip_update_requirements",
-    extra_args = ["--upgrade"],
-)
+# $ bazel run @@//:pip_generate_requirements_txt -- --upgrade
+pip_compile(name = "pip_generate_requirements_txt")
 
 js_library(
     name = "prettierrc",
