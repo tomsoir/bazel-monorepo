@@ -118,4 +118,4 @@ bazel_dep(name = "aspect_rules_lint", version = "1.13.0")
 
 # ---
 
-bazel_dep(name = "rules_helm", version = "0.17.0")
+bazel_dep(name = "rules_helm", version = "0.20.1")
