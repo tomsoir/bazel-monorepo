@@ -66,7 +66,7 @@ bazel_dep(name = "buildifier_prebuilt", version = "8.2.1.1")
 
 bazel_dep(name = "rules_uv", version = "0.88.0", dev_dependency = True)
 
-bazel_dep(name = "rules_python", version = "1.6.3")
+bazel_dep(name = "rules_python", version = "1.7.0")
 
 bazel_dep(name = "aspect_rules_py", version = "1.6.6", dev_dependency = True)
 
