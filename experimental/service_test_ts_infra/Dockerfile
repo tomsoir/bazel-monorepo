@@ -1,6 +1,6 @@
 # /app/Dockerfile
 
-FROM node:22-slim
+FROM node:24-slim
 # Set working directory
 WORKDIR /app
 # Copy the pre-built binary from Bazel
