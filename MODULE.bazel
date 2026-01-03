@@ -110,7 +110,7 @@ use_repo(oci, "node_20_slim", "node_20_slim_linux_amd64")
 
 # ---
 
-bazel_dep(name = "aspect_rules_esbuild", version = "0.23.0")
+bazel_dep(name = "aspect_rules_esbuild", version = "0.25.0")
 
 # ---
 
