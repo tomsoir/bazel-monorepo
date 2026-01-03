@@ -1,5 +1,5 @@
 cowsay
-flask == 3.0.2
+flask
 pytest
 pytest-cov
 flake8
