@@ -76,7 +76,7 @@
   - Add `requirements.in` and `requirements.txt` if the root of the repo.
     - `requirements.in` - for manual dependencies update
     - `requirements.txt` - this is actually requirements LOCK file and it updates automatically. It contains all meta info related to deps and transitive deps for python.
-      - Use: `$ bazel run //:generate_requirements_txt` to update it
+      - Use: `$ bazel run //:pip_generate_requirements_txt` to update it
   - [Add Python language support — commit](https://github.com/tomsoir/tomsoir-monorepo/commit/1c0efc049f7ae6babb20d16b616b7061b46e5c95)
   - [Add Python tests support - commit](https://github.com/tomsoir/tomsoir-monorepo/commit/aaf9d7b5d0cb7b8212d418710bfff54c5b854209)
 

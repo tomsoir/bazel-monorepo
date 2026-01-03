@@ -14,4 +14,4 @@ $ bazel run test_app_with_deps_server
 
 ## Dependency update
 - Simply update the `requirements.in` file in the root folder with the new dependency
-- Run `$ bazel run //:generate_requirements_txt` - run update requirements lock file (`requirements.txt`)
+- Run `$ bazel run //:pip_generate_requirements_txt` - run update requirements lock file (`requirements.txt`)
