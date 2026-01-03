@@ -120,8 +120,8 @@ importers:
         specifier: 1.6.8
         version: 1.6.8(@swc/helpers@0.5.18)
       '@rspack/dev-server':
-        specifier: 1.1.4
-        version: 1.1.4(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
+        specifier: 1.1.5
+        version: 1.1.5(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
       '@types/chai':
         specifier: ^5.0.1
         version: 5.2.2
@@ -433,8 +433,8 @@ importers:
         specifier: 1.6.8
         version: 1.6.8(@swc/helpers@0.5.18)
       '@rspack/dev-server':
-        specifier: 1.1.4
-        version: 1.1.4(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
+        specifier: 1.1.5
+        version: 1.1.5(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
       source-map-loader:
         specifier: 5.0.0
         version: 5.0.0(webpack@5.102.1(webpack-cli@6.0.1))
@@ -1235,8 +1235,8 @@ packages:
       '@swc/helpers':
         optional: true
 
-  '@rspack/dev-server@1.1.4':
-    resolution: {integrity: sha512-kGHYX2jYf3ZiHwVl0aUEPBOBEIG1aWleCDCAi+Jg32KUu3qr/zDUpCEd0wPuHfLEgk0X0xAEYCS6JMO7nBStNQ==}
+  '@rspack/dev-server@1.1.5':
+    resolution: {integrity: sha512-cwz0qc6iqqoJhyWqxP7ZqE2wyYNHkBMQUXxoQ0tNoZ4YNRkDyQ4HVJ/3oPSmMKbvJk/iJ16u7xZmwG6sK47q/A==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@rspack/core': '*'
@@ -4440,18 +4440,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.18.2:
-    resolution: {integrity: sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.18.3:
     resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
     engines: {node: '>=10.0.0'}
@@ -5177,7 +5165,7 @@ snapshots:
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@rspack/core': 1.6.8(@swc/helpers@0.5.18)
-      '@rspack/dev-server': 1.1.4(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
+      '@rspack/dev-server': 1.1.5(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
       exit-hook: 4.0.0
       webpack-bundle-analyzer: 4.10.2
     transitivePeerDependencies:
@@ -5197,14 +5185,14 @@ snapshots:
     optionalDependencies:
       '@swc/helpers': 0.5.18
 
-  '@rspack/dev-server@1.1.4(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))':
+  '@rspack/dev-server@1.1.5(@rspack/core@1.6.8(@swc/helpers@0.5.18))(@types/express@4.17.25)(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))':
     dependencies:
       '@rspack/core': 1.6.8(@swc/helpers@0.5.18)
       chokidar: 3.6.0
       http-proxy-middleware: 2.0.9(@types/express@4.17.25)
       p-retry: 6.2.1
       webpack-dev-server: 5.2.2(supports-color@10.2.2)(webpack-cli@6.0.1(webpack@5.102.1))(webpack@5.102.1(webpack-cli@6.0.1))
-      ws: 8.18.2
+      ws: 8.18.3
     transitivePeerDependencies:
       - '@types/express'
       - bufferutil
@@ -5434,7 +5422,7 @@ snapshots:
 
   '@types/http-proxy@1.17.17':
     dependencies:
-      '@types/node': 24.10.0
+      '@types/node': 22.19.0
 
   '@types/json-schema@7.0.15': {}
 
@@ -8894,8 +8882,6 @@ snapshots:
   ws@8.17.1: {}
 
   ws@8.18.0: {}
-
-  ws@8.18.2: {}
 
   ws@8.18.3: {}
 
