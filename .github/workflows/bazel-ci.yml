@@ -18,7 +18,7 @@ jobs:
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
@@ -40,7 +40,7 @@ jobs:
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
@@ -62,7 +62,7 @@ jobs:
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
@@ -84,7 +84,7 @@ jobs:
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
