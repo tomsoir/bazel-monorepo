@@ -27,6 +27,6 @@
     "@rspack/cli": "1.7.2",
     "@rspack/dev-server": "1.1.5",
     "ts-checker-rspack-plugin": "1.2.3",
-    "@rsdoctor/rspack-plugin": "1.4.0"
+    "@rsdoctor/rspack-plugin": "1.5.0"
   }
 }
