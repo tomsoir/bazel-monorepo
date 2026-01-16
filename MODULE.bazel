@@ -119,3 +119,12 @@ bazel_dep(name = "aspect_rules_lint", version = "1.13.0")
 # ---
 
 bazel_dep(name = "rules_helm", version = "0.20.1")
+
+# ---
+
+ext = use_extension("//:tools/skylib/test_repo_rules.bzl", "my_ext")
+ext.repo(
+    name = "my_external_repo",
+    message = "YO This is a message from an external repo!",
+)
+use_repo(ext, "my_external_repo")

@@ -43,3 +43,10 @@ qux_binary(
     src = [":hello_baz_bin1"],
     write_to_source_path = "experimental/random/",
 )
+
+genrule(
+    name = "print_hello_by_repo_rule",
+    srcs = ["@my_external_repo//:hello"],
+    outs = ["print_hello_by_repo_rule_out.txt"],
+    cmd = "cat $(location @my_external_repo//:hello) > $@",
+)
