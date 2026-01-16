@@ -48,6 +48,13 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
       - [x] Testing:
         - [x] Tests support;
         - [x] Tests coverage;
+    - [x] Rust;
+      - [ ] Building:
+        - [ ] Build internal packages;
+        - [ ] Build external packages (go_dependency support);
+      - [ ] Testing:
+        - [ ] Tests support;
+        - [ ] Tests coverage;
 1. [x] Formatting:
     - [x] Ruff —> Python;
     - [x] Prettier —> JS, TS, HTML, CSS, SCSS, SQL, Markdown;
