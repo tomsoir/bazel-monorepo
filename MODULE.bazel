@@ -68,7 +68,7 @@ bazel_dep(name = "rules_uv", version = "0.89.2", dev_dependency = True)
 
 bazel_dep(name = "rules_python", version = "1.7.0")
 
-bazel_dep(name = "aspect_rules_py", version = "1.6.6", dev_dependency = True)
+bazel_dep(name = "aspect_rules_py", version = "1.8.4", dev_dependency = True)
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(python_version = "3.12")
