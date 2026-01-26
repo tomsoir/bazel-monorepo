@@ -150,8 +150,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(webpack@5.104.1(webpack-cli@6.0.1))
       ts-checker-rspack-plugin:
-        specifier: 1.2.3
-        version: 1.2.3(@rspack/core@1.7.2(@swc/helpers@0.5.18))(typescript@5.9.3)
+        specifier: 1.2.6
+        version: 1.2.6(@rspack/core@1.7.2(@swc/helpers@0.5.18))(typescript@5.9.3)
 
   experimental/service_test_ts_vite_vitest_tests:
     dependencies:
@@ -3090,9 +3090,6 @@ packages:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
     engines: {node: '>= 0.8'}
 
-  memfs@4.49.0:
-    resolution: {integrity: sha512-L9uC9vGuc4xFybbdOpRLoOAOq1YEBBsocCs5NVW32DfU+CZWWIn3OVF+lB8Gp4ttBVSMazwrTrjv8ussX/e3VQ==}
-
   memfs@4.51.1:
     resolution: {integrity: sha512-Eyt3XrufitN2ZL9c/uIRMyDwXanLI88h/L3MoWqNY747ha3dMR9dWqp8cRT5ntjZ0U1TNuq4U91ZXK0sMBjYOQ==}
 
@@ -4065,10 +4062,10 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
-  ts-checker-rspack-plugin@1.2.3:
-    resolution: {integrity: sha512-Fq2+/sSILEJKWrqoj/H+ytnBbYrudPfRLxaULA/MuL+/3jswXuiR4MOfL30R9XzVUD2km0pSx6bj8yk95IEOaA==}
+  ts-checker-rspack-plugin@1.2.6:
+    resolution: {integrity: sha512-aAJIfoNr2cPu8G6mqp/oPoNlUT/LgNoqt2n3SsbxWG0TwQogbjsYsr2f/fdsufUDoGDu8Jolmpf3L4PmIH/cEg==}
     peerDependencies:
-      '@rspack/core': ^1.0.0
+      '@rspack/core': ^1.0.0 || ^2.0.0-0
       typescript: '>=3.8.0'
     peerDependenciesMeta:
       '@rspack/core':
@@ -7306,15 +7303,6 @@ snapshots:
 
   media-typer@1.1.0: {}
 
-  memfs@4.49.0:
-    dependencies:
-      '@jsonjoy.com/json-pack': 1.21.0(tslib@2.8.1)
-      '@jsonjoy.com/util': 1.9.0(tslib@2.8.1)
-      glob-to-regex.js: 1.2.0(tslib@2.8.1)
-      thingies: 2.5.0(tslib@2.8.1)
-      tree-dump: 1.1.0(tslib@2.8.1)
-      tslib: 2.8.1
-
   memfs@4.51.1:
     dependencies:
       '@jsonjoy.com/json-pack': 1.21.0(tslib@2.8.1)
@@ -8408,7 +8396,7 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  ts-checker-rspack-plugin@1.2.3(@rspack/core@1.7.2(@swc/helpers@0.5.18))(typescript@5.9.3):
+  ts-checker-rspack-plugin@1.2.6(@rspack/core@1.7.2(@swc/helpers@0.5.18))(typescript@5.9.3):
     dependencies:
       '@babel/code-frame': 7.27.1
       '@rspack/lite-tapable': 1.1.0
@@ -8712,7 +8700,7 @@ snapshots:
   webpack-dev-middleware@7.4.2(webpack@5.102.1):
     dependencies:
       colorette: 2.0.20
-      memfs: 4.49.0
+      memfs: 4.51.1
       mime-types: 2.1.35
       on-finished: 2.4.1
       range-parser: 1.2.1
@@ -8723,7 +8711,7 @@ snapshots:
   webpack-dev-middleware@7.4.2(webpack@5.104.1(webpack-cli@6.0.1)):
     dependencies:
       colorette: 2.0.20
-      memfs: 4.49.0
+      memfs: 4.51.1
       mime-types: 2.1.35
       on-finished: 2.4.1
       range-parser: 1.2.1
@@ -8734,7 +8722,7 @@ snapshots:
   webpack-dev-middleware@7.4.2(webpack@5.99.9):
     dependencies:
       colorette: 2.0.20
-      memfs: 4.49.0
+      memfs: 4.51.1
       mime-types: 2.1.35
       on-finished: 2.4.1
       range-parser: 1.2.1
