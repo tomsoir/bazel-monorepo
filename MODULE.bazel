@@ -37,19 +37,6 @@ bazel_dep(name = "aspect_rules_webpack", version = "0.17.1")
 
 # ---
 
-# https://github.com/bazelbuild/rules_sass
-# https://github.com/GZGavinZhao/gzgz_rules_sass
-bazel_dep(name = "gzgz_rules_sass", version = "1.0.4")
-
-sass = use_extension("@gzgz_rules_sass//sass:extensions.bzl", "sass")
-use_repo(sass, "sass_toolchains")
-
-sass.toolchain(sass_version = "1.63.6")
-
-register_toolchains("@sass_toolchains//:all")
-
-# ---
-
 # copy_to_bin, etc...
 bazel_dep(name = "aspect_bazel_lib", version = "2.22.5")
 

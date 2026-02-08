@@ -2,10 +2,10 @@ load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library", "js_test")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
-load("@gzgz_rules_sass//sass:defs.bzl", "sass_binary", "sass_library")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("//:tools/skylib/ts.bzl", "ts_project")
 load("//tools/rspack:rspack.bzl", "rspack")
+load("//tools/sass:sass.bzl", "sass_binary")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -105,21 +105,16 @@ ts_project(
     ],
 )
 
-sass_library(
-    name = "styles_lib",
+sass_binary(
+    name = "styles",
+    src = "src/styles.scss",
     srcs = [
         "src/styles.scss",
         "src/styles/_reset.scss",
         "src/styles/_variables.scss",
     ],
-)
-
-sass_binary(
-    name = "styles",
-    src = "src/styles.scss",
     output_dir = "dist",
     output_name = "styles.css",
-    deps = [":styles_lib"],
 )
 
 copy_to_bin(
