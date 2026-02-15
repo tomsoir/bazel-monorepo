@@ -21,7 +21,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
           - [x] [ESbuild](https://esbuild.github.io/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/444a709f6c61455db5dac848f1e144b2caffa152);
           - [x] [RSPack](https://rspack.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/ba5865b549f9dbb821b27e2d3c116ff98c0ff21b) (Webpack drop in replacement);
           - [x] [Vite](https://vite.dev/) [support](https://github.com/tomsoir/tomsoir-monorepo/commit/66bcb1c95fbd92f189ce4e97315580a17f33e8a3);
-        - [x] SCSS-styles support;
+        - [x] SASS-styles support;
           - [x] "use" imports support;
         - [x] Static assets support;
           - [x] Image support example;
@@ -107,6 +107,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
     - `$ bazel test --test_output=all ...` - to see tests output in cli.
   - `$ bazel coverage ...` - generate tests coverage.
     - `$ bazel coverage --combined_report=lcov --test_output=all ...` - to see tests output + tests coverage files (in `coverage.dat`).
+  - `$ bazel run format` — formats everything in the repo.
   - `$ bazel lint ...` - lint all projects.
     - `$ bazel lint ... --fix` - lint fix all projects.
     - `$ bazel lint //experimental/service_test_ts_webpack_react_tests/...` — lint individual project.
