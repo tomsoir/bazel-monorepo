@@ -331,6 +331,21 @@
   },
   "selectedYankedVersions": {},
   "moduleExtensions": {
+    "//:tools/skylib/test_repo_rules.bzl%my_ext": {
+      "general": {
+        "bzlTransitiveDigest": "9NnrnzJHYXYKhoB/5DFAkye3qnChTxYY6JfkNYv1U24=",
+        "usagesDigest": "sCR/vD4C2q/HGzW7bI7YDN2Mr7Baafcub9lI8CcGpa4=",
+        "recordedInputs": [],
+        "generatedRepoSpecs": {
+          "my_external_repo": {
+            "repoRuleId": "@@//:tools/skylib/test_repo_rules.bzl%my_repo_rule",
+            "attributes": {
+              "message": "YO This is a message from an external repo!"
+            }
+          }
+        }
+      }
+    },
     "@@aspect_rules_esbuild+//esbuild:extensions.bzl%esbuild": {
       "general": {
         "bzlTransitiveDigest": "SfAY5HeAzLCXgowge4572gMzHqZMoMRqQJiUtrrYFKY=",
@@ -597,6 +612,30 @@
                 "win32-arm64-msvc",
                 "win32-ia32-msvc",
                 "win32-x64-msvc"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "@@aspect_rules_ts+//ts:extensions.bzl%ext": {
+      "general": {
+        "bzlTransitiveDigest": "0x2uPkuOIrWo9tuSknWjv7baO5s4Ak+I+QfM4bke3M4=",
+        "usagesDigest": "1RjVirrkyv9AWUYOXhPWgPFMj6r+xf2848+eJXhbqR4=",
+        "recordedInputs": [
+          "REPO_MAPPING:aspect_rules_ts+,aspect_rules_ts aspect_rules_ts+",
+          "REPO_MAPPING:aspect_rules_ts+,bazel_tools bazel_tools",
+          "FILE:@@//package.json 698514c33c34333957f46a3badc53f173a2857ceec4a042c07f2063366b81b35"
+        ],
+        "generatedRepoSpecs": {
+          "npm_typescript": {
+            "repoRuleId": "@@aspect_rules_ts+//ts/private:npm_repositories.bzl%http_archive_version",
+            "attributes": {
+              "version": "",
+              "version_from": "@@//:package.json",
+              "integrity": "",
+              "urls": [
+                "https://registry.npmjs.org/typescript/-/typescript-{}.tgz"
               ]
             }
           }
