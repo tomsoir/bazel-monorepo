@@ -6,7 +6,7 @@
   "devDependencies": {
     "@rspack/cli": "1.7.6",
     "@rspack/core": "1.7.6",
-    "@rspack/dev-server": "1.1.5",
+    "@rspack/dev-server": "1.2.1",
     "source-map-loader": "5.0.0"
   }
 }
