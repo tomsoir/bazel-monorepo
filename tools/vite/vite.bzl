@@ -11,6 +11,7 @@ BUILD_DEPS = [
     ":node_modules/jsdom",
     ":node_modules/react",
     ":node_modules/react-dom",
+    ":node_modules/@vitest/coverage-v8",
     ":node_modules/vitest",
     ":node_modules/vite",
 ]
