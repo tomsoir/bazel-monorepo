@@ -18,6 +18,7 @@ js_library(
         "scripts/mocha-test.mjs",
     ],
     deps = [
+        ":node_modules/c8",
         ":node_modules/dotenv",
         ":node_modules/mocha",
         ":node_modules/source-map-support",

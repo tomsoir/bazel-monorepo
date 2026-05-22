@@ -29,6 +29,8 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
       - [x] Testing:
         - [x] Tests spec files separation from the source code in Bazel (`:tsc` and `:tsc_tests` are separate);
         - [x] Tests coverage;
+          - [x] Vitest coverage;
+          - [x] Mocha coverage;
         - [x] Mocha/Chai support;
         - [x] Vitest support;
       - [x] Developing:

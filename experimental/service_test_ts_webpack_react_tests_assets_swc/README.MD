@@ -13,6 +13,8 @@ $ bazel run :serve
 
 $ bazel test :test
 $ bazel test ... --sandbox_debug
+
+$ bazel coverage :test --test_output=all
 ```
 
 Local development commands for testing purposes only

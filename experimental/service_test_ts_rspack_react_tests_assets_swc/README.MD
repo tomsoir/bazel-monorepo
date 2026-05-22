@@ -16,6 +16,8 @@ $ bazel run rspack_bundle_dev.serve
 
 $ bazel test :test
 $ bazel test ... --sandbox_debug
+
+$ bazel coverage :test --test_output=all
 ```
 
 # Live development with iBazel
