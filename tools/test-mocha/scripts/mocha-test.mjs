@@ -52,7 +52,7 @@ function getMochaArgs() {
     '--check-leaks',
     '--no-warnings',
     '--fail-zero',
-    DEFAULT_FILES,
+    DEFAULT_FILES
   ];
 }
 
@@ -66,7 +66,7 @@ function getCoverageExclude() {
     '**/*.spec.ts',
     '**/*.spec.js',
     '**/*.test.ts',
-    '**/*.test.js',
+    '**/*.test.js'
   ];
 }
 
@@ -116,7 +116,7 @@ async function runMochaTests() {
         '--',
         nodeBin,
         _mocha_bin,
-        ...mochaArgs,
+        ...mochaArgs
       ];
 
       exitCode = await runCommand(nodeBin, c8Args, env, _package_dir);
