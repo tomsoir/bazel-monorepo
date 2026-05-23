@@ -4,6 +4,9 @@
 # Settings that apply only to CI are in .github/workflows/ci.bazelrc
 
 common --enable_bzlmod
+# Enforce MODULE.bazel.lock for reproducible bzlmod dependency resolution.
+# Regenerate after MODULE.bazel changes: bazel mod deps --lockfile_mode=update
+common --lockfile_mode=error
 
 # Load any settings specific to the current user.
 # .bazelrc.user should appear in .gitignore so that settings are not shared with team members

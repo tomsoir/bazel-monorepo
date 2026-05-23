@@ -28,6 +28,16 @@ format_multirun(
     go = "@aspect_rules_lint//format:gofumpt",
     graphql = ":prettier",
     html = ":prettier",
+    # Show each HTML file Prettier touches; default --log-level=warn only prints
+    # "N files left unchanged", which looks like HTML was skipped.
+    html_check_args = [
+        "--check",
+        "--log-level=warn",
+    ],
+    html_fix_args = [
+        "--write",
+        "--log-level=log",
+    ],
     javascript = ":prettier",
     markdown = ":prettier",
     python = "@aspect_rules_lint//format:ruff",
