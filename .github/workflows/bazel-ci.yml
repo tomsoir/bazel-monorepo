@@ -101,5 +101,4 @@ jobs:
           aspect lint \
             --remote_header=x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY \
             --compilation_mode=opt \
-            --strategy=hard \
             //...
