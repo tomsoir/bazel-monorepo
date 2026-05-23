@@ -99,6 +99,7 @@ jobs:
       - name: Run lint check
         run: |
           aspect lint \
-            --bazel-flag=--remote_header=x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY \
-            --bazel-flag=--compilation_mode=opt \
+            --remote_header=x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY \
+            --compilation_mode=opt \
+            --strategy=hard \
             //...
