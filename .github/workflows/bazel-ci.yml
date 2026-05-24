@@ -98,7 +98,7 @@ jobs:
 
       - name: Run lint check
         run: |
-          aspect lint \
+          aspect lint //... \
+            -- \
             --remote_header=x-buildbuddy-api-key=$BUILD_BUDDY_API_KEY \
-            --compilation_mode=opt \
-            //...
+            --compilation_mode=opt
