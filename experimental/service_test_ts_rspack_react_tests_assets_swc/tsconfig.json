@@ -6,7 +6,7 @@
     "incremental": true,
     "sourceMap": true,
     "noUnusedLocals": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "importHelpers": true,
     "inlineSources": true,

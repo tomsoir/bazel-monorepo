@@ -97,7 +97,7 @@ ts_project(
             "sourceMap": True,
             "inlineSources": True,
             "noUnusedLocals": True,
-            "moduleResolution": "node",
+            "moduleResolution": "bundler",
             "esModuleInterop": True,
             "importHelpers": True,
             "allowSyntheticDefaultImports": True,
@@ -115,6 +115,11 @@ ts_project(
             "resolveJsonModule": True,
             "strictNullChecks": True,
             "jsx": "react-jsx",
+            "types": [
+                "mocha",
+                "chai",
+            ],
+            "typeRoots": ["./node_modules/@types"],
             "outDir": "dist",
             "rootDir": "src",
             # This is super to 1. use "rootDirs" and have two source paths there:
