@@ -138,8 +138,8 @@ importers:
         specifier: ^6.0.0
         version: 6.2.2
       html-webpack-plugin:
-        specifier: 5.6.7
-        version: 5.6.7(@rspack/core@1.7.12(@swc/helpers@0.5.21))(webpack@5.105.0(webpack-cli@6.0.1))
+        specifier: 5.6.8
+        version: 5.6.8(@rspack/core@1.7.12(@swc/helpers@0.5.21))(webpack@5.105.0(webpack-cli@6.0.1))
       mocha:
         specifier: ^11.1.0
         version: 11.1.0
@@ -2901,11 +2901,11 @@ packages:
     resolution: {integrity: sha512-n6l5uca7/y5joxZ3LUePhzmBFUJ+U2YWzhMa8XUTecSeSlQiZdF5XAd/Q3/WUl0VsXgUwWi8I7CNIwdI5WN1SQ==}
     engines: {node: '>=20.10'}
 
-  html-webpack-plugin@5.6.7:
-    resolution: {integrity: sha512-md+vXtdCAe60s1k6AU3dUyMJnDxUyQAwfwPKoLisvgUF1IXjtlLsk2se54+qfL9Mdm26bbwvjJybpNx48NKRLw==}
+  html-webpack-plugin@5.6.8:
+    resolution: {integrity: sha512-MZmKQcTnhEh1SPSyMiEytIeDZDUoBZVorNHivQGXMASHf/BSGGOrKa2xQ5bGx3TCe1n109ecCt+cpww7wwWhKA==}
     engines: {node: '>=10.13.0'}
     peerDependencies:
-      '@rspack/core': 0.x || 1.x
+      '@rspack/core': 0.x || 1.x || 2.x
       webpack: ^5.20.0
     peerDependenciesMeta:
       '@rspack/core':
@@ -4167,10 +4167,6 @@ packages:
 
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
-    engines: {node: '>=6'}
-
-  tapable@2.3.2:
-    resolution: {integrity: sha512-1MOpMXuhGzGL5TTCZFItxCc0AARf1EZFQkGqMm7ERKj8+Hgr5oLvJOVFcC+lRmR8hCe2S3jC4T5D7Vg/d7/fhA==}
     engines: {node: '>=6'}
 
   tapable@2.3.3:
@@ -6852,17 +6848,17 @@ snapshots:
   enhanced-resolve@5.18.2:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.3.2
+      tapable: 2.3.3
 
   enhanced-resolve@5.18.3:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.3.2
+      tapable: 2.3.3
 
   enhanced-resolve@5.19.0:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.3.2
+      tapable: 2.3.3
 
   entities@2.2.0: {}
 
@@ -7391,13 +7387,13 @@ snapshots:
 
   html-tags@5.1.0: {}
 
-  html-webpack-plugin@5.6.7(@rspack/core@1.7.12(@swc/helpers@0.5.21))(webpack@5.105.0(webpack-cli@6.0.1)):
+  html-webpack-plugin@5.6.8(@rspack/core@1.7.12(@swc/helpers@0.5.21))(webpack@5.105.0(webpack-cli@6.0.1)):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
       lodash: 4.17.21
       pretty-error: 4.0.0
-      tapable: 2.3.2
+      tapable: 2.3.3
     optionalDependencies:
       '@rspack/core': 1.7.12(@swc/helpers@0.5.21)
       webpack: 5.105.0(webpack-cli@6.0.1)
@@ -8782,8 +8778,6 @@ snapshots:
   tapable@2.2.2: {}
 
   tapable@2.3.0: {}
-
-  tapable@2.3.2: {}
 
   tapable@2.3.3: {}
 
