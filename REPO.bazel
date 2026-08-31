@@ -1,0 +1,2 @@
+# Ignore all node_modules directories
+ignore_directories(["**/node_modules"])
