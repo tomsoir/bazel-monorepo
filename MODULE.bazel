@@ -15,7 +15,7 @@ use_repo(rules_ts_ext, "npm_typescript")
 
 # ---
 
-bazel_dep(name = "aspect_rules_js", version = "2.9.2")
+bazel_dep(name = "aspect_rules_js", version = "2.9.3")
 
 # Bazel 9 removed native CcInfo; pin rules_nodejs for transitive node toolchains.
 bazel_dep(name = "rules_nodejs", version = "6.7.3", repo_name = None)
