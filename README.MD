@@ -80,6 +80,7 @@ This is a unified mono repo example that demonstrates how to develop, build, tes
         - [x] Write back to the source of the project workspace ([commit](https://github.com/tomsoir/bazel-monorepo/commit/04766499fbc61cb8a4eba82b090bce1ad4f8de03));
     - [x] Add custom Bazel repo rules examples:
         - [x] Basic rule installation with file creation in bazel-bin ([commit](https://github.com/tomsoir/bazel-monorepo/commit/16906550c8f12d39d93028692daa2954928365e9))
+    - [x] Improve Bazel CLI output by intercepting BEP ([commit](https://github.com/tomsoir/bazel-monorepo/commit/dea1fbb9d9def0e61ad07def5eeac3bacb55b8c5))
     - [ ] Auto-generate documentation;
     - [ ] Use Gazelle to auto-update BUILD files;
     - [ ] Custom scripts:
