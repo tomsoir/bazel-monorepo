@@ -114,20 +114,27 @@ export ASPECT_BAZEL_WRAPPER_VERSION
 # bazel directly. Done before everything else so it costs nothing in the
 # common case and can't be defeated by later config.
 if [[ -n "${ASPECT_CLI_RUNNING:-}" ]]; then
-    if [[ -n "${BAZEL_REAL:-}" && -x "$BAZEL_REAL" ]]; then
-        exec "$BAZEL_REAL" "$@"
-    fi
-    # No BAZEL_REAL (aspect was invoked directly, not through Bazelisk).
-    # Find the next bazel on PATH that isn't us.
-    self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
-    while IFS= read -r candidate; do
-        if [[ "$(cd "$(dirname "$candidate")" && pwd)/$(basename "$candidate")" != "$self" ]]; then
-            exec "$candidate" "$@"
-        fi
-    done < <(type -aP bazel 2>/dev/null || true)
-    echo "ERROR: tools/bazel: ASPECT_CLI_RUNNING is set but no real bazel found on PATH" >&2
-    exit 127
+	if [[ -n "${BAZEL_REAL:-}" && -x "$BAZEL_REAL" ]]; then
+		exec "$BAZEL_REAL" "$@"
+	fi
+	# No BAZEL_REAL (aspect was invoked directly, not through Bazelisk).
+	# Find the next bazel on PATH that isn't us.
+	self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+	while IFS= read -r candidate; do
+		if [[ "$(cd "$(dirname "$candidate")" && pwd)/$(basename "$candidate")" != "$self" ]]; then
+			exec "$candidate" "$@"
+		fi
+	done < <(type -aP bazel 2>/dev/null || true)
+	echo "ERROR: tools/bazel: ASPECT_CLI_RUNNING is set but no real bazel found on PATH" >&2
+	exit 127
 fi
+
+# Hide Aspect chrome so `bazel build` still looks like Bazel:
+#   ASPECT_WRAPPER_QUIET  — no grey `[tools/bazel] aspect build …` line
+#   ASPECT_CLI_NO_BANNER  — no `Aspect CLI v… — https://aspect.build/docs/cli`
+# Override either by exporting 0/empty before invoking bazel.
+export ASPECT_WRAPPER_QUIET="${ASPECT_WRAPPER_QUIET:-1}"
+export ASPECT_CLI_NO_BANNER="${ASPECT_CLI_NO_BANNER:-1}"
 
 # ============================================================================
 # Configuration — EDIT THESE in your own repo copy
@@ -149,13 +156,11 @@ fi
 # really buys is the vanilla-bazel fallback when `aspect` is not installed —
 # which only makes sense for verbs Bazel also has.
 ASPECT_VERBS=(
-    build
-    buildifier
-    delivery
-    format
-    gazelle
-    lint
-    test
+	buildifier
+	delivery
+	format
+	gazelle
+	lint
 )
 
 # Startup options that take a SEPARATE value. The only Bazel flag knowledge left
@@ -169,22 +174,22 @@ ASPECT_VERBS=(
 # Regenerate with:
 #   bazel help startup_options | awk '/^  --[a-z_]+ \(/ { print $1 }'
 BAZEL_STARTUP_VALUE_FLAGS=(
-    --bazelrc
-    --connect_timeout_secs
-    --digest_function
-    --experimental_cgroup_parent
-    --extra_classpath
-    --failure_detail_out
-    --host_jvm_args
-    --host_jvm_profile
-    --io_nice_level
-    --local_startup_timeout_secs
-    --macos_qos_class
-    --max_idle_secs
-    --output_base
-    --output_user_root
-    --server_javabase
-    --server_jvm_out
+	--bazelrc
+	--connect_timeout_secs
+	--digest_function
+	--experimental_cgroup_parent
+	--extra_classpath
+	--failure_detail_out
+	--host_jvm_args
+	--host_jvm_profile
+	--io_nice_level
+	--local_startup_timeout_secs
+	--macos_qos_class
+	--max_idle_secs
+	--output_base
+	--output_user_root
+	--server_javabase
+	--server_jvm_out
 )
 
 # The closed set of Bazel commands (Bazel 9). A verb here that is NOT in
@@ -201,9 +206,9 @@ BAZEL_STARTUP_VALUE_FLAGS=(
 # silently degrades the pre-verb disambiguation walk, since KNOWN_VERBS_STR is
 # built from this table.
 BAZEL_VERBS=(
-    aquery build canonicalize-flags clean config coverage cquery dump fetch
-    help info license mobile-install mod print_action query run shutdown
-    test vendor version
+	aquery build canonicalize-flags clean config coverage cquery dump fetch
+	help info license mobile-install mod print_action query run shutdown
+	test vendor version
 )
 
 ASPECT_VERBS_STR=" ${ASPECT_VERBS[*]} "
@@ -220,12 +225,12 @@ ASPECT_WRAPPER_DOCS_URL="https://github.com/aspect-build/aspect-cli/blob/main/to
 # render ANSI color despite having no TTY. Presence — not truthiness — is
 # what counts: GHA sometimes exports `CI=` (empty), and that still counts.
 on_recognized_ci() {
-    [[ -n "${CI+x}" ]] && return 0
-    [[ -n "${BUILDKITE+x}" ]] && return 0
-    [[ -n "${GITHUB_ACTIONS+x}" ]] && return 0
-    [[ -n "${CIRCLECI+x}" ]] && return 0
-    [[ -n "${GITLAB_CI+x}" ]] && return 0
-    return 1
+	[[ -n "${CI+x}" ]] && return 0
+	[[ -n "${BUILDKITE+x}" ]] && return 0
+	[[ -n "${GITHUB_ACTIONS+x}" ]] && return 0
+	[[ -n "${CIRCLECI+x}" ]] && return 0
+	[[ -n "${GITLAB_CI+x}" ]] && return 0
+	return 1
 }
 
 # Print a trace line on stderr showing what the wrapper is about to exec
@@ -267,85 +272,85 @@ on_recognized_ci() {
 # render color); a non-TTY stderr gets plain text, so a script capturing
 # stderr never sees escape bytes.
 trace_exec() {
-    local category="$1" shadow="$2"
-    shift 2
-    [[ -n "${ASPECT_WRAPPER_QUIET:-}" ]] && return 0
-    local force="${ASPECT_WRAPPER_TRACE:-}"
-    # Pure bazel forwarding: silent unless explicitly forced.
-    if [[ "$category" == "bazel" && -z "$force" ]]; then
-        return 0
-    fi
-    # Aspect routing always prints (handled by falling through to here). Grey
-    # only when the output renders color: a TTY, or forced / on CI.
-    local on_ci=0
-    on_recognized_ci && on_ci=1
-    local grey="" reset=""
-    if [[ -t 2 || -n "$force" || $on_ci -eq 1 ]]; then
-        grey=$'\033[38;5;244m'
-        reset=$'\033[0m'
-    fi
-    # Quote each arg if it contains anything outside the shell-safe character
-    # set, so the trace line could be copy-pasted back into a terminal.
-    local quoted=""
-    local a stripped
-    for a in "$@"; do
-        # Remove every safe character; whatever remains is "needs quoting".
-        stripped="${a//[A-Za-z0-9._\/=:@,+-]/}"
-        if [[ -z "$a" || -n "$stripped" ]]; then
-            # shellcheck disable=SC2001
-            quoted+=" '$(echo "$a" | sed "s/'/'\\\\''/g")'"
-        else
-            quoted+=" $a"
-        fi
-    done
-    # Suffix only on aspect routing: bazel forwards are already vanilla and
-    # don't need an opt-out hint. Shadow nudges go first (most actionable);
-    # the docs link is always last.
-    local suffix=""
-    if [[ "$category" == "aspect" ]]; then
-        if [[ "$shadow" == "shadow" ]]; then
-            suffix+=" | set ASPECT_WRAPPER_SKIP=1 to skip the forward to \`aspect\`"
-        fi
-        suffix+=" — docs: $ASPECT_WRAPPER_DOCS_URL"
-    fi
-    printf '%s[tools/bazel]%s%s%s\n' "$grey" "$quoted" "$suffix" "$reset" >&2
+	local category="$1" shadow="$2"
+	shift 2
+	[[ -n "${ASPECT_WRAPPER_QUIET:-}" ]] && return 0
+	local force="${ASPECT_WRAPPER_TRACE:-}"
+	# Pure bazel forwarding: silent unless explicitly forced.
+	if [[ "$category" == "bazel" && -z "$force" ]]; then
+		return 0
+	fi
+	# Aspect routing always prints (handled by falling through to here). Grey
+	# only when the output renders color: a TTY, or forced / on CI.
+	local on_ci=0
+	on_recognized_ci && on_ci=1
+	local grey="" reset=""
+	if [[ -t 2 || -n "$force" || $on_ci -eq 1 ]]; then
+		grey=$'\033[38;5;244m'
+		reset=$'\033[0m'
+	fi
+	# Quote each arg if it contains anything outside the shell-safe character
+	# set, so the trace line could be copy-pasted back into a terminal.
+	local quoted=""
+	local a stripped
+	for a in "$@"; do
+		# Remove every safe character; whatever remains is "needs quoting".
+		stripped="${a//[A-Za-z0-9._\/=:@,+-]/}"
+		if [[ -z "$a" || -n "$stripped" ]]; then
+			# shellcheck disable=SC2001
+			quoted+=" '$(echo "$a" | sed "s/'/'\\\\''/g")'"
+		else
+			quoted+=" $a"
+		fi
+	done
+	# Suffix only on aspect routing: bazel forwards are already vanilla and
+	# don't need an opt-out hint. Shadow nudges go first (most actionable);
+	# the docs link is always last.
+	local suffix=""
+	if [[ "$category" == "aspect" ]]; then
+		if [[ "$shadow" == "shadow" ]]; then
+			suffix+=" | set ASPECT_WRAPPER_SKIP=1 to skip the forward to \`aspect\`"
+		fi
+		suffix+=" — docs: $ASPECT_WRAPPER_DOCS_URL"
+	fi
+	printf '%s[tools/bazel]%s%s%s\n' "$grey" "$quoted" "$suffix" "$reset" >&2
 }
 
 # Locate the real bazel binary. Bazelisk sets BAZEL_REAL when it execs this
 # wrapper; a direct or aspect-child invocation has no BAZEL_REAL. So prefer
 # BAZEL_REAL, else scan PATH for the next `bazel` that isn't this wrapper.
 resolve_bazel_real() {
-    if [[ -n "${BAZEL_REAL:-}" && -x "$BAZEL_REAL" ]]; then
-        echo "$BAZEL_REAL"
-        return
-    fi
-    local self
-    self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
-    local candidate
-    while IFS= read -r candidate; do
-        if [[ "$(cd "$(dirname "$candidate")" && pwd)/$(basename "$candidate")" != "$self" ]]; then
-            echo "$candidate"
-            return
-        fi
-    done < <(type -aP bazel 2>/dev/null || true)
-    echo "ERROR: tools/bazel: cannot find a real bazel binary on PATH (and BAZEL_REAL is unset)" >&2
-    exit 127
+	if [[ -n "${BAZEL_REAL:-}" && -x "$BAZEL_REAL" ]]; then
+		echo "$BAZEL_REAL"
+		return
+	fi
+	local self
+	self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+	local candidate
+	while IFS= read -r candidate; do
+		if [[ "$(cd "$(dirname "$candidate")" && pwd)/$(basename "$candidate")" != "$self" ]]; then
+			echo "$candidate"
+			return
+		fi
+	done < <(type -aP bazel 2>/dev/null || true)
+	echo "ERROR: tools/bazel: cannot find a real bazel binary on PATH (and BAZEL_REAL is unset)" >&2
+	exit 127
 }
 
 contains() {
-    local needle="$1"
-    shift
-    local item
-    for item in "$@"; do
-        [[ "$item" == "$needle" ]] && return 0
-    done
-    return 1
+	local needle="$1"
+	shift
+	local item
+	for item in "$@"; do
+		[[ "$item" == "$needle" ]] && return 0
+	done
+	return 1
 }
 
 # True when the `aspect` CLI is on PATH. Routing to aspect only matters when
 # it's actually installed; see aspect_missing_hint.
 aspect_on_path() {
-    command -v aspect >/dev/null 2>&1
+	command -v aspect >/dev/null 2>&1
 }
 
 # Explain that the given command needs the (missing) `aspect` CLI and print
@@ -354,8 +359,8 @@ aspect_on_path() {
 #
 # Usage: aspect_missing_hint <verb> [fallback_note]
 aspect_missing_hint() {
-    local verb="$1" fallback_note="${2:-}"
-    cat >&2 <<EOF
+	local verb="$1" fallback_note="${2:-}"
+	cat >&2 <<EOF
 [tools/bazel] \`bazel ${verb}\` runs through the Aspect CLI (\`aspect\`), which is not on your PATH.
 
   Install it with:
@@ -364,8 +369,8 @@ aspect_missing_hint() {
 
   or see https://aspect.build/docs/cli/install
 EOF
-    [[ -n "$fallback_note" ]] && echo "  $fallback_note" >&2
-    return 0
+	[[ -n "$fallback_note" ]] && echo "  $fallback_note" >&2
+	return 0
 }
 
 # --- Dispatch -------------------------------------------------------------
@@ -377,8 +382,8 @@ BAZEL_REAL_BIN="$(resolve_bazel_real)"
 # developers who want a 1:1 bazel experience locally; reach for `aspect <verb>`
 # directly when you want the wrapped behavior.
 if [[ -n "${ASPECT_WRAPPER_SKIP:-}" ]]; then
-    trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
-    exec "$BAZEL_REAL_BIN" "$@"
+	trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
+	exec "$BAZEL_REAL_BIN" "$@"
 fi
 
 # Verb detection. Every token is forwarded verbatim, so this only decides
@@ -398,38 +403,38 @@ verb=""
 first_bare=""
 skip_value=0
 for arg in "$@"; do
-    if [[ "$arg" == "--" ]]; then
-        break
-    fi
-    if [[ "$arg" == -* ]]; then
-        # `--flag=value` carries its value; a listed `--flag` takes the next token.
-        if [[ "$arg" != *=* ]] && contains "$arg" "${BAZEL_STARTUP_VALUE_FLAGS[@]}"; then
-            skip_value=1
-        else
-            skip_value=0
-        fi
-        continue
-    fi
-    if [[ $skip_value -eq 1 ]]; then
-        skip_value=0
-        continue
-    fi
-    case "$KNOWN_VERBS_STR" in
-    *" $arg "*)
-        verb="$arg"
-        break
-        ;;
-    esac
-    if [[ -z "$first_bare" ]]; then
-        first_bare="$arg"
-    fi
+	if [[ "$arg" == "--" ]]; then
+		break
+	fi
+	if [[ "$arg" == -* ]]; then
+		# `--flag=value` carries its value; a listed `--flag` takes the next token.
+		if [[ "$arg" != *=* ]] && contains "$arg" "${BAZEL_STARTUP_VALUE_FLAGS[@]}"; then
+			skip_value=1
+		else
+			skip_value=0
+		fi
+		continue
+	fi
+	if [[ $skip_value -eq 1 ]]; then
+		skip_value=0
+		continue
+	fi
+	case "$KNOWN_VERBS_STR" in
+	*" $arg "*)
+		verb="$arg"
+		break
+		;;
+	esac
+	if [[ -z "$first_bare" ]]; then
+		first_bare="$arg"
+	fi
 done
 [[ -z "$verb" ]] && verb="$first_bare"
 
 # No verb: forward verbatim to bazel.
 if [[ -z "$verb" ]]; then
-    trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
-    exec "$BAZEL_REAL_BIN" "$@"
+	trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
+	exec "$BAZEL_REAL_BIN" "$@"
 fi
 
 # Verb routed to aspect (the verbs aspect wraps plus the aspect verbs that
@@ -437,43 +442,59 @@ fi
 # untouched: aspect forwards the flags it does not recognize to bazel itself,
 # in the slot they were typed in.
 if contains "$verb" "${ASPECT_VERBS[@]}"; then
-    # No aspect on PATH: nudge toward installing it. If the verb is also a real
-    # bazel command (build/test/coverage) fall back to vanilla bazel so the
-    # command still runs; otherwise (lint/format/…) bazel can't run it, so stop.
-    if ! aspect_on_path; then
-        if contains "$verb" "${BAZEL_VERBS[@]}"; then
-            aspect_missing_hint "$verb" "Running it through vanilla bazel for now."
-            trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
-            exec "$BAZEL_REAL_BIN" "$@"
-        fi
-        aspect_missing_hint "$verb"
-        exit 127
-    fi
-    export BAZEL_REAL="$BAZEL_REAL_BIN"
-    # A verb in both lists (build/test/…) shadows bazel — what the user typed
-    # is a real bazel command and we're routing it through aspect anyway. The
-    # trace nudges toward ASPECT_WRAPPER_SKIP=1 in that case.
-    shadow=""
-    if contains "$verb" "${BAZEL_VERBS[@]}"; then
-        shadow="shadow"
-    fi
-    trace_exec aspect "$shadow" aspect "$@"
-    exec aspect "$@"
+	# No aspect on PATH: nudge toward installing it. If the verb is also a real
+	# bazel command (build/test/coverage) fall back to vanilla bazel so the
+	# command still runs; otherwise (lint/format/…) bazel can't run it, so stop.
+	if ! aspect_on_path; then
+		if contains "$verb" "${BAZEL_VERBS[@]}"; then
+			aspect_missing_hint "$verb" "Running it through vanilla bazel for now."
+			trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
+			exec "$BAZEL_REAL_BIN" "$@"
+		fi
+		aspect_missing_hint "$verb"
+		exit 127
+	fi
+	export BAZEL_REAL="$BAZEL_REAL_BIN"
+	# A verb in both lists (build/test/…) shadows bazel — what the user typed
+	# is a real bazel command and we're routing it through aspect anyway. The
+	# trace nudges toward ASPECT_WRAPPER_SKIP=1 in that case.
+	shadow=""
+	if contains "$verb" "${BAZEL_VERBS[@]}"; then
+		shadow="shadow"
+	fi
+	trace_exec aspect "$shadow" aspect --task:timing-summary=none "$@"
+	exec aspect --task:timing-summary=none "$@"
 fi
 
-# Other bazel verb (query, info, clean, mod, …): vanilla bazel, untouched.
+# Other bazel verb (query, info, clean, mod, …): vanilla bazel.
+# build/test/run/coverage print a footer after Bazel exits.
 if contains "$verb" "${BAZEL_VERBS[@]}"; then
-    trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
-    exec "$BAZEL_REAL_BIN" "$@"
+	trace_exec bazel "" "$BAZEL_REAL_BIN" "$@"
+	case "$verb" in
+	build | test | run | coverage)
+		wrapper_dir="$(cd "$(dirname "$0")" && pwd)"
+		bep="$(mktemp "${TMPDIR:-/tmp}/bep.XXXXXX.json")"
+		set +e
+		"$BAZEL_REAL_BIN" "$@" --build_event_json_file="$bep"
+		code=$?
+		set -e
+		python3 "$wrapper_dir/bep_footer.py" "$bep" >&2 || true
+		rm -f "$bep"
+		exit "$code"
+		;;
+	*)
+		exec "$BAZEL_REAL_BIN" "$@"
+		;;
+	esac
 fi
 
 # Unknown verb: a custom aspect task (.axl) with an arbitrary name. Bazel has
 # no such command, so if aspect is missing there's no fallback.
 if ! aspect_on_path; then
-    aspect_missing_hint "$verb"
-    exit 127
+	aspect_missing_hint "$verb"
+	exit 127
 fi
 export BAZEL_REAL="$BAZEL_REAL_BIN"
 # Custom .axl tasks never shadow bazel: bazel has no such command.
-trace_exec aspect "" aspect "$@"
-exec aspect "$@"
+trace_exec aspect "" aspect --task:timing-summary=none "$@"
+exec aspect --task:timing-summary=none "$@"

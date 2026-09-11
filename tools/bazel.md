@@ -26,17 +26,17 @@ Independently, **any version of this wrapper requires Aspect CLI v2026.23.18 or 
 
 The `tools/bazel` hook is a [Bazelisk](https://github.com/bazelbuild/bazelisk) feature — the real `bazel` binary does not look for it. When Bazelisk finds `tools/bazel` in your workspace it execs that script instead of the bazel version it resolved, passing the resolved path as `$BAZEL_REAL`. (So this only works if the `bazel` on your `PATH` is Bazelisk — the standard setup.) This wrapper uses that hook to dispatch each command to the right tool:
 
-| You type | What runs |
-| --- | --- |
-| `bazel build //... --keep_going --config=ci` | `aspect build //... --keep_going --config=ci` |
-| `bazel build -c opt //...` | `aspect build -c opt //...` |
-| `bazel test //... --test_output errors` | `aspect test //... --test_output errors` |
-| `bazel --output_base /tmp/o build //...` | `aspect --output_base /tmp/o build //...` |
-| `bazel lint --config=ci //src/...` | `aspect lint --config=ci //src/...` |
-| `bazel delivery --config=release //...` | `aspect delivery --config=release //...` |
-| `bazel query 'deps(//foo)'` | `$BAZEL_REAL query 'deps(//foo)'` (vanilla bazel, unchanged) |
-| `bazel info workspace` | `$BAZEL_REAL info workspace` |
-| `bazel my-custom-task //...` | `aspect my-custom-task //...` (unknown verb → aspect verbatim) |
+| You type                                     | What runs                                                      |
+| -------------------------------------------- | -------------------------------------------------------------- |
+| `bazel build //... --keep_going --config=ci` | `aspect build //... --keep_going --config=ci`                  |
+| `bazel build -c opt //...`                   | `aspect build -c opt //...`                                    |
+| `bazel test //... --test_output errors`      | `aspect test //... --test_output errors`                       |
+| `bazel --output_base /tmp/o build //...`     | `aspect --output_base /tmp/o build //...`                      |
+| `bazel lint --config=ci //src/...`           | `aspect lint --config=ci //src/...`                            |
+| `bazel delivery --config=release //...`      | `aspect delivery --config=release //...`                       |
+| `bazel query 'deps(//foo)'`                  | `$BAZEL_REAL query 'deps(//foo)'` (vanilla bazel, unchanged)   |
+| `bazel info workspace`                       | `$BAZEL_REAL info workspace`                                   |
+| `bazel my-custom-task //...`                 | `aspect my-custom-task //...` (unknown verb → aspect verbatim) |
 
 The interesting case is the verbs aspect wraps (`build` / `test`) and the aspect verbs that drive Bazel internally (`lint`, `format`, `delivery`, …). The wrapper routes those through `aspect` so you pick up its DX improvements (artifact upload, GitHub PR comments, BES streaming, …), and **bazel-native flags keep working** — the arguments reach `aspect` exactly as you typed them, and aspect forwards the flags it doesn't recognize to Bazel itself.
 
@@ -47,7 +47,7 @@ The interesting case is the verbs aspect wraps (`build` / `test`) and the aspect
 The wrapper decides where a command goes from two lists at the top of the script:
 
 - `ASPECT_VERBS` — verbs routed to `aspect` (default `build buildifier delivery format gazelle lint test`). These are also the verbs that may fall back to vanilla bazel when `aspect` isn't installed.
-- `BAZEL_VERBS` — the closed set of Bazel commands. A verb here that's *not* in the list above (`query`, `info`, `clean`, `mod`, `coverage`, …) goes to vanilla bazel.
+- `BAZEL_VERBS` — the closed set of Bazel commands. A verb here that's _not_ in the list above (`query`, `info`, `clean`, `mod`, `coverage`, …) goes to vanilla bazel.
 
 The rules, in order (`ASPECT_WRAPPER_SKIP=1` short-circuits all of them — see below):
 
@@ -69,9 +69,9 @@ curl -fsSL https://install.aspect.build | bash
 
 They aren't. Every argument is forwarded to `aspect` exactly as typed, in the position you typed it.
 
-Aspect accepts a Bazel flag directly: a flag it doesn't recognize is forwarded to Bazel in the slot it appeared in — before the verb it becomes a Bazel *startup* option, after the verb a *command* option, mirroring how `bazel` itself splits its command line. Bazel's own spellings all work (`--config=ci`, `--config ci`, `-c opt`, `--jobs 8`), and `--` still ends flag parsing so hyphen-led target patterns and `run` arguments pass through untouched.
+Aspect accepts a Bazel flag directly: a flag it doesn't recognize is forwarded to Bazel in the slot it appeared in — before the verb it becomes a Bazel _startup_ option, after the verb a _command_ option, mirroring how `bazel` itself splits its command line. Bazel's own spellings all work (`--config=ci`, `--config ci`, `-c opt`, `--jobs 8`), and `--` still ends flag parsing so hyphen-led target patterns and `run` arguments pass through untouched.
 
-The wrapper keeps one small list, `BAZEL_STARTUP_VALUE_FLAGS` (16 entries), and it is not about flags reaching Bazel: verb detection has to know that `bazel --bazelrc build query …` means the *query* command, not `build`. Nothing else about Bazel's flags is embedded, so a new Bazel flag needs no change here. It also means a **newer wrapper needs a newer CLI**: see [Minimum Aspect CLI version](#minimum-aspect-cli-version). On an older CLI, a bare Bazel flag comes back as `error: unexpected argument '--keep_going' found`; wrap it as `--bazel-flag=--keep_going` (still supported) or upgrade.
+The wrapper keeps one small list, `BAZEL_STARTUP_VALUE_FLAGS` (16 entries), and it is not about flags reaching Bazel: verb detection has to know that `bazel --bazelrc build query …` means the _query_ command, not `build`. Nothing else about Bazel's flags is embedded, so a new Bazel flag needs no change here. It also means a **newer wrapper needs a newer CLI**: see [Minimum Aspect CLI version](#minimum-aspect-cli-version). On an older CLI, a bare Bazel flag comes back as `error: unexpected argument '--keep_going' found`; wrap it as `--bazel-flag=--keep_going` (still supported) or upgrade.
 
 ## Installing in your repo
 
@@ -132,7 +132,7 @@ The fix: aspect sets `ASPECT_CLI_RUNNING=1` on every child `bazel` it spawns. `t
 Two lists at the top of the script drive every routing decision; edit them in your repo copy:
 
 - `ASPECT_VERBS` — verbs routed to `aspect`. Default: `build buildifier delivery format gazelle lint test`. Add your own aspect commands here — including `run`, once you're ready for `aspect run` to shadow `bazel run` in your workspace. An unlisted verb also routes to aspect, so what listing one really buys is the vanilla-bazel fallback when `aspect` isn't installed. (`ASPECT_WRAPPER_SKIP=1` bypasses this entirely — everything goes to vanilla bazel.)
-- `BAZEL_VERBS` — the closed set of Bazel commands. A verb here that's *not* in the list above forwards to vanilla bazel. A verb in *neither* list is treated as a custom aspect task and routed to aspect verbatim. Update this only if Bazel adds a command, and regenerate it from `bazel help completion`'s `BAZEL_COMMAND_LIST` rather than `bazel help` — the latter hides some commands (`config`), and a hidden command missing here gets misrouted to `aspect`:
+- `BAZEL_VERBS` — the closed set of Bazel commands. A verb here that's _not_ in the list above forwards to vanilla bazel. A verb in _neither_ list is treated as a custom aspect task and routed to aspect verbatim. Update this only if Bazel adds a command, and regenerate it from `bazel help completion`'s `BAZEL_COMMAND_LIST` rather than `bazel help` — the latter hides some commands (`config`), and a hidden command missing here gets misrouted to `aspect`:
 
   ```
   bazel help completion | sed -n 's/^BAZEL_COMMAND_LIST="\(.*\)"$/\1/p'
