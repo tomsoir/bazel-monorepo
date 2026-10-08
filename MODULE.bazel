@@ -5,13 +5,15 @@ module(
 
 # ---
 
-bazel_dep(name = "aspect_rules_ts", version = "3.8.10")
+bazel_dep(name = "aspect_rules_ts", version = "3.10.1")
 
-rules_ts_ext = use_extension("@aspect_rules_ts//ts:extensions.bzl", "ext", dev_dependency = True)
-rules_ts_ext.deps(
-    ts_version_from = "//:package.json",
+typescript = use_extension("@aspect_rules_ts//ts:extensions.bzl", "typescript", dev_dependency = True)
+typescript.deps(
+    # Pin TS 7 here (not version_from): package.json keeps the TS 6 API under
+    # the `typescript` name so typescript-eslint can run until it supports TS 7.1+.
+    version = "7.0.2",
 )
-use_repo(rules_ts_ext, "npm_typescript")
+use_repo(typescript, "npm_typescript")
 
 # ---
 
