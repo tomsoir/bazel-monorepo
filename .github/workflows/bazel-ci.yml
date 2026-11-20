@@ -14,11 +14,11 @@ jobs:
     name: Build all targets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
@@ -36,11 +36,11 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
@@ -58,11 +58,11 @@ jobs:
     name: Format check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
@@ -80,11 +80,11 @@ jobs:
     name: Lint check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: bazelbuild/setup-bazelisk@v3
 
       - name: Restore Bazel disk cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/bazel
           key: bazel-cache-${{ runner.os }}-${{ hashFiles('**/*.bazel', '**/BUILD', '**/*.bzl', 'WORKSPACE', 'MODULE.bazel') }}
