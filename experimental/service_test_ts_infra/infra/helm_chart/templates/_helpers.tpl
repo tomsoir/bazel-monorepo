@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "example-project.name" -}}
+{{- define "tomsoir-client-web.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "example-project.fullname" -}}
+{{- define "tomsoir-client-web.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "example-project.chart" -}}
+{{- define "tomsoir-client-web.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "example-project.labels" -}}
-helm.sh/chart: {{ include "example-project.chart" . }}
-{{ include "example-project.selectorLabels" . }}
+{{- define "tomsoir-client-web.labels" -}}
+helm.sh/chart: {{ include "tomsoir-client-web.chart" . }}
+{{ include "tomsoir-client-web.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "example-project.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "example-project.name" . }}
+{{- define "tomsoir-client-web.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "tomsoir-client-web.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "example-project.serviceAccountName" -}}
+{{- define "tomsoir-client-web.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "example-project.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "tomsoir-client-web.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

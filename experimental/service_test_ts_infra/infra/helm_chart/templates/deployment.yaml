@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-project
+  name: tomsoir-client-web
 spec:
   replicas: "{{ .Values.replicaCount }}"
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: example-project
+      app: tomsoir-client-web
 
   # Make sure that readinessProbe is specififed as well.
   strategy:
@@ -25,18 +25,18 @@ spec:
   template:
     metadata:
       labels:
-        app: example-project
+        app: tomsoir-client-web
     spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  app: example-project # Match pods with this label
+                  app: tomsoir-client-web # Match pods with this label
               topologyKey: kubernetes.io/hostname # Ensure pods are scheduled on different nodes
 
       containers:
-        - name: example-project
+        - name: tomsoir-client-web
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: Always
           ports:

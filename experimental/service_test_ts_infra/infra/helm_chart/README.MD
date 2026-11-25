@@ -4,16 +4,16 @@
 $ make helm_docker_exec_container
 
 # (ONLY ONCE, use update after) First time release installation
-$ helm install example-project-release ./example-project-chart
+$ helm install tomsoir-client-web-release ./tomsoir-client-web-chart
 
 # Upgrade k8s manifests only (inside helm-control-panel)
-$ helm upgrade example-project-release ./example-project-chart
+$ helm upgrade tomsoir-client-web-release ./tomsoir-client-web-chart
 
 # Upgrade with new image (inside helm-control-panel)
-$ helm upgrade example-project-release ./example-project-chart --set image.tag=0.0.93
+$ helm upgrade tomsoir-client-web-release ./tomsoir-client-web-chart --set image.tag=0.0.93
 
 # Delete (note after delete you need to run helm install first, than helm update for further releases)
-$ helm delete example-project-release
+$ helm delete tomsoir-client-web-release
 ```
 
 # Debug
@@ -22,7 +22,7 @@ $ helm delete example-project-release
 $ helm list -A
 
 # Find resources
-$ kubectl get all -n default -l app=example-project
+$ kubectl get all -n default -l app=tomsoir-client-web
 $ kubectl get svc -n default
 $ kubectl get ingress -n default
 
